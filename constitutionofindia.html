@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constitution of India</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo1.jpg" type="image/jpg">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            background: url('img/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: -1;
+        }
+        
+        /* Updated Navigation Bar */
+        nav {
+            background: #502900;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%; /* Reduced width to create spacing on sides */
+            max-width: 1400px; /* Added max-width for large screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0 30px; /* Added horizontal padding */
+        }
+        
+        nav .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+        }
+        
+        .nav-logo {
+            height: 60px;
+            width: auto;
+            border-radius: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .logout {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .logout:hover {
+            color: #f9a826;
+        }
+        
+        nav a:hover {
+            color: #f9a826;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .menu {
+                margin: 10px 0;
+            }
+            
+            .logout {
+                margin-top: 10px;
+            }
+        }
+        
+        /* Main Content Styles */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 900px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(232, 229, 229, 0.2);
+        }
+        
+        .intro img {
+            width: 300px;
+            margin-right: 30px;
+            border-radius: 8px;
+        }
+        
+        .frame {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .language-card {
+            width: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .language-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .language-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            padding-top: 20%;
+        }
+        
+        .language-card .content {
+            padding: 10px;
+        }
+        
+        .language-card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            color: white;
+            background: #f9a826;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .language-card a:hover {
+            background: #1e3c72;
+        }
+        
+        #languageSelection {
+            color: white;  
+            text-align: center;  
+            font-size: 24px;  
+            font-weight: bold;  
+        }
+        
+        /* Updated Footer */
+        footer {
+            background: #502900;
+            color: white;
+            padding: 40px 0 20px;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            margin: 0 15px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #f9a826;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 10px;
+        }
+        
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 20px;
+            color: #ffffff;
+        }
+        
+        .footer-column a:hover {
+            color: #f9a826;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Updated Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="img/logo1.jpg" alt="Logo" class="nav-logo">
+            </a>
+    
+            <div class="menu">
+                <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                
+                <!-- Dropdown Menu with Icon -->
+                <div class="dropdown">
+                    <a href="service.html"><i class="fas fa-gavel"></i> Services</a>
+    
+                    <div class="dropdown-content">
+                        
+                        <a href="consitution_of_india.html"><i class="fas fa-book"></i> Constitution of India</a>
+    
+                        <a href="displayblog.html"><i class="fas fa-pen-fancy"></i> Blog </a>
+    
+                        <a href="schccc.html"><i class="fas fa-file-alt"></i> Courts Information</a>
+                    </div>
+                </div>
+                <a href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+                <a href="displaylawyer.html"><i class="fas fa-user-tie"></i>Find lawyer</a>
+                <a href="contact.html"><i class="fas fa-question-circle"></i> Contact</a>
+            </div>
+    
+            <a href="C:/Users/lenovo/Desktop/project/index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+      </nav>
+
+    <div class="container">
+        <div class="intro">
+            <img src="img/constitution_image.jfif" alt="Constitution Image">
+            <div>
+                <h2>Constitution of India</h2>
+                <p>The Constitution of India is the supreme law of India. It lays down the framework defining fundamental rights, directive principles, and duties of citizens. Adopted on January 26, 1950, it establishes India as a sovereign, socialist, secular, democratic republic.</p>
+            </div>
+        </div>
+        <h2 id="languageSelection">🌍 Explore in Your Language</h2>
+
+        <div class="frame" id="languages"></div>
+    </div>
+    
+    <!-- Updated Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Justice Advisor</h3>
+                <p>Your comprehensive legal guide center providing high-quality materials for lawyers.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="chatbot.html"> Chatbot </a></li>
+                    <li><a href="displaylawyer.html"></a>Find Lawyer</li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Other Resources</h3>
+                <ul>
+                    <li><a href="constitution.html">Constitution of India</a></li>
+                    
+                    <li><a href="displayblog.html"> Blog </a></li>
+                    <li><a href="schccc.html">Court Information </a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Legal Studies Repository. All rights reserved.</p>
+        </div>
+      </footer>
+
+    <script>
+        const languages = [
+            { name: "English", link: "consitution of india/english.pdf", image: "img/english.jfif" },
+            { name: "Hindi", link: "consitution of india/hindi.pdf", image: "img/hindi.jfif" },
+            { name: "Tamil", link: "consitution of india/tamil.pdf", image: "img/tamil.jfif" },
+            { name: "Marathi", link: "consitution of india/marathi.pdf", image: "img/marathi.jfif" },
+            { name: "Punjabi", link: "consitution of india/punjabi.pdf", image: "img/punjabi.jfif" },
+            { name: "Sanskrit", link: "consitution of india/sanskrit.pdf", image: "img/sanskrit.jfif" },
+            { name: "Gujarati", link: "consitution of india/gujarati.pdf", image: "img/gujarati.jfif" },
+            { name: "Malayalam", link: "consitution of india/malayalam.pdf", image: "img/malayalam.jfif" },
+            { name: "Bengali", link: "consitution of india/bengali.pdf", image: "img/bengali.jfif" }
+        ];
+        
+        const container = document.getElementById("languages");
+        languages.forEach(lang => {
+            const card = document.createElement("div");
+            card.classList.add("language-card");
+            card.innerHTML = `
+                <img src="${lang.image}" alt="${lang.name}">
+                <div class="content">
+                    <h3>${lang.name}</h3>
+                    <a href="${lang.link}" download>Download</a>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>

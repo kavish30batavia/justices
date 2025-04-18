@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="logincss.css">
+  <link rel="icon" href="logo.jpg" type="image/jpg">
+  <title>Login Page</title>
+  <script type="module" src="firebase.js"></script>
+
+</head>
+<body>
+    <style>
+        /* ✅ Google Login Button */
+#signup-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between icon and text */
+    background-color: #ffffff; /* White background */
+    border: 1px solid #ddd; /* Light gray border */
+    padding: 10px 15px;
+    border-radius: 25px; /* Rounded button */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333; /* Dark gray text */
+    transition: background 0.3s, border 0.3s;
+}
+
+#signup-google:hover {
+    background-color: #f5f5f5; /* Light gray on hover */
+    border: 1px solid #ccc;
+}
+
+#signup-google img {
+    width: 30px; /* Adjust size */
+    height: 30px;
+    border-radius: 50%; /* Makes it circular */
+    object-fit: cover;
+}
+
+/* ✅ Sign Up Button */
+#signup-button {
+    background-color: #007BFF; /* Blue color */
+    color: #fff; /* White text */
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+#signup-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+    </style>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="#" id="loginForm">
+                    <h2>Login</h2>
+                
+                    <!-- Login with Google Button Above Email Field -->
+                    <button type="button" id="login-google">
+                        <img src="google.png" alt="Google Logo">
+                        Login with Google
+                    </button>
+                
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" id="login-email" required>
+                        <label for="email">Email</label>
+                    </div>
+                
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" id="login-password" required>
+                        <label for="password">Password</label>
+                    </div>
+                
+                    <div class="forget">
+                        <label for="remember">
+                            <input type="checkbox" id="remember">Remember Me  
+                            <a href="#" id="forgot-password" class="forgot-password">Forget Password</a>
+                        </label>
+                    </div>
+                
+                    <!-- Login Button -->
+                    <button type="submit" id="login-button">Log in</button>
+                
+                    <div class="register">
+                        <p>Don't have an account? <a href="Signup.html">Register</a></p>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </section>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+    <script type="module">
+        import { 
+            signInWithEmail, 
+            signInWithGoogle, 
+            resetPassword,
+            db  // Import db from firebase.js
+        } from "./firebase.js";
+        
+        // Import Firestore functions
+        import { 
+            doc, 
+            getDoc 
+        } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+    
+        document.getElementById("login-button").addEventListener("click", async (event) => {
+            event.preventDefault();
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-password").value;
+            
+            try {
+                const user = await signInWithEmail(email, password);
+                
+                // Get user role from Firestore
+                const userRef = doc(db, "users", user.uid);
+                const userSnap = await getDoc(userRef);
+                
+                if (userSnap.exists()) {
+                    const userData = userSnap.data();
+                    // Store user data in sessionStorage
+                    sessionStorage.setItem('user', JSON.stringify(userData));
+                    
+                    // Redirect based on role
+                    switch(userData.role) {
+                        case 'lawyer':
+                            window.location.href = "C:/Users/lenovo/Desktop/project/lawyerside/dashboard.html";
+                            break;
+                        case 'student':
+                            window.location.href = "C:/Users/lenovo/Desktop/project/studentside/dashboard.html";
+                            break;
+                        default:
+                            window.location.href = "C:/Users/lenovo/Desktop/project/userside/dashboard.html";
+                    }
+                } else {
+                    alert('User data not found!');
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+    
+        document.getElementById("login-google").addEventListener("click", async () => {
+            try {
+                const user = await signInWithGoogle();
+                
+                // Get user role from Firestore
+                const userRef = doc(db, "users", user.uid);
+                const userSnap = await getDoc(userRef);
+                
+                if (userSnap.exists()) {
+                    const userData = userSnap.data();
+                    // Store user data in sessionStorage
+                    sessionStorage.setItem('user', JSON.stringify(userData));
+                    
+                    // Redirect based on role
+                    switch(userData.role) {
+                        case 'lawyer':
+                            window.location.href = "C:/Users/lenovo/Desktop/project/lawyerside/dashboard.html";
+                            break;
+                        case 'student':
+                            window.location.href = "C:/Users/lenovo/Desktop/project/studentside/dashboard.html";
+                            break;
+                        default:
+                            window.location.href = "C:/Users/lenovo/Desktop/project/userside/dashboard.html";
+                    }
+                } else {
+                    alert('User data not found!');
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+    
+        document.getElementById("forgot-password").addEventListener("click", async () => {
+            const email = prompt("Enter your email for password reset:");
+            if (email) {
+                try {
+                    await resetPassword(email);
+                    alert("Password reset email sent! Check your inbox.");
+                } catch (error) {
+                    alert(error.message);
+                }
+            }
+        });
+    </script>
+
+    </script>
+    
+</body>
+</html>
+
+
+

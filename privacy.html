@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Justice Advisor</title>
+    <link rel="icon" href="images/logo.jpg" type="image/jpg">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Montserrat', sans-serif;
+            background: url('images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: -1;
+        }
+        :root {
+            --primary-color: #4a2c02;
+            --secondary-color: #4a2c02;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --purchase-color: #f39c12;
+            --nav-color: #4a2c02;
+            --nav-hover: #f9a826;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        nav {
+            background: var(--nav-color);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .nav-logo {
+          height: 60px;
+          width: auto;
+          border-radius: 30px;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--nav-hover);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--nav-hover);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 200px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .policy-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .policy-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .policy-section {
+            margin-bottom: 30px;
+        }
+        
+        .policy-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .policy-section h3 {
+            color: var(--secondary-color);
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        .policy-section p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .policy-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .policy-section li {
+            margin-bottom: 8px;
+        }
+        
+        footer {
+            background-color: var(--nav-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .policy-container {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="images/logo.jpg" alt="Logo" class="nav-logo">
+            </a>
+    
+            <div class="menu" id="menu">
+                <a href="index.html"><i class="fas fa-home"></i>  Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i>  About</a>
+                <div class="dropdown">
+                    <a href="services.html"><i class="fas fa-gavel"></i>  Services</a>
+                    <div class="dropdown-content">
+                        <a href="chatbot.html"><i class="fas fa-robot"></i>   Legal Chatbot</a>
+                        <a href="section-chatbot.html"><i class="fas fa-code"></i>   Section Finder</a>
+                        <a href="case-reference.html"><i class="fas fa-gavel"></i>   Case Reference</a>
+                        <a href="consitution_of_india.html"><i class="fas fa-book"></i>   Constitution</a>
+                       
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="resources.html">Resources <i class="fas fa-chevron-down"></i>  </a>
+                    <div class="dropdown-content">
+                        <a href="study material.html"><i class="fas fa-book"></i>   Law Books</a>
+                        <a href="lawcolleges.html"><i class="fas fa-file-alt"></i>   Law Colleges</a>
+                        
+                        <a href="Roadmap.html"><i class="fas fa-file-pdf"></i>   Road Map</a>
+                    </div>
+                </div>
+                <a href="blog.html"><i class="fas fa-pen-fancy"></i>  Blog</a>
+                <a href="help.html"><i class="fas fa-question-circle"></i> Help</a>
+            </div>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i>   Login</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="policy-container">
+            <div class="policy-header">
+                <h1>Privacy Policy</h1>
+                <p>Last Updated: June 2023</p>
+            </div>
+            
+            <div class="policy-section">
+                <p>Welcome to LegalRepo ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</p>
+                <p>By accessing or using our service, you agree to the collection and use of information in accordance with this policy.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2>1. Information We Collect</h2>
+                
+                <h3>Personal Information</h3>
+                <p>We may collect personal information that you voluntarily provide to us when you:</p>
+                <ul>
+                    <li>Register for an account</li>
+                    <li>Use our legal research tools</li>
+                    <li>Subscribe to our newsletter</li>
+                    <li>Contact us with inquiries</li>
+                    <li>Participate in surveys or feedback</li>
+                </ul>
+                <p>This information may include:</p>
+                <ul>
+                    <li>Name and contact details (email address, phone number)</li>
+                    <li>Professional information (if you're a legal professional)</li>
+                    <li>Educational institution (if you're a student)</li>
+                    <li>Payment information for premium services</li>
+                </ul>
+                
+                <h3>Usage Data</h3>
+                <p>We automatically collect information about how you interact with our website, including:</p>
+                <ul>
+                    <li>IP address and browser type</li>
+                    <li>Pages visited and time spent on pages</li>
+                    <li>Search queries within our legal databases</li>
+                    <li>Documents accessed or downloaded</li>
+                </ul>
+            </div>
+            
+            <div class="policy-section">
+                <h2>2. How We Use Your Information</h2>
+                <p>We use the collected information for various purposes:</p>
+                <ul>
+                    <li>To provide and maintain our legal research services</li>
+                    <li>To improve and personalize your experience</li>
+                    <li>To develop new features and services</li>
+                    <li>To communicate with you about updates and offers</li>
+                    <li>To monitor usage patterns and analyze trends</li>
+                    <li>To detect, prevent, and address technical issues</li>
+                    <li>To comply with legal obligations</li>
+                </ul>
+            </div>
+            
+            <div class="policy-section">
+                <h2>3. Data Sharing and Disclosure</h2>
+                <p>We may share your information in the following situations:</p>
+                
+                <h3>Service Providers</h3>
+                <p>We may employ third-party companies to facilitate our service, provide the service on our behalf, or assist us in analyzing how our service is used. These third parties have access to your personal information only to perform these tasks and are obligated not to disclose or use it for any other purpose.</p>
+                
+                <h3>Legal Requirements</h3>
+                <p>We may disclose your information when required by law or in response to valid requests by public authorities (e.g., a court or government agency).</p>
+                
+                <h3>Business Transfers</h3>
+                <p>In the event of a merger, acquisition, or asset sale, your personal data may be transferred. We will provide notice before your personal information is transferred and becomes subject to a different Privacy Policy.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2>4. Data Security</h2>
+                <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no internet transmission or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+                
+                <h3>Your Data Protection Rights</h3>
+                <p>Depending on your location, you may have certain rights regarding your personal information:</p>
+                <ul>
+                    <li><strong>Access:</strong> Request copies of your personal data</li>
+                    <li><strong>Rectification:</strong> Request correction of inaccurate information</li>
+                    <li><strong>Erasure:</strong> Request deletion of your personal data</li>
+                    <li><strong>Restriction:</strong> Request restriction of processing your data</li>
+                    <li><strong>Objection:</strong> Object to our processing of your data</li>
+                    <li><strong>Portability:</strong> Request transfer of your data to another organization</li>
+                </ul>
+                <p>To exercise these rights, please contact us using the information provided below.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2>5. Cookies and Tracking Technologies</h2>
+                <p>We use cookies and similar tracking technologies to track activity on our website and hold certain information to improve your experience. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2>6. Children's Privacy</h2>
+                <p>Our service is not intended for use by children under 13. We do not knowingly collect personally identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2>7. Changes to This Privacy Policy</h2>
+                <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2>8. Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                <ul>
+                    <li>By email: privacy@legalrepo.com</li>
+                    <li>By visiting our contact page</li>
+                    <li>By mail: LegalRepo Privacy Office, [Your Physical Address]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Justice Advisor</h3>
+                <p>Your comprehensive legal studies resource center providing high-quality materials for students, professionals, and legal enthusiasts.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i>  </a>
+                    <a href="#"><i class="fab fa-twitter"></i>  </a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i>  </a>
+                    <a href="#"><i class="fab fa-instagram"></i>  </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="chatbot.html">Chatbot</a></li>
+                    <li><a href="http://127.0.0.1:5000"> Section Finder</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal Resources</h3>
+                <ul>
+                    <li><a href="consitution_of_india.html">Constitution of India</a></li>
+                    <li><a href="Roadmap.html">Road Map</a></li>
+                    <li><a href="lawcolleges.html">Law colleges</a></li>
+                    <li><a href="study material.html">Law Books</a></li>
+                    
+             
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+             
+               
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Legal Studies Repository. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Judiciary System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/logo1.jpg" type="image/jpg">
+   <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+        
+        :root {
+            --primary-color: #502900;
+            --secondary-color: #f9a826;
+            --accent-color: #ffffff;
+            --light-bg: #f5f7fa;
+            --dark-text: #2c3e50;
+            --light-text: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: var(--dark-text);
+            line-height: 1.6;
+            background: url('img/background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgba(245, 247, 250, 0.9);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Modified Navigation Styles */
+        nav {
+            background: #502900;
+            padding: 15px 0; /* Changed padding to top/bottom only */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%; /* Reduced width to create spacing on sides */
+            max-width: 1400px; /* Added max-width for large screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0 30px; /* Added horizontal padding */
+        }
+        
+        nav .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+            padding-left: 10px; /* Added left padding */
+        }
+        
+        .nav-logo {
+            height: 60px;
+            width: auto;
+            border-radius: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        
+        .logout {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+            margin-right: 10px; /* Added right margin */
+        }
+        
+        .logout:hover {
+            color: #f9a826;
+        }
+        
+        nav a:hover {
+            color: #f9a826;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #f9a826;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .main-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            flex: 1;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page-header:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+        
+        /* Court Section Styles */
+        .court-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .court-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--primary-color);
+        }
+        
+        .court-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+        
+        .court-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .court-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .court-subtitle {
+            color: #777;
+            font-size: 1rem;
+            margin: 0.3rem 0 0;
+            font-weight: 400;
+        }
+        
+        .court-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .court-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .court-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .court-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .court-details {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .court-details h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        
+        .court-details p {
+            margin-bottom: 1.2rem;
+        }
+        
+        .court-features {
+            margin: 1.5rem 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-icon {
+            color: var(--secondary-color);
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+        
+        /* High Courts Grid */
+        .highcourts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .highcourt-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .highcourt-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .highcourt-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .highcourt-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .highcourt-card:hover .highcourt-image img {
+            transform: scale(1.05);
+        }
+        
+        .highcourt-info {
+            padding: 1.5rem;
+        }
+        
+        .highcourt-name {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin: 0 0 0.5rem;
+        }
+        
+        .highcourt-location {
+            color: #777;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .highcourt-location i {
+            margin-right: 0.5rem;
+        }
+        
+        .highcourt-established {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        
+        .highcourt-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .highcourt-link:hover {
+            background-color: #3a2202;
+        }
+        
+        /* Civil Courts Section */
+        .civil-courts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .civil-court {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .civil-court:hover {
+            transform: translateY(-5px);
+        }
+        
+        .civil-court-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .civil-court h3 {
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+        
+        .civil-court p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        /* New Footer Styles */
+        footer {
+            background: #502900;
+            color: white;
+            padding: 40px 0 20px;
+            width: 100%;
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            margin: 0 15px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #f9a826;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 10px;
+        }
+        
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 20px;
+            color: #ffffff;
+        }
+        
+        .footer-column a:hover {
+            color: #f9a826;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 15px;
+            }
+            
+            .logo {
+                margin-bottom: 10px;
+                margin-right: 0;
+                padding-left: 0;
+            }
+            
+            .menu {
+                margin: 10px 0;
+            }
+            
+            .logout {
+                margin-top: 10px;
+                margin-right: 0;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .court-content {
+                flex-direction: column;
+            }
+            
+            .court-image {
+                min-width: 100%;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar with Modified Spacing -->
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="img/logo1.jpg" alt="Logo" class="nav-logo">
+            </a>
+    
+            <div class="menu">
+                <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                
+                <!-- Dropdown Menu with Icon -->
+                <div class="dropdown">
+                    <a href="service.html"><i class="fas fa-gavel"></i> Services</a>
+    
+                    <div class="dropdown-content">
+                        
+                        <a href="consitutionofindia.html"><i class="fas fa-book"></i> Constitution of India</a>
+    
+                        <a href="displayblog.html"><i class="fas fa-pen-fancy"></i> Blog </a>
+    
+                        <a href="schccc.html"><i class="fas fa-file-alt"></i> Courts Information</a>
+                    </div>
+                </div>
+                <a href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+                <a href="displaylawyer.html"><i class="fas fa-user-tie"></i>Find lawyer</a>
+                <a href="contact.html"><i class="fas fa-question-circle"></i> Contact</a>
+            </div>
+    
+            <a href="C:/Users/lenovo/Desktop/project/index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+      </nav>
+    
+    <div class="main-container">
+        <div class="page-header">
+            <h1>Indian Judiciary System</h1>
+            <p>The judiciary in India is a system of courts that interpret and apply the law. It consists of the Supreme Court, High Courts, and subordinate courts at district and lower levels.</p>
+        </div>
+        
+        <!-- Supreme Court Section -->
+        <section id="supreme-court" class="court-section">
+            <div class="court-header">
+                <div class="court-icon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <div>
+                    <h2 class="court-title">Supreme Court of India</h2>
+                    <p class="court-subtitle">The apex court of the country and the final court of appeal</p>
+                </div>
+            </div>
+            
+            <div class="court-content">
+                <div class="court-image">
+                    <img src="img/court/supreme court.jpg" alt="Supreme Court of India">
+                </div>
+                <div class="court-details">
+                    <h3>About the Supreme Court</h3>
+                    <p>The Supreme Court of India is the highest judicial court and the final court of appeal under the Constitution of India. It is the highest constitutional court with the power of judicial review.</p>
+                    
+                    <div class="court-features">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-landmark"></i></div>
+                            <div>
+                                <strong>Established:</strong> 28 January 1950
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <strong>Location:</strong> Tilak Marg, New Delhi
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-user-tie"></i></div>
+                            <div>
+                                <strong>Current Chief Justice:</strong> Dhananjaya Y. Chandrachud (As of 2023)
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-book"></i></div>
+                            <div>
+                                <strong>Jurisdiction:</strong> Original, Appellate, and Advisory
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Functions and Powers</h3>
+                    <p>The Supreme Court has three types of jurisdictions: original, appellate, and advisory. It safeguards fundamental rights and settles disputes between governments. It has the power to declare any central or state law as unconstitutional.</p>
+                    
+                    <h3>Composition</h3>
+                    <p>The Supreme Court comprises the Chief Justice and 33 other judges appointed by the President of India. Judges retire at the age of 65.</p>
+                    
+                    <a href="https://www.sci.gov.in/" target="_blank" class="highcourt-link">
+                        <i class="fas fa-external-link-alt"></i> Visit Official Website
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- High Courts Section -->
+        <section id="high-courts" class="court-section">
+            <div class="court-header">
+                <div class="court-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <div>
+                    <h2 class="court-title">High Courts of India</h2>
+                    <p class="court-subtitle">The highest judicial courts in the states and union territories</p>
+                </div>
+            </div>
+            
+            <div class="court-details">
+                <h3>About High Courts</h3>
+                <p>High Courts are the highest courts in each state and union territory of India. There are currently 25 High Courts in India. They have jurisdiction over a state, a union territory, or a group of states and union territories.</p>
+                
+                <div class="highcourts-grid">
+                    <!-- Existing High Courts -->
+                    <div class="highcourt-card">
+                        <div class="highcourt-image">
+                            <img src="img/court/allhabad.jpeg" alt="Allahabad">   
+                        </div>
+                        <div class="highcourt-info">
+                            <h3 class="highcourt-name">Allahabad High Court</h3>
+                            <p class="highcourt-location"><i class="fas fa-map-marker-alt"></i> Prayagraj, Uttar Pradesh</p>
+                            <p class="highcourt-established">Established: 1866</p>
+                            <a href="https://www.allahabadhighcourt.in/" target="_blank" class="highcourt-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="highcourt-card">
+                        <div class="highcourt-image">
+                            <img src="img/court/bombay.jpg" alt="bombayhighcourt">
+                        </div>
+                        <div class="highcourt-info">
+                            <h3 class="highcourt-name">Bombay High Court</h3>
+                            <p class="highcourt-location"><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra</p>
+                            <p class="highcourt-established">Established: 1862</p>
+                            <a href="https://bombayhighcourt.nic.in/" target="_blank" class="highcourt-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="highcourt-card">
+                        <div class="highcourt-image">
+                            <img src="img/court/calcutta.jpeg" alt="Calcutta_High_Court">
+                        </div>
+                        <div class="highcourt-info">
+                            <h3 class="highcourt-name">Calcutta High Court</h3>
+                            <p class="highcourt-location"><i class="fas fa-map-marker-alt"></i> Kolkata, West Bengal</p>
+                            <p class="highcourt-established">Established: 1862</p>
+                            <a href="https://calcuttahighcourt.gov.in/" target="_blank" class="highcourt-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="highcourt-card">
+                        <div class="highcourt-image">
+                        <img src="img/court/delhi.jpeg" alt="delhihighcourt">
+                        </div>
+                        <div class="highcourt-info">
+                            <h3 class="highcourt-name">Delhi High Court</h3>
+                            <p class="highcourt-location"><i class="fas fa-map-marker-alt"></i> New Delhi</p>
+                            <p class="highcourt-established">Established: 1966</p>
+                            <a href="https://delhihighcourt.nic.in/" target="_blank" class="highcourt-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="highcourt-card">
+                        <div class="highcourt-image">
+                            <img src="img/court/madras.jpeg" alt="Madras">
+                        </div>
+                        <div class="highcourt-info">
+                            <h3 class="highcourt-name">Madras High Court</h3>
+                            <p class="highcourt-location"><i class="fas fa-map-marker-alt"></i> Chennai, Tamil Nadu</p>
+                            <p class="highcourt-established">Established: 1862</p>
+                            <a href="https://www.hcmadras.tn.nic.in/" target="_blank" class="highcourt-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="highcourt-card">
+                        <div class="highcourt-image">
+                            <img src="img/court/karnataka.jpeg" alt="Karnataka_High_Court">
+                        </div>
+                        <div class="highcourt-info">
+                            <h3 class="highcourt-name">Karnataka High Court</h3>
+                            <p class="highcourt-location"><i class="fas fa-map-marker-alt"></i> Bengaluru, Karnataka</p>
+                            <p class="highcourt-established">Established: 1884</p>
+                            <a href="https://karnatakajudiciary.kar.nic.in/" target="_blank" class="highcourt-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional High Courts -->
+                    <div class="highcourt-card">
+                        <div class="highcourt-image">
+                            <img src="img/court/Gujarat.jpg" alt="gujarathighcourt">
+                        </div>
+                        <div class="highcourt-info">
+                            <h3 class="highcourt-name">Gujarat High Court</h3>
+                            <p class="highcourt-location"><i class="fas fa-map-marker-alt"></i> Ahmedabad, Gujarat</p>
+                            <p class="highcourt-established">Established: 1960</p>
+                            <a href="https://gujarathighcourt.nic.in/" target="_blank" class="highcourt-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- More high court cards... (keeping only a few for brevity) -->
+                    <div class="highcourt-card">
+                        <div class="highcourt-image">
+                            <img src="img/court/kerala.jpeg" alt="Kerala">
+                        </div>
+                        <div class="highcourt-info">
+                            <h3 class="highcourt-name">Kerala High Court</h3>
+                            <p class="highcourt-location"><i class="fas fa-map-marker-alt"></i> Kochi, Kerala</p>
+                            <p class="highcourt-established">Established: 1956</p>
+                            <a href="https://hckerala.gov.in/" target="_blank" class="highcourt-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="highcourt-card">
+                        <div class="highcourt-image">
+                            <img src="img/court/patna.jpg" alt="patnahighcourt">
+                        </div>
+                        <div class="highcourt-info">
+                            <h3 class="highcourt-name">Patna High Court</h3>
+                            <p class="highcourt-location"><i class="fas fa-map-marker-alt"></i> Patna, Bihar</p>
+                            <p class="highcourt-established">Established: 1916</p>
+                            <a href="https://patnahighcourt.gov.in/" target="_blank" class="highcourt-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional high courts would continue here -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Civil Courts Section -->
+        <section id="civil-courts" class="court-section">
+            <div class="court-header">
+                <div class="court-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <div>
+                    <h2 class="court-title">Civil Courts in India</h2>
+                    <p class="court-subtitle">The subordinate judiciary that handles civil matters</p>
+                </div>
+            </div>
+            
+            <div class="court-details">
+                <h3>About Civil Courts</h3>
+                <p>Civil Courts deal with disputes between individuals and/or organizations. The district judiciary is the principal court of original jurisdiction in civil matters. The structure of civil courts is hierarchical with the district judge at the top.</p>
+                
+                <h3>Hierarchy of Civil Courts</h3>
+                <div class="civil-courts-container">
+                    <div class="civil-court">
+                        <div class="civil-court-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h3>District Court</h3>
+                        <p>The highest court in the district dealing with civil cases. Headed by the District Judge.</p>
+                    </div>
+                    
+                    <div class="civil-court">
+                        <div class="civil-court-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <h3>Additional District Court</h3>
+                        <p>Additional courts established to handle the workload of the District Court.</p>
+                    </div>
+                    
+                    <div class="civil-court">
+                        <div class="civil-court-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3>Court of Civil Judge (Senior Division)</h3>
+                        <p>Handles civil cases where the claim exceeds a specified value (varies by state).</p>
+                    </div>
+                    
+                    <div class="civil-court">
+                        <div class="civil-court-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3>Court of Civil Judge (Junior Division)</h3>
+                        <p>Handles smaller civil cases with claims below a specified value.</p>
+                    </div>
+                    
+                    <div class="civil-court">
+                        <div class="civil-court-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Munsif Court</h3>
+                        <p>In some states, handles small civil cases at the lowest level.</p>
+                    </div>
+                    
+                    <div class="civil-court">
+                        <div class="civil-court-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Small Causes Court</h3>
+                        <p>Special court for small monetary claims and summary suits.</p>
+                    </div>
+                </div>
+                
+                <h3>Functions of Civil Courts</h3>
+                <p>Civil Courts deal with matters related to property disputes, rent agreements, divorce cases, contract violations, and other civil matters. They follow the Code of Civil Procedure, 1908.</p>
+            </div>
+        </section>
+    </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Justice Advisor</h3>
+                <p>Your comprehensive legal guide center providing high-quality materials for lawyers.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="chatbot.html"> Chatbot </a></li>
+                    <li><a href="displaylawyer.html"></a>Find Lawyer</li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Other Resources</h3>
+                <ul>
+                    <li><a href="constitutionofindia.html">Constitution of India</a></li>
+                    
+                    <li><a href="displayblog.html"> Blog </a></li>
+                    <li><a href="schccc.html">Court Information </a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Legal Studies Repository. All rights reserved.</p>
+        </div>
+      </footer>
+</body>
+</html>

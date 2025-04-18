@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
+    <title>Lawyer Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/logo1.jpg" type="image/jpg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #2c3e50;
+            background: url('img/background.jpg') no-repeat center center/cover;
+        }
+        
+        /* Navigation Bar Styles */
+        nav {
+            background: #502900;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%; /* Reduced width to create spacing on sides */
+            max-width: 1400px; /* Added max-width for large screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0 30px; /* Added horizontal padding */
+        }
+        
+        nav .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+        }
+        
+        .nav-logo {
+            height: 60px;
+            width: auto;
+            border-radius: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .logout {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .logout:hover {
+            color: #f9a826;
+        }
+        
+        nav a:hover {
+            color: #f9a826;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .menu {
+                margin: 10px 0;
+            }
+            
+            .logout {
+                margin-top: 10px;
+            }
+        }
+        
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #f39c12;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4a6fa5;
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .specialization {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+        
+        .specialization-option input[type="checkbox"] {
+            display: none;
+        }
+        
+        .specialization-option label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: #f8f9fa;
+            padding: 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .specialization-option input:checked + label {
+            background-color: #e3f2fd;
+            border-color: #4a6fa5;
+            color: #4a6fa5;
+        }
+        
+        .file-upload {
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            margin-top: 0.5rem;
+        }
+        
+        .file-upload:hover {
+            border-color: #4a6fa5;
+        }
+        
+        .photo-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 1rem auto;
+            display: block;
+            border: 3px solid #4a2c02;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #4a2c02;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #3a2202;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .specialization {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: #502900;
+            color: white;
+            padding: 40px 0 20px;
+            width: 100%;
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            margin: 0 15px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #f9a826;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 10px;
+        }
+        
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 20px;
+            color: #ffffff;
+        }
+        
+        .footer-column a:hover {
+            color: #f9a826;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+        
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="img/logo1.jpg" alt="Logo" class="nav-logo">
+            </a>
+    
+            <div class="menu">
+                <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                
+                <!-- Dropdown Menu with Icon -->
+                <div class="dropdown">
+                    <a href="service.html"><i class="fas fa-gavel"></i> Services</a>
+    
+                    <div class="dropdown-content">
+                        <a href="createcaseref.html"><i class="fas fa-file-alt"></i> Create Case Reference</a>
+                        <a href="displaycaseref.html"><i class="fas fa-file-alt"></i>  Case Reference</a>
+                        <a href="consitution_of_india.html"><i class="fas fa-book"></i> Constitution of India</a>
+                        <a href="lawerreg.html"><i class="fas fa-user-tie"></i> Register Lawyer</a>
+                        <a href="createblogpge.html"><i class="fas fa-pen-fancy"></i> Blog Creation</a>
+                    </div>
+                </div>
+                <a href="http://127.0.0.1:5000"><i class="fas fa-robot"></i> Section Chatbot</a>
+                <a href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+                <a href="contact.html"><i class="fas fa-question-circle"></i> Contact</a>
+            </div>
+    
+            <a href="C:/Users/lenovo/Desktop/project/index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+      </nav>
+    
+    <div class="container">
+        <h2>Lawyer Registration</h2>
+        
+        <form id="lawyerForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="Enter first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Enter last name" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter phone number" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="barNumber">Bar Council Number</label>
+                <input type="text" id="barNumber" placeholder="Enter bar council registration number" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="yearsExperience">Years of Experience</label>
+                    <input type="number" id="yearsExperience" placeholder="Enter years" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="practiceLocation">Primary Practice Location</label>
+                    <input type="text" id="practiceLocation" placeholder="City/State" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Specialization Areas</label>
+                <div class="specialization">
+                    <div class="specialization-option">
+                        <input type="checkbox" id="criminal" name="specialization" value="Criminal Law">
+                        <label for="criminal"><i class="fas fa-gavel"></i> Criminal</label>
+                    </div>
+                    <div class="specialization-option">
+                        <input type="checkbox" id="civil" name="specialization" value="Civil Law">
+                        <label for="civil"><i class="fas fa-balance-scale"></i> Civil</label>
+                    </div>
+                    <div class="specialization-option">
+                        <input type="checkbox" id="corporate" name="specialization" value="Corporate Law">
+                        <label for="corporate"><i class="fas fa-briefcase"></i> Corporate</label>
+                    </div>
+                    <div class="specialization-option">
+                        <input type="checkbox" id="family" name="specialization" value="Family Law">
+                        <label for="family"><i class="fas fa-home"></i> Family</label>
+                    </div>
+                    <div class="specialization-option">
+                        <input type="checkbox" id="property" name="specialization" value="Property Law">
+                        <label for="property"><i class="fas fa-landmark"></i> Property</label>
+                    </div>
+                    <div class="specialization-option">
+                        <input type="checkbox" id="tax" name="specialization" value="Tax Law">
+                        <label for="tax"><i class="fas fa-file-invoice-dollar"></i> Tax</label>
+                    </div>
+                    <div class="specialization-option">
+                        <input type="checkbox" id="constitutional" name="specialization" value="Constitutional Law">
+                        <label for="constitutional"><i class="fas fa-book"></i> Constitutional</label>
+                    </div>
+                    <div class="specialization-option">
+                        <input type="checkbox" id="intellectual" name="specialization" value="Intellectual Property">
+                        <label for="intellectual"><i class="fas fa-lightbulb"></i> Intellectual Property</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="casesWon">Cases Won</label>
+                    <input type="number" id="casesWon" placeholder="Number of cases won" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="casesLost">Cases Lost</label>
+                    <input type="number" id="casesLost" placeholder="Number of cases lost" min="0">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="qualifications">Qualifications</label>
+                <textarea id="qualifications" rows="3" placeholder="List your degrees and certifications (LLB, LLM, etc.)"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="bio">Professional Bio</label>
+                <textarea id="bio" rows="4" placeholder="Brief professional biography"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Upload Profile Photo</label>
+                <div class="file-upload" id="photoUpload">
+                    <i class="fas fa-camera"></i>
+                    <p>Click to upload profile photo</p>
+                </div>
+                <input type="file" id="profilePhoto" accept="image/*" style="display: none;">
+                <img id="photoPreview" class="photo-preview" style="display: none;">
+            </div>
+            
+            <div class="form-group">
+                <label>Upload Bar Certificate</label>
+                <div class="file-upload" id="certificateUpload">
+                    <i class="fas fa-file-alt"></i>
+                    <p>Click to upload bar certificate</p>
+                </div>
+                <input type="file" id="barCertificate" accept=".pdf,.jpg,.png" style="display: none;">
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-user-plus"></i> Register as Lawyer
+            </button>
+        </form>
+    </div>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Justice Advisor</h3>
+                <p>Your comprehensive legal guide center providing high-quality materials for lawyers.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="http://127.0.0.1:5000"> Section Chatbot </a></li>
+                    <li><a href="chatbot.html">  Chatbot </a></li>
+                    <li><a href="createcaseref.html">  Create Case Reference </a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Other Resources</h3>
+                <ul>
+                    <li><a href="constitution.html">Constitution of India</a></li>
+                    <li><a href="displaycaseref.html">Case Reference</a></li>
+                    <li><a href="createblogpge.html"> Blog Creation</a></li>
+                    <li><a href="lawerreg.html">Lawyer Registration </a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Legal Studies Repository. All rights reserved.</p>
+        </div>
+      </footer>
+    
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXBidb_LLMcZIFgydtBmIh0roiNZxZQJ8",
+            authDomain: "lawchatbot-83152.firebaseapp.com",
+            projectId: "lawchatbot-83152",
+            storageBucket: "gs://lawchatbot-83152.firebasestorage.app",
+            messagingSenderId: "771007178800",
+            appId: "1:771007178800:web:49d8faf68c838f1b4c25f5",
+            measurementId: "G-W50N0CDVWB"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+        
+        // File upload click events
+        document.getElementById('photoUpload').addEventListener('click', function() {
+            document.getElementById('profilePhoto').click();
+        });
+        
+        document.getElementById('certificateUpload').addEventListener('click', function() {
+            document.getElementById('barCertificate').click();
+        });
+        
+        // Profile photo preview
+        document.getElementById('profilePhoto').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const preview = document.getElementById('photoPreview');
+                    preview.src = event.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Form submission
+        document.getElementById('lawyerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const barNumber = document.getElementById('barNumber').value.trim();
+            const yearsExperience = document.getElementById('yearsExperience').value;
+            const practiceLocation = document.getElementById('practiceLocation').value.trim();
+            
+            // Get specializations
+            const specializations = [];
+            document.querySelectorAll('.specialization-option input:checked').forEach(checkbox => {
+                specializations.push(checkbox.value);
+            });
+            
+            const casesWon = document.getElementById('casesWon').value || 0;
+            const casesLost = document.getElementById('casesLost').value || 0;
+            const qualifications = document.getElementById('qualifications').value.trim();
+            const bio = document.getElementById('bio').value.trim();
+            
+            // Validate required fields
+            if (!firstName || !lastName || !email || !phone || !barNumber || !yearsExperience || !practiceLocation || specializations.length === 0) {
+                alert('Please fill in all required fields and select at least one specialization.');
+                return;
+            }
+            
+            // Upload profile photo if selected
+            let photoURL = null;
+            const photoFile = document.getElementById('profilePhoto').files[0];
+            if (photoFile) {
+                try {
+                    const storageRef = storage.ref(`lawyer-photos/${barNumber}_${Date.now()}`);
+                    const snapshot = await storageRef.put(photoFile);
+                    photoURL = await snapshot.ref.getDownloadURL();
+                } catch (error) {
+                    console.error("Photo upload failed:", error);
+                    alert("Profile photo upload failed. Please try again.");
+                    return;
+                }
+            }
+            
+            // Upload bar certificate if selected
+            let certificateURL = null;
+            const certificateFile = document.getElementById('barCertificate').files[0];
+            if (certificateFile) {
+                try {
+                    const storageRef = storage.ref(`lawyer-certificates/${barNumber}_certificate_${Date.now()}`);
+                    const snapshot = await storageRef.put(certificateFile);
+                    certificateURL = await snapshot.ref.getDownloadURL();
+                } catch (error) {
+                    console.error("Certificate upload failed:", error);
+                    alert("Bar certificate upload failed. Please try again.");
+                    return;
+                }
+            }
+            
+            // Calculate win percentage
+            const totalCases = parseInt(casesWon) + parseInt(casesLost);
+            const winPercentage = totalCases > 0 ? parseInt(casesWon) / totalCases * 100 : 0;
+            
+            // Create lawyer data object
+            const lawyerData = {
+                firstName,
+                lastName,
+                email,
+                phone,
+                barNumber,
+                yearsExperience: parseInt(yearsExperience),
+                practiceLocation,
+                specializations,
+                casesWon: parseInt(casesWon),
+                casesLost: parseInt(casesLost),
+                winPercentage: parseFloat(winPercentage.toFixed(2)),
+                qualifications,
+                bio,
+                photoURL,
+                certificateURL,
+                registrationDate: firebase.firestore.FieldValue.serverTimestamp(),
+                status: "pending" // You might want to review registrations before making them active
+            };
+            
+            // Save to Firestore
+            try {
+                await db.collection('lawyers').doc(barNumber).set(lawyerData);
+                alert('Registration successful! Your application is under review.');
+                document.getElementById('lawyerForm').reset();
+                document.getElementById('photoPreview').style.display = 'none';
+            } catch (error) {
+                console.error("Error saving lawyer data:", error);
+                alert("Registration failed. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <title>Legal Blog Posts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/logo1.jpg" type="image/jpg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary-dark: #4a2c02;
+            --primary-light: #f9a826;
+            --secondary-dark: #2c3e50;
+            --secondary-light: #f5f7fa;
+            --text-dark: #2c3e50;
+            --text-light: #f5f7fa;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background: url('img/background.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #502900;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%; /* Reduced width to create spacing on sides */
+            max-width: 1400px; /* Added max-width for large screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0 30px; /* Added horizontal padding */
+        }
+
+        nav .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+        }
+
+        .nav-logo {
+            height: 60px;
+            width: auto;
+            border-radius: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logout {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .logout:hover {
+            color: #f9a826;
+        }
+
+        nav a:hover {
+            color: #f9a826;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .menu {
+                margin: 10px 0;
+            }
+            
+            .logout {
+                margin-top: 10px;
+            }
+        }
+        /* Main Container */
+        .main-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: #ffffff;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .page-header:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-light);
+        }
+        
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* Blog Card */
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        
+        .blog-image-container {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--secondary-dark);
+            line-height: 1.3;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .blog-excerpt {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .blog-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-category {
+            background-color: #e3f2fd;
+            color: #4a6fa5;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .read-more-btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+            margin-top: auto;
+        }
+        
+        .read-more-btn:hover {
+            background-color: #5a3a12;
+        }
+        
+        /* Legal Formatting Styles */
+        .legal-citation {
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid var(--primary-dark);
+            padding-left: 10px;
+            margin: 10px 0;
+        }
+        
+        .case-reference {
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+        
+        .important-note {
+            background-color: #fff8e1;
+            padding: 10px;
+            border-left: 3px solid #ffc107;
+            margin: 10px 0;
+        }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        /* Blog Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #777;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-dark);
+        }
+        
+        .modal-blog-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-dark);
+        }
+        
+        .modal-blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: #777;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-blog-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .modal-blog-content {
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        footer {
+            background: #502900;
+            color: white;
+            padding: 40px 0 20px;
+            width: 100%;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin: 0 15px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #f9a826;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        .footer-column a:hover {
+            color: #f9a826;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+           
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="img/logo1.jpg" alt="Logo" class="nav-logo">
+            </a>
+    
+            <div class="menu">
+                <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                
+                <!-- Dropdown Menu with Icon -->
+                <div class="dropdown">
+                    <a href="service.html"><i class="fas fa-gavel"></i> Services</a>
+    
+                    <div class="dropdown-content">
+                        
+                        <a href="consitutionofindia.html"><i class="fas fa-book"></i> Constitution of India</a>
+    
+                        <a href="displayblog.html"><i class="fas fa-pen-fancy"></i> Blog </a>
+    
+                        <a href="schccc.html"><i class="fas fa-file-alt"></i> Courts Information</a>
+                    </div>
+                </div>
+                <a href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+                <a href="displaylawyer.html"><i class="fas fa-user-tie"></i>Find lawyer</a>
+                <a href="contact.html"><i class="fas fa-question-circle"></i> Contact</a>
+            </div>
+    
+            <a href="C:/Users/lenovo/Desktop/project/index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+      </nav>
+    
+    <div class="main-container">
+        <div class="page-header">
+            <h1>Legal Blog Posts</h1>
+            <p>Insights and analysis from our legal experts</p>
+        </div>
+        
+        <div class="blog-grid" id="blogContainer">
+            <!-- Blog cards will be dynamically inserted here -->
+            <div class="loading">Loading blog posts...</div>
+        </div>
+    </div>
+    
+    <!-- Blog Detail Modal -->
+    <div id="blogModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div id="modalContent">
+                <!-- Blog detail content will be inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Justice Advisor</h3>
+                <p>Your comprehensive legal guide center providing high-quality materials for lawyers.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="chatbot.html"> Chatbot </a></li>
+                    <li><a href="displaylawyer.html"></a>Find Lawyer</li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Other Resources</h3>
+                <ul>
+                    <li><a href="constitutionofindia.html">Constitution of India</a></li>
+                    
+                    <li><a href="displayblog.html"> Blog </a></li>
+                    <li><a href="schccc.html">Court Information </a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Legal Studies Repository. All rights reserved.</p>
+        </div>
+      </footer>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXBidb_LLMcZIFgydtBmIh0roiNZxZQJ8",
+            authDomain: "lawchatbot-83152.firebaseapp.com",
+            projectId: "lawchatbot-83152",
+            storageBucket: "lawchatbot-83152.appspot.com",
+            messagingSenderId: "771007178800",
+            appId: "1:771007178800:web:49d8faf68c838f1b4c25f5",
+            measurementId: "G-W50N0CDVWB"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // DOM Elements
+        const blogContainer = document.getElementById("blogContainer");
+        const blogModal = document.getElementById("blogModal");
+        const modalContent = document.getElementById("modalContent");
+        const closeModalBtn = document.getElementById("closeModal");
+
+        // Function to fetch and display blogs
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchBlogPosts();
+            
+            // Close modal when clicking outside content
+            blogModal.addEventListener('click', function(e) {
+                if (e.target === blogModal) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal when clicking close button
+            closeModalBtn.addEventListener('click', closeModal);
+        });
+
+        function fetchBlogPosts() {
+            blogContainer.innerHTML = '<div class="loading">Loading blog posts...</div>';
+            
+            db.collection("blogs")
+                .orderBy("createdAt", "desc")
+                .get()
+                .then((querySnapshot) => {
+                    blogContainer.innerHTML = ""; // Clear loading message
+                    
+                    if (querySnapshot.empty) {
+                        blogContainer.innerHTML = '<div class="no-posts">No blog posts found.</div>';
+                        return;
+                    }
+                    
+                    querySnapshot.forEach((doc) => {
+                        const blog = doc.data();
+                        const blogId = doc.id;
+                        createBlogCard(blog, blogId);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching blogs:", error);
+                    blogContainer.innerHTML = '<div class="error">Error loading blog posts. Please try again.</div>';
+                });
+        }
+
+        function createBlogCard(blog, blogId) {
+            const blogCard = document.createElement("div");
+            blogCard.classList.add("blog-card");
+            
+            // Format date
+            const postDate = blog.createdAt ? 
+                new Date(blog.createdAt.seconds * 1000).toLocaleDateString('en-US', {
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric'
+                }) : "Unknown date";
+            
+            // Create excerpt (first 200 characters)
+            const plainTextContent = blog.content.replace(/<[^>]*>/g, '');
+            const excerpt = plainTextContent.length > 200 ? 
+                plainTextContent.substring(0, 200) + '...' : 
+                plainTextContent;
+            
+            // Create categories HTML
+            let categoriesHtml = '';
+            if (blog.categories && blog.categories.length > 0) {
+                blog.categories.forEach(category => {
+                    categoriesHtml += `<span class="blog-category">${category}</span>`;
+                });
+            }
+            
+            blogCard.innerHTML = `
+                ${blog.imageURL ? `
+                <div class="blog-image-container">
+                    <img src="${blog.imageURL}" alt="${blog.title}" class="blog-image">
+                </div>
+                ` : ''}
+                
+                <div class="blog-content">
+                    <h3 class="blog-title">${blog.title || 'Untitled Blog Post'}</h3>
+                    
+                    <div class="blog-meta">
+                        <span class="blog-author">
+                            <i class="fas fa-user"></i> ${blog.author || 'Unknown Author'}
+                        </span>
+                        <span class="blog-date">
+                            <i class="far fa-calendar-alt"></i> ${postDate}
+                        </span>
+                    </div>
+                    
+                    <p class="blog-excerpt">${excerpt}</p>
+                    
+                    ${categoriesHtml ? `<div class="blog-categories">${categoriesHtml}</div>` : ''}
+                    
+                    ${plainTextContent.length > 200 ? `
+                        <button class="read-more-btn" data-blog-id="${blogId}">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    ` : ''}
+                </div>
+            `;
+            
+            // Add click event to Read More button
+            if (plainTextContent.length > 200) {
+                const readMoreBtn = blogCard.querySelector('.read-more-btn');
+                readMoreBtn.addEventListener('click', () => {
+                    showBlogDetail(blogId);
+                });
+            }
+            
+            blogContainer.appendChild(blogCard);
+        }
+
+        function showBlogDetail(blogId) {
+            modalContent.innerHTML = '<div class="loading">Loading blog post...</div>';
+            blogModal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling
+            
+            db.collection("blogs").doc(blogId).get()
+                .then((doc) => {
+                    if (!doc.exists) {
+                        modalContent.innerHTML = '<div class="error">Blog post not found.</div>';
+                        return;
+                    }
+                    
+                    const blog = doc.data();
+                    
+                    // Format date
+                    const postDate = blog.createdAt ? 
+                        new Date(blog.createdAt.seconds * 1000).toLocaleDateString('en-US', {
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric'
+                        }) : "Unknown date";
+                    
+                    // Create categories HTML
+                    let categoriesHtml = '';
+                    if (blog.categories && blog.categories.length > 0) {
+                        blog.categories.forEach(category => {
+                            categoriesHtml += `<span class="blog-category">${category}</span>`;
+                        });
+                    }
+                    
+                    modalContent.innerHTML = `
+                        <h1 class="modal-blog-title">${blog.title || 'Untitled Blog Post'}</h1>
+                        
+                        <div class="modal-blog-meta">
+                            <span class="blog-author">
+                                <i class="fas fa-user"></i> ${blog.author || 'Unknown Author'}
+                            </span>
+                            <span class="blog-date">
+                                <i class="far fa-calendar-alt"></i> ${postDate}
+                            </span>
+                        </div>
+                        
+                        ${blog.imageURL ? `
+                        <img src="${blog.imageURL}" alt="${blog.title}" class="modal-blog-image">
+                        ` : ''}
+                        
+                        <div class="modal-blog-content">
+                            ${blog.content || '<p>No content available for this blog post.</p>'}
+                        </div>
+                        
+                        ${categoriesHtml ? `
+                        <div class="blog-categories">
+                            ${categoriesHtml}
+                        </div>
+                        ` : ''}
+                    `;
+                })
+                .catch((error) => {
+                    console.error("Error fetching blog post:", error);
+                    modalContent.innerHTML = '<div class="error">Error loading blog post. Please try again.</div>';
+                });
+        }
+
+        function closeModal() {
+            blogModal.style.display = "none";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
+        }
+    </script>
+</body>
+</html>

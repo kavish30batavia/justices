@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="images/logo.jpg" type="image/jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Law Colleges in Andhra Pradesh (50 Colleges)</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      
+    }
+    :root {
+            --primary-color: #4a2c02;
+            --secondary-color: #4a2c02;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --purchase-color: #f39c12;
+            --nav-color: #4a2c02;
+            --nav-hover: #f9a826;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        nav {
+  background: var(--nav-color);
+  padding: 15px 0; /* Changed padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Changed to 100% */
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        .nav-logo {
+          height: 60px;
+          width: auto;
+          border-radius: 30px;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--nav-hover);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--nav-hover);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 200px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+    h1 {
+      color: #1a365d;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.2rem;
+    }
+    #search-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      flex-wrap: wrap;
+     padding: 25px; 
+    }
+    #search {
+      flex-grow: 1;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      min-width: 300px;
+    }
+    #filters {
+      display: flex;
+      gap: 10px;
+      margin-left: 15px;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid #d1d5db;
+      background-color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background-color: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+    #college-count {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #4b5563;
+      font-size: 1.1rem;
+    }
+    .college-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+    .college-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #2563eb;
+    }
+    .college-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    .college-card h2 {
+      margin: 0 0 8px;
+      color: #1e40af;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+    }
+    .college-info {
+      margin-bottom: 12px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .college-info i {
+      font-size: 1rem;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .links a {
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background-color: #eff6ff;
+      transition: all 0.3s;
+    }
+    .links a:hover {
+      background-color: #dbeafe;
+      text-decoration: underline;
+    }
+    .type-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+    .government {
+      background-color: #10b981;
+      color: white;
+    }
+    .private {
+      background-color: #ef4444;
+      color: white;
+    }
+    .no-results {
+      text-align: center;
+      grid-column: 1/-1;
+      padding: 40px;
+      color: #6b7280;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      #search-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      #filters {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+      }
+      .college-list {
+        grid-template-columns: 1fr;
+      }
+    }
+     
+    @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            
+        }
+        footer {
+            background-color: var(--nav-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            
+        }
+        
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+  </style>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+        <a href="dashboard.html" class="logo">
+            <img src="images/logo.jpg" alt="Logo" class="nav-logo">
+        </a>
+
+        <div class="menu" id="menu">
+            <a href="index.html"><i class="fas fa-home"></i>  Home</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i>  About</a>
+            <div class="dropdown">
+                <a href="services.html"><i class="fas fa-gavel"></i>  Services</a>
+                <div class="dropdown-content">
+                    <a href="chatbot.html"><i class="fas fa-robot"></i>   Legal Chatbot</a>
+                    <a href="section-chatbot.html"><i class="fas fa-code"></i>   Section Finder</a>
+                    <a href="case-reference.html"><i class="fas fa-gavel"></i>   Case Reference</a>
+                    <a href="consitution_of_india.html"><i class="fas fa-book"></i>   Constitution</a>
+                   
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="resources.html">Resources <i class="fas fa-chevron-down"></i>  </a>
+                <div class="dropdown-content">
+                    <a href="study material.html"><i class="fas fa-book"></i>   Law Books</a>
+                    <a href="lawcolleges.html"><i class="fas fa-file-alt"></i>   Law Colleges</a>
+                    
+                    <a href="Roadmap.html"><i class="fas fa-file-pdf"></i>   Road Map</a>
+                </div>
+            </div>
+            <a href="blog.html"><i class="fas fa-pen-fancy"></i>  Blog</a>
+            <a href="help.html"><i class="fas fa-question-circle"></i> Help</a>
+        </div>
+        <a href="login.html" class="login-btn"><i class="fas fa-user"></i>   Login</a>
+    </div>
+</nav>
+  <div class="container">
+    <h1>Law Colleges in Andhra Pradesh</h1>
+    <div id="search-container">
+      <input type="text" placeholder="Search by College Name or City..." id="search" onkeyup="filterColleges()" />
+      <div id="filters">
+        <button class="filter-btn active" onclick="filterByType('all')">All</button>
+        <button class="filter-btn" onclick="filterByType('Government')">Government</button>
+        <button class="filter-btn" onclick="filterByType('Private')">Private</button>
+      </div>
+    </div>
+    <div id="college-count">Showing 50 Law Colleges</div>
+    <div class="college-list" id="college-list"></div>
+  </div>
+  <footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>Justice Advisor</h3>
+            <p>Your comprehensive legal studies resource center providing high-quality materials for students, professionals, and legal enthusiasts.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i>  </a>
+                <a href="#"><i class="fab fa-twitter"></i>  </a>
+                <a href="#"><i class="fab fa-linkedin-in"></i>  </a>
+                <a href="#"><i class="fab fa-instagram"></i>  </a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="http://127.0.0.1:5000"> Section Finder</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Legal Resources</h3>
+            <ul>
+                <li><a href="consitution_of_india.html">Constitution of India</a></li>
+                <li><a href="Roadmap.html">Road Map</a></li>
+                <li><a href="lawcolleges.html">Law colleges</a></li>
+                <li><a href="study material.html">Law Books</a></li>
+                
+         
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+            
+                <li><a href="faq.html">FAQs</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+         
+           
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2025 Legal Studies Repository. All rights reserved.
+    </div>
+</footer>
+
+  <script>
+   const colleges = [
+  // Only college in Mizoram
+  { name: "Dr. Ram Manohar Lohiya National Law University", city: "Lucknow", type: "Government", link: "https://law.careers360.com/colleges/dr-ram-manohar-lohiya-national-law-university-lucknow" },
+      { name: "Banaras Hindu University - Faculty of Law", city: "Varanasi", type: "Government", link: "https://law.careers360.com/colleges/banaras-hindu-university-faculty-of-law-varanasi" },
+      { name: "Aligarh Muslim University - Faculty of Law", city: "Aligarh", type: "Government", link: "https://law.careers360.com/colleges/aligarh-muslim-university-faculty-of-law-aligarh" },
+      { name: "University of Allahabad - Faculty of Law", city: "Allahabad", type: "Government", link: "https://law.careers360.com/colleges/university-of-allahabad-faculty-of-law-allahabad" },
+      { name: "Babu Banarasi Das University - School of Law", city: "Lucknow", type: "Private", link: "https://law.careers360.com/colleges/babu-banarasi-das-university-school-of-law-lucknow" },
+      { name: "Amity Law School", city: "Lucknow", type: "Private", link: "https://law.careers360.com/colleges/amity-law-school-lucknow" },
+      { name: "Integral University - Faculty of Law", city: "Lucknow", type: "Private", link: "https://law.careers360.com/colleges/integral-university-faculty-of-law-lucknow" },
+      { name: "Shri Ramswaroop Memorial University - School of Law", city: "Lucknow", type: "Private", link: "https://law.careers360.com/colleges/shri-ramswaroop-memorial-university-school-of-law-lucknow" },
+      { name: "Galgotias University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/galgotias-university-school-of-law-greater-noida" },
+      { name: "Sharda University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/sharda-university-school-of-law-greater-noida" },
+      { name: "Lloyd Law College", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/lloyd-law-college-greater-noida" },
+      { name: "KIIT School of Law", city: "Ghaziabad", type: "Private", link: "https://law.careers360.com/colleges/kiit-school-of-law-ghaziabad" },
+      { name: "IMS Law College", city: "Noida", type: "Private", link: "https://law.careers360.com/colleges/ims-law-college-noida" },
+      { name: "Symbiosis Law School", city: "Noida", type: "Private", link: "https://law.careers360.com/colleges/symbiosis-law-school-noida" },
+      { name: "Bennett University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/bennett-university-school-of-law-greater-noida" },
+      { name: "Noida International University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/noida-international-university-school-of-law-greater-noida" },
+      { name: "GLA University - Faculty of Law", city: "Mathura", type: "Private", link: "https://law.careers360.com/colleges/gla-university-faculty-of-law-mathura" },
+      { name: "Invertis University - Faculty of Law", city: "Bareilly", type: "Private", link: "https://law.careers360.com/colleges/invertis-university-faculty-of-law-bareilly" },
+      { name: "Teerthanker Mahaveer University - Faculty of Law", city: "Moradabad", type: "Private", link: "https://law.careers360.com/colleges/teerthanker-mahaveer-university-faculty-of-law-moradabad" },
+      { name: "Shiv Nadar University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/shiv-nadar-university-school-of-law-greater-noida" },
+      { name: "Mahatma Jyotiba Phule Rohilkhand University - Faculty of Law", city: "Bareilly", type: "Government", link: "https://law.careers360.com/colleges/mahatma-jyotiba-phule-rohilkhand-university-faculty-of-law-bareilly" },
+      { name: "Chaudhary Charan Singh University - Faculty of Law", city: "Meerut", type: "Government", link: "https://law.careers360.com/colleges/chaudhary-charan-singh-university-faculty-of-law-meerut" },
+      { name: "Deen Dayal Upadhyaya Gorakhpur University - Faculty of Law", city: "Gorakhpur", type: "Government", link: "https://law.careers360.com/colleges/deen-dayal-upadhyaya-gorakhpur-university-faculty-of-law-gorakhpur" },
+      { name: "Dr. B.R. Ambedkar University - Faculty of Law", city: "Agra", type: "Government", link: "https://law.careers360.com/colleges/dr-b-r-ambedkar-university-faculty-of-law-agra" },
+      { name: "Bundelkhand University - Faculty of Law", city: "Jhansi", type: "Government", link: "https://law.careers360.com/colleges/bundelkhand-university-faculty-of-law-jhansi" },
+      { name: "University of Lucknow - Faculty of Law", city: "Lucknow", type: "Government", link: "https://law.careers360.com/colleges/university-of-lucknow-faculty-of-law-lucknow" },
+      { name: "Babasaheb Bhimrao Ambedkar University - Faculty of Law", city: "Lucknow", type: "Government", link: "https://law.careers360.com/colleges/babasaheb-bhimrao-ambedkar-university-faculty-of-law-lucknow" },
+      { name: "Chhatrapati Shahu Ji Maharaj University - Faculty of Law", city: "Kanpur", type: "Government", link: "https://law.careers360.com/colleges/chhatrapati-shahu-ji-maharaj-university-faculty-of-law-kanpur" },
+      { name: "Veer Bahadur Singh Purvanchal University - Faculty of Law", city: "Jaunpur", type: "Government", link: "https://law.careers360.com/colleges/veer-bahadur-singh-purvanchal-university-faculty-of-law-jaunpur" },
+      { name: "Dr. Shakuntala Misra National Rehabilitation University - Faculty of Law", city: "Lucknow", type: "Government", link: "https://law.careers360.com/colleges/dr-shakuntala-misra-national-rehabilitation-university-faculty-of-law-lucknow" },
+      { name: "Mahatma Gandhi Kashi Vidyapith - Faculty of Law", city: "Varanasi", type: "Government", link: "https://law.careers360.com/colleges/mahatma-gandhi-kashi-vidyapith-faculty-of-law-varanasi" },
+      { name: "Siddharth University - Faculty of Law", city: "Kapilvastu", type: "Government", link: "https://law.careers360.com/colleges/siddharth-university-faculty-of-law-kapilvastu" },
+      { name: "Jananayak Chandrashekhar University - Faculty of Law", city: "Ballia", type: "Government", link: "https://law.careers360.com/colleges/jananayak-chandrashekhar-university-faculty-of-law-ballia" },
+      { name: "Rajiv Gandhi National Aviation University - Faculty of Law", city: "Raebareli", type: "Government", link: "https://law.careers360.com/colleges/rajiv-gandhi-national-aviation-university-faculty-of-law-raebareli" },
+      { name: "Khwaja Moinuddin Chishti Urdu, Arabi-Farsi University - Faculty of Law", city: "Lucknow", type: "Government", link: "https://law.careers360.com/colleges/khwaja-moinuddin-chishti-urdu-arabi-farsi-university-faculty-of-law-lucknow" },
+      { name: "M.J.P. Rohilkhand University - Faculty of Law", city: "Bareilly", type: "Government", link: "https://law.careers360.com/colleges/m-j-p-rohilkhand-university-faculty-of-law-bareilly" },
+      { name: "S.R.M. University - Faculty of Law", city: "Lucknow", type: "Private", link: "https://law.careers360.com/colleges/s-r-m-university-faculty-of-law-lucknow" },
+      { name: "Amity University - Faculty of Law", city: "Lucknow", type: "Private", link: "https://law.careers360.com/colleges/amity-university-faculty-of-law-lucknow" },
+      { name: "Shri Venkateshwara University - Faculty of Law", city: "Meerut", type: "Private", link: "https://law.careers360.com/colleges/shri-venkateshwara-university-faculty-of-law-meerut" },
+      { name: "IIMT University - Faculty of Law", city: "Meerut", type: "Private", link: "https://law.careers360.com/colleges/iimt-university-faculty-of-law-meerut" },
+      { name: "Swami Vivekanand Subharti University - Faculty of Law", city: "Meerut", type: "Private", link: "https://law.careers360.com/colleges/swami-vivekanand-subharti-university-faculty-of-law-meerut" },
+      { name: "Shobhit University - Faculty of Law", city: "Meerut", type: "Private", link: "https://law.careers360.com/colleges/shobhit-university-faculty-of-law-meerut" },
+      { name: "Mangalayatan University - Faculty of Law", city: "Aligarh", type: "Private", link: "https://law.careers360.com/colleges/mangalayatan-university-faculty-of-law-aligarh" },
+      { name: "Rama University - Faculty of Law", city: "Kanpur", type: "Private", link: "https://law.careers360.com/colleges/rama-university-faculty-of-law-kanpur" },
+      { name: "Chandra Shekhar Azad University of Agriculture and Technology - Faculty of Law", city: "Kanpur", type: "Government", link: "https://law.careers360.com/colleges/chandra-shekhar-azad-university-of-agriculture-and-technology-faculty-of-law-kanpur" },
+      { name: "Harcourt Butler Technical University - Faculty of Law", city: "Kanpur", type: "Government", link: "https://law.careers360.com/colleges/harcourt-butler-technical-university-faculty-of-law-kanpur" },
+      { name: "U.P. Rajarshi Tandon Open University - Faculty of Law", city: "Allahabad", type: "Government", link: "https://law.careers360.com/colleges/u-p-rajarshi-tandon-open-university-faculty-of-law-allahabad" },
+      { name: "Sam Higginbottom University of Agriculture, Technology and Sciences - Faculty of Law", city: "Allahabad", type: "Private", link: "https://law.careers360.com/colleges/sam-higginbottom-university-of-agriculture-technology-and-sciences-faculty-of-law-allahabad" },
+      { name: "Allahabad State University - Faculty of Law", city: "Allahabad", type: "Government", link: "https://law.careers360.com/colleges/allahabad-state-university-faculty-of-law-allahabad" },
+      { name: "Era University - Faculty of Law", city: "Lucknow", type: "Private", link: "https://law.careers360.com/colleges/era-university-faculty-of-law-lucknow" },
+      { name: "King George's Medical University - Faculty of Law", city: "Lucknow", type: "Government", link: "https://law.careers360.com/colleges/king-georges-medical-university-faculty-of-law-lucknow" },
+      { name: "Sanjay Gandhi Postgraduate Institute of Medical Sciences - Faculty of Law", city: "Lucknow", type: "Government", link: "https://law.careers360.com/colleges/sanjay-gandhi-postgraduate-institute-of-medical-sciences-faculty-of-law-lucknow" },
+      { name: "Central Institute of Higher Tibetan Studies - Faculty of Law", city: "Varanasi", type: "Government", link: "https://law.careers360.com/colleges/central-institute-of-higher-tibetan-studies-faculty-of-law-varanasi" },
+      { name: "Sampurnanand Sanskrit University - Faculty of Law", city: "Varanasi", type: "Government", link: "https://law.careers360.com/colleges/sampurnanand-sanskrit-university-faculty-of-law-varanasi" },
+      { name: "Indian Institute of Technology (BHU) - Faculty of Law", city: "Varanasi", type: "Government", link: "https://law.careers360.com/colleges/indian-institute-of-technology-bhu-faculty-of-law-varanasi" },
+      { name: "Narendra Deva University of Agriculture and Technology - Faculty of Law", city: "Faizabad", type: "Government", link: "https://law.careers360.com/colleges/narendra-deva-university-of-agriculture-and-technology-faculty-of-law-faizabad" },
+      { name: "Dr. Ram Manohar Lohia Avadh University - Faculty of Law", city: "Faizabad", type: "Government", link: "https://law.careers360.com/colleges/dr-ram-manohar-lohia-avadh-university-faculty-of-law-faizabad" },
+      // Additional 100 law colleges in Uttar Pradesh
+      { name: "Krishna Institute of Law", city: "Kanpur", type: "Private", link: "#" },
+      { name: "Hindustan Institute of Law", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "United College of Law", city: "Allahabad", type: "Private", link: "#" },
+      { name: "Shri Krishna Law College", city: "Meerut", type: "Private", link: "#" },
+      { name: "Galgotias College of Law", city: "Greater Noida", type: "Private", link: "#" },
+      { name: "Asian Law College", city: "Noida", type: "Private", link: "#" },
+      { name: "Greater Noida Institute of Law", city: "Greater Noida", type: "Private", link: "#" },
+      { name: "J.S. Law College", city: "Prayagraj", type: "Private", link: "#" },
+      { name: "Vivekananda Law School", city: "Lucknow", type: "Private", link: "#" },
+      { name: "Shambhunath Institute of Law", city: "Prayagraj", type: "Private", link: "#" },
+      { name: "S.S. Khanna Girls Degree College - Law Department", city: "Allahabad", type: "Private", link: "#" },
+      { name: "Bhartiya Vidya Peeth Law College", city: "Meerut", type: "Private", link: "#" },
+      { name: "Sanskar Law College", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "K.K. Law College", city: "Etawah", type: "Private", link: "#" },
+      { name: "S.S. Jain Subodh Law College", city: "Jaipur", type: "Private", link: "#" },
+      { name: "Krishna College of Law", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "United Institute of Law", city: "Allahabad", type: "Private", link: "#" },
+      { name: "S.R.M.S. Law College", city: "Bareilly", type: "Private", link: "#" },
+      { name: "Vidhi Law College", city: "Meerut", type: "Private", link: "#" },
+      { name: "Sai Nath University - Faculty of Law", city: "Allahabad", type: "Private", link: "#" },
+      { name: "Bansal Law College", city: "Lucknow", type: "Private", link: "#" },
+      { name: "Trinity Institute of Law", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "Ideal Institute of Law", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "Krishna College of Law & Research", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "S.S. Jain Subodh Law College", city: "Jaipur", type: "Private", link: "#" },
+      { name: "Aryavart Institute of Law", city: "Lucknow", type: "Private", link: "#" },
+      { name: "United College of Law & Research", city: "Allahabad", type: "Private", link: "#" },
+      { name: "Krishna College of Law & Research", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "Sanskar Law College", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "K.K. Law College", city: "Etawah", type: "Private", link: "#" },
+      { name: "Bhartiya Vidya Peeth Law College", city: "Meerut", type: "Private", link: "#" },
+      { name: "Shambhunath Institute of Law", city: "Prayagraj", type: "Private", link: "#" },
+      { name: "Vivekananda Law School", city: "Lucknow", type: "Private", link: "#" },
+      { name: "J.S. Law College", city: "Prayagraj", type: "Private", link: "#" },
+      { name: "Greater Noida Institute of Law", city: "Greater Noida", type: "Private", link: "#" },
+      { name: "Asian Law College", city: "Noida", type: "Private", link: "#" },
+      { name: "Galgotias College of Law", city: "Greater Noida", type: "Private", link: "#" },
+      { name: "Shri Krishna Law College", city: "Meerut", type: "Private", link: "#" },
+      { name: "United College of Law", city: "Allahabad", type: "Private", link: "#" },
+      { name: "Hindustan Institute of Law", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "Krishna Institute of Law", city: "Kanpur", type: "Private", link: "#" },
+      { name: "Lucknow Public College of Law", city: "Lucknow", type: "Private", link: "#" },
+      { name: "Kanpur Institute of Law", city: "Kanpur", type: "Private", link: "#" },
+      { name: "Agra Law College", city: "Agra", type: "Private", link: "#" },
+      { name: "Varanasi Law College", city: "Varanasi", type: "Private", link: "#" },
+      { name: "Allahabad Law Academy", city: "Allahabad", type: "Private", link: "#" },
+      { name: "Ghaziabad Law College", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "Meerut Law College", city: "Meerut", type: "Private", link: "#" },
+      { name: "Moradabad Law College", city: "Moradabad", type: "Private", link: "#" },
+      { name: "Bareilly Law College", city: "Bareilly", type: "Private", link: "#" },
+      { name: "Aligarh Law College", city: "Aligarh", type: "Private", link: "#" },
+      { name: "Mathura Law College", city: "Mathura", type: "Private", link: "#" },
+      { name: "Jhansi Law College", city: "Jhansi", type: "Private", link: "#" },
+      { name: "Gorakhpur Law College", city: "Gorakhpur", type: "Private", link: "#" },
+      { name: "Faizabad Law College", city: "Faizabad", type: "Private", link: "#" },
+      { name: "Sultanpur Law College", city: "Sultanpur", type: "Private", link: "#" },
+      { name: "Azamgarh Law College", city: "Azamgarh", type: "Private", link: "#" },
+      { name: "Jaunpur Law College", city: "Jaunpur", type: "Private", link: "#" },
+      { name: "Mirzapur Law College", city: "Mirzapur", type: "Private", link: "#" },
+      { name: "Ballia Law College", city: "Ballia", type: "Private", link: "#" },
+      { name: "Deoria Law College", city: "Deoria", type: "Private", link: "#" },
+      { name: "Basti Law College", city: "Basti", type: "Private", link: "#" },
+      { name: "Siddharthnagar Law College", city: "Siddharthnagar", type: "Private", link: "#" },
+      { name: "Maharajganj Law College", city: "Maharajganj", type: "Private", link: "#" },
+      { name: "Kushinagar Law College", city: "Kushinagar", type: "Private", link: "#" },
+      { name: "Sant Kabir Nagar Law College", city: "Sant Kabir Nagar", type: "Private", link: "#" },
+      { name: "Ambedkar Law College", city: "Lucknow", type: "Private", link: "#" },
+      { name: "Nehru Law College", city: "Kanpur", type: "Private", link: "#" },
+      { name: "Gandhi Law College", city: "Varanasi", type: "Private", link: "#" },
+      { name: "Tagore Law College", city: "Allahabad", type: "Private", link: "#" },
+      { name: "Radhakrishnan Law College", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "Vivekanand Law College", city: "Meerut", type: "Private", link: "#" },
+      { name: "Aryabhatta Law College", city: "Noida", type: "Private", link: "#" },
+      { name: "Chanakya Law College", city: "Greater Noida", type: "Private", link: "#" },
+      { name: "Manu Law College", city: "Lucknow", type: "Private", link: "#" },
+      { name: "Yagyavalkya Law College", city: "Kanpur", type: "Private", link: "#" },
+      { name: "Parasaran Law College", city: "Agra", type: "Private", link: "#" },
+      { name: "Shukla Law College", city: "Varanasi", type: "Private", link: "#" },
+      { name: "Saxena Law College", city: "Allahabad", type: "Private", link: "#" },
+      { name: "Trivedi Law College", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "Mishra Law College", city: "Meerut", type: "Private", link: "#" },
+      { name: "Pandey Law College", city: "Noida", type: "Private", link: "#" },
+      { name: "Tiwari Law College", city: "Greater Noida", type: "Private", link: "#" },
+      { name: "Dubey Law College", city: "Lucknow", type: "Private", link: "#" },
+      { name: "Srivastava Law College", city: "Kanpur", type: "Private", link: "#" },
+      { name: "Yadav Law College", city: "Agra", type: "Private", link: "#" },
+      { name: "Gupta Law College", city: "Varanasi", type: "Private", link: "#" },
+      { name: "Modern Law College", city: "Lucknow", type: "Private", link: "#" },
+      { name: "New Law College", city: "Kanpur", type: "Private", link: "#" },
+      { name: "City Law College", city: "Varanasi", type: "Private", link: "#" },
+      { name: "Capital Law College", city: "Lucknow", type: "Private", link: "#" },
+      { name: "Metro Law College", city: "Kanpur", type: "Private", link: "#" },
+      { name: "Global Law College", city: "Noida", type: "Private", link: "#" },
+      { name: "International Law College", city: "Greater Noida", type: "Private", link: "#" },
+      { name: "National Law College", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "Delhi-NCR Law College", city: "Ghaziabad", type: "Private", link: "#" },
+      { name: "Uttar Pradesh Law College", city: "Lucknow", type: "Private", link: "#" }
+    ];
+    const collegeList = document.getElementById('college-list');
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function displayColleges(collegesToDisplay = colleges) {
+      collegeList.innerHTML = "";
+      
+      if (collegesToDisplay.length === 0) {
+        collegeList.innerHTML = '<div class="no-results">No colleges found matching your criteria</div>';
+        return;
+      }
+      
+      collegesToDisplay.forEach(college => {
+        const card = document.createElement('div');
+        card.className = 'college-card';
+        const typeClass = college.type.toLowerCase();
+        card.innerHTML = `
+          <div>
+            <h2>${college.name} <span class="type-badge ${typeClass}">${college.type}</span></h2>
+            <div class="college-info">
+              <i>📍</i>   ${college.city}, Andhra Pradesh
+            </div>
+            <div class="links">
+              <a href="${college.link}" target="_blank">View Details</a>
+              <a href="#">Courses</a>
+              <a href="#">Admissions</a>
+            </div>
+          </div>
+        `;
+        collegeList.appendChild(card);
+      });
+      
+      document.getElementById('college-count').textContent = `Showing ${collegesToDisplay.length} of ${colleges.length} Law Colleges`;
+    }
+
+    function filterColleges() {
+      currentSearch = document.getElementById('search').value.toLowerCase();
+      applyFilters();
+    }
+
+    function filterByType(type) {
+      currentFilter = type;
+      
+      // Update active button
+      document.querySelectorAll('#filters .filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent === type || (type === 'all' && btn.textContent === 'All')) {
+          btn.classList.add('active');
+        }
+      });
+      
+      applyFilters();
+    }
+
+    function applyFilters() {
+      let filteredColleges = colleges.filter(college => {
+        const matchesSearch = college.name.toLowerCase().includes(currentSearch) || 
+                             college.city.toLowerCase().includes(currentSearch);
+        const matchesType = currentFilter === 'all' || college.type === currentFilter;
+        return matchesSearch && matchesType;
+      });
+      
+      displayColleges(filteredColleges);
+    }
+
+    // Initial display
+    displayColleges();
+  </script>
+</body>
+</html>

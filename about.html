@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn About Us</title>
+    <!-- Favicon for the browser tab -->
+    <link rel="icon" href="img/logo1.jpg" type="image/jpg">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Montserrat', sans-serif;
+            background: url('img/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+        }
+        p {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .frame {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+        .language-card {
+            width: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 30%;
+        }
+        .language-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .language-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            padding-top: 20%;
+        }
+        .language-card .content {
+            padding: 10px;
+        }
+        .language-card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            color: white;
+            background: #f9a826;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .language-card a:hover {
+            background: #1e3c72;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: -1;
+        }
+        nav {
+            background: #502900;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%; /* Reduced width to create spacing on sides */
+            max-width: 1400px; /* Added max-width for large screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0 30px; /* Added horizontal padding */
+        }
+        nav .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+        }
+
+        .nav-logo {
+            height: 60px;
+            width: auto;
+            border-radius: 30px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .logout {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .logout:hover {
+            color: #f9a826;
+        }
+        nav a:hover {
+            color: #f9a826;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+        .intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 900px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(232, 229, 229, 0.2);
+        }
+        .intro img {
+            width: 300px;
+            margin-right: 30px;
+            border-radius: 8px;
+        }
+
+        /* New Footer Styling based on the image */
+        footer {
+            background: #502900;
+            color: white;
+            padding: 40px 0 20px;
+            width: 100%;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin: 0 15px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #f9a826;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 20px;
+            color: #ffffff;
+            
+        }
+
+        .footer-column  a:hover {
+            color: #f9a826;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+            
+            /* Make navbar responsive */
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .menu {
+                margin: 10px 0;
+            }
+            
+            .logout {
+                margin-top: 10px;
+            }
+        }
+
+        .language-card h3 {
+            font-family: 'Merriweather', serif;
+            color: #502900;
+            margin-bottom: 15px;
+        }
+
+        .language-card p {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="img/logo1.jpg" alt="Logo" class="nav-logo">
+            </a>
+    
+            <div class="menu">
+                <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                
+                <!-- Dropdown Menu with Icon -->
+                <div class="dropdown">
+                    <a href="service.html"><i class="fas fa-gavel"></i> Services</a>
+    
+                    <div class="dropdown-content">
+                        <a href="createcaseref.html"><i class="fas fa-file-alt"></i> Create Case Reference</a>
+                        <a href="displaycaseref.html"><i class="fas fa-file-alt"></i>  Case Reference</a>
+                        <a href="consitution_of_india.html"><i class="fas fa-book"></i> Constitution of India</a>
+                        <a href="lawerreg.html"><i class="fas fa-user-tie"></i> Register Lawyer</a>
+                        <a href="createblogpge.html"><i class="fas fa-pen-fancy"></i> Blog Creation</a>
+                    </div>
+                </div>
+                <a href="http://127.0.0.1:5000"><i class="fas fa-robot"></i> Section Chatbot</a>
+                <a href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+                <a href="contact.html"><i class="fas fa-question-circle"></i> Contact</a>
+            </div>
+    
+            <a href="C:/Users/lenovo/Desktop/project/index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+      </nav>
+    
+    <div class="container">
+        <div class="intro">
+            <img src="img/about up.png" alt="Constitution Image">
+            <div>
+                <h1>About Us</h1>
+                <p>We are developing a law section bot for India that serves as a comprehensive legal resource for users, including lawyers, law students, and researchers. This bot allows users to search for any legal section under Indian law, making it easy to access relevant legal provisions. It also provides an option to download the Constitution of India for quick reference. Additionally, it includes a case reference feature, enabling lawyers to search for past case judgments and legal precedents. Users can also obtain legal references for better understanding of laws.
+                   This bot aims to simplify legal research and improve accessibility to Indian legal information.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="intro">
+            <img src="img/futurescope.jpg" alt="Constitution Image">
+            <div>
+                <h1>Future scope</h1>
+                <p>In the future, the bot can integrate AI-driven legal advice, real-time case law updates, multilingual support, and voice-based search.
+                     It may also include court filing assistance, legal document automation, and integration with government databases for seamless access to updated legal information.
+                </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="frame" id="languages"></div>
+    </div>
+    
+    <!-- New Footer Structure Based on the Image -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Justice Advisor</h3>
+                <p>Your comprehensive legal guide center providing high-quality materials for lawyers.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="http://127.0.0.1:5000"> Section Chatbot </a></li>
+                    <li><a href="chatbot.html"> Chatbot </a></li>
+                    <li><a href="createcaseref.html">  Create Case Reference </a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Other Resources</h3>
+                <ul>
+                    <li><a href="constitution.html">Constitution of India</a></li>
+                    <li><a href="displaycaseref.html">Case Reference</a></li>
+                    <li><a href="createblogpge.html"> Blog Creation</a></li>
+                    <li><a href="lawerreg.html">Lawyer Registration </a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Legal Studies Repository. All rights reserved.</p>
+        </div>
+      </footer>
+    
+    <script>
+        const sections = [
+            { title: "Disclaimer", content: "The information provided by this bot is for general informational purposes only and should not be considered as legal advice." },
+            { title: "Features", content: "Search legal sections, download the Constitution of India, find past case references, and get legal guidance." },
+            { title: "Get in Touch", content: "For any inquiries or feedback, please contact us at finalyearprojectlaw@gmail.com" }
+        ];
+        
+        const container = document.getElementById("languages");
+        sections.forEach(section => {
+            const card = document.createElement("div");
+            card.classList.add("language-card");
+            card.innerHTML = `
+                <div class="content">
+                    <h3>${section.title}</h3>
+                    <p>${section.content}</p>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>

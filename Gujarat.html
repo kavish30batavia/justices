@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="images/logo.jpg" type="image/jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Law Colleges in Andhra Pradesh (50 Colleges)</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      
+    }
+    :root {
+            --primary-color: #4a2c02;
+            --secondary-color: #4a2c02;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --purchase-color: #f39c12;
+            --nav-color: #4a2c02;
+            --nav-hover: #f9a826;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        nav {
+  background: var(--nav-color);
+  padding: 15px 0; /* Changed padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Changed to 100% */
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .nav-logo {
+          height: 60px;
+          width: auto;
+          border-radius: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--nav-hover);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--nav-hover);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 200px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+    h1 {
+      color: #1a365d;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.2rem;
+    }
+    #search-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      flex-wrap: wrap;
+     padding: 25px; 
+    }
+    #search {
+      flex-grow: 1;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      min-width: 300px;
+    }
+    #filters {
+      display: flex;
+      gap: 10px;
+      margin-left: 15px;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid #d1d5db;
+      background-color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background-color: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+    #college-count {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #4b5563;
+      font-size: 1.1rem;
+    }
+    .college-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+    .college-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #2563eb;
+    }
+    .college-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    .college-card h2 {
+      margin: 0 0 8px;
+      color: #1e40af;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+    }
+    .college-info {
+      margin-bottom: 12px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .college-info i {
+      font-size: 1rem;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .links a {
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background-color: #eff6ff;
+      transition: all 0.3s;
+    }
+    .links a:hover {
+      background-color: #dbeafe;
+      text-decoration: underline;
+    }
+    .type-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+    .government {
+      background-color: #10b981;
+      color: white;
+    }
+    .private {
+      background-color: #ef4444;
+      color: white;
+    }
+    .no-results {
+      text-align: center;
+      grid-column: 1/-1;
+      padding: 40px;
+      color: #6b7280;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      #search-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      #filters {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+      }
+      .college-list {
+        grid-template-columns: 1fr;
+      }
+    }
+     
+    @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            
+        }
+        footer {
+            background-color: var(--nav-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            
+        }
+        
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+  </style>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+        <a href="dashboard.html" class="logo">
+            <img src="images/logo.jpg" alt="Logo" class="nav-logo">
+        </a>
+
+        <div class="menu" id="menu">
+            <a href="index.html"><i class="fas fa-home"></i>  Home</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i>  About</a>
+            <div class="dropdown">
+                <a href="services.html"><i class="fas fa-gavel"></i>  Services</a>
+                <div class="dropdown-content">
+                    <a href="chatbot.html"><i class="fas fa-robot"></i>   Legal Chatbot</a>
+                    <a href="section-chatbot.html"><i class="fas fa-code"></i>   Section Finder</a>
+                    <a href="case-reference.html"><i class="fas fa-gavel"></i>   Case Reference</a>
+                    <a href="consitution_of_india.html"><i class="fas fa-book"></i>   Constitution</a>
+                   
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="resources.html">Resources <i class="fas fa-chevron-down"></i>  </a>
+                <div class="dropdown-content">
+                    <a href="study material.html"><i class="fas fa-book"></i>   Law Books</a>
+                    <a href="lawcolleges.html"><i class="fas fa-file-alt"></i>   Law Colleges</a>
+                    
+                    <a href="Roadmap.html"><i class="fas fa-file-pdf"></i>   Road Map</a>
+                </div>
+            </div>
+            <a href="blog.html"><i class="fas fa-pen-fancy"></i>  Blog</a>
+            <a href="help.html"><i class="fas fa-question-circle"></i> Help</a>
+        </div>
+        <a href="login.html" class="login-btn"><i class="fas fa-user"></i>   Login</a>
+    </div>
+</nav>
+  <div class="container">
+    <h1>Law Colleges in Andhra Pradesh</h1>
+    <div id="search-container">
+      <input type="text" placeholder="Search by College Name or City..." id="search" onkeyup="filterColleges()" />
+      <div id="filters">
+        <button class="filter-btn active" onclick="filterByType('all')">All</button>
+        <button class="filter-btn" onclick="filterByType('Government')">Government</button>
+        <button class="filter-btn" onclick="filterByType('Private')">Private</button>
+      </div>
+    </div>
+    <div id="college-count">Showing 50 Law Colleges</div>
+    <div class="college-list" id="college-list"></div>
+  </div>
+  <footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>Justice Advisor</h3>
+            <p>Your comprehensive legal studies resource center providing high-quality materials for students, professionals, and legal enthusiasts.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i>  </a>
+                <a href="#"><i class="fab fa-twitter"></i>  </a>
+                <a href="#"><i class="fab fa-linkedin-in"></i>  </a>
+                <a href="#"><i class="fab fa-instagram"></i>  </a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="http://127.0.0.1:5000"> Section Finder</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Legal Resources</h3>
+            <ul>
+                <li><a href="consitution_of_india.html">Constitution of India</a></li>
+                <li><a href="Roadmap.html">Road Map</a></li>
+                <li><a href="lawcolleges.html">Law colleges</a></li>
+                <li><a href="study material.html">Law Books</a></li>
+                
+         
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+            
+                <li><a href="faq.html">FAQs</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+         
+           
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2025 Legal Studies Repository. All rights reserved.
+    </div>
+</footer>
+
+  <script>
+    const colleges = [
+    
+    { name: "Gujarat National Law University", city: "Gandhinagar", type: "Government", link: "https://www.gnlu.ac.in/" },
+      { name: "Maharaja Sayajirao University - Faculty of Law", city: "Vadodara", type: "Government", link: "https://www.msubaroda.ac.in/" },
+      { name: "Gujarat University - Department of Law", city: "Ahmedabad", type: "Government", link: "https://www.gujaratuniversity.ac.in/" },
+      { name: "Sardar Patel University - Department of Law", city: "Vallabh Vidyanagar", type: "Government", link: "https://www.spuvvn.edu/" },
+      { name: "Bhavnagar University - Department of Law", city: "Bhavnagar", type: "Government", link: "https://www.bhavuni.edu/" },
+      { name: "Saurashtra University - Department of Law", city: "Rajkot", type: "Government", link: "https://www.saurashtrauniversity.edu/" },
+      { name: "Veer Narmad South Gujarat University - Faculty of Law", city: "Surat", type: "Government", link: "https://www.vnsgu.ac.in/" },
+      { name: "Dr. Babasaheb Ambedkar Open University - Law Department", city: "Ahmedabad", type: "Government", link: "https://www.baou.edu.in/" },
+
+      // Major Private Colleges (112) - Including Shukla and additional colleges
+      { name: "Shukla Law College", city: "Ahmedabad", type: "Private", link: "https://www.shuklalawcollege.edu/" },
+      { name: "Shukla Law College", city: "Rajkot", type: "Private", link: "https://www.shuklalawcollegerajkot.edu/" },
+      { name: "Shukla Law College", city: "Surat", type: "Private", link: "https://www.shuklalawcollegesurat.edu/" },
+      
+      { name: "Shri H.M. Patel Law College", city: "Anand", type: "Private", link: "https://www.hmpatelcollege.org/" },
+      { name: "Shri C.L. Pandya College of Law", city: "Himatnagar", type: "Private", link: "https://www.clpandyalawcollege.org/" },
+      { name: "Shri J.P. Shah Law College", city: "Modasa", type: "Private", link: "https://www.jpshaheducation.org/" },
+      { name: "Shri M.D. Shah Law College", city: "Ahmedabad", type: "Private", link: "https://www.mdshahlawcollege.edu/" },
+      { name: "Shri N.R. Vaidya Law College", city: "Rajkot", type: "Private", link: "https://www.nrvaidyalawcollege.org/" },
+      { name: "Shri P.H. Gajera Law College", city: "Surat", type: "Private", link: "https://www.phgajeralawcollege.edu/" },
+      { name: "Shri R.P. Bhalodia Law College", city: "Rajkot", type: "Private", link: "https://www.rpbhalodialawcollege.org/" },
+      { name: "Shri S.V. Patel Law College", city: "Anand", type: "Private", link: "https://www.svpatellawcollege.edu/" },
+      { name: "Shri S.V. Shah Law College", city: "Ahmedabad", type: "Private", link: "https://www.svshahlawcollege.org/" },
+      { name: "Shri V.M. Shah Law College", city: "Ahmedabad", type: "Private", link: "https://www.vmshaheducation.org/" },
+      { name: "Shri V.R. Maniar Law College", city: "Surat", type: "Private", link: "https://www.vrmanilarawcollege.edu/" },
+      { name: "Shri Y.D. Doshi Law College", city: "Junagadh", type: "Private", link: "https://www.yddoshilawcollege.org/" },
+      { name: "Shri Z.L. Shah Law College", city: "Ahmedabad", type: "Private", link: "https://www.zlshahlawcollege.edu/" },
+      { name: "Sir L.A. Shah Law College", city: "Ahmedabad", type: "Private", link: "https://www.lashahlawcollege.org/" },
+      { name: "Smt. H.P. Desai Law College", city: "Ahmedabad", type: "Private", link: "https://www.hpdesailawcollege.edu/" },
+      { name: "Smt. K.B. Parekh Law College", city: "Ahmedabad", type: "Private", link: "https://www.kbparekhlawcollege.org/" },
+      { name: "Smt. M.M. Patel Law College", city: "Vadodara", type: "Private", link: "https://www.mmpatellawcollege.edu/" },
+      { name: "Smt. N.H.L. Municipal Law College", city: "Ahmedabad", type: "Private", link: "https://www.nhlmunicipallawcollege.org/" },
+      { name: "Smt. R.D. Gardi Law College", city: "Rajkot", type: "Private", link: "https://www.rdgardilawcollege.edu/" },
+      { name: "Smt. S.C. Gandhi Law College", city: "Ahmedabad", type: "Private", link: "https://www.scgandhilawcollege.org/" },
+      { name: "Smt. S.R. Patel Law College", city: "Anand", type: "Private", link: "https://www.srpatellawcollege.edu/" },
+      { name: "Smt. S.S. Patel Law College", city: "Anand", type: "Private", link: "https://www.sspatellawcollege.org/" },
+      { name: "Smt. S.V. Patel Law College", city: "Anand", type: "Private", link: "https://www.svpatellawcollege.edu/" },
+      { name: "Smt. V.D. Desai Law College", city: "Ahmedabad", type: "Private", link: "https://www.vddesailawcollege.org/" },
+      { name: "Smt. V.H. Shah Law College", city: "Ahmedabad", type: "Private", link: "https://www.vhshahlawcollege.edu/" },
+      { name: "Smt. V.M. Shah Law College", city: "Ahmedabad", type: "Private", link: "https://www.vmshaheducation.org/" },
+      { name: "Smt. V.R. Maniar Law College", city: "Surat", type: "Private", link: "https://www.vrmanilarawcollege.edu/" },
+      { name: "Smt. Y.D. Doshi Law College", city: "Junagadh", type: "Private", link: "https://www.yddoshilawcollege.org/" },
+      { name: "Smt. Z.L. Shah Law College", city: "Ahmedabad", type: "Private", link: "https://www.zlshahlawcollege.edu/" },
+      { name: "K.S. School of Business Management", city: "Ahmedabad", type: "Private", link: "https://www.ksschool.edu/" },
+      { name: "B.K. School of Professional and Management Studies", city: "Ahmedabad", type: "Private", link: "https://www.bkschool.edu/" },
+      { name: "Naran Lala College of Professional and Applied Sciences", city: "Navsari", type: "Private", link: "https://www.nlcollege.edu/" },
+      { name: "Kadi Sarva Vishwavidyalaya - Faculty of Law", city: "Gandhinagar", type: "Private", link: "https://www.ksv.edu.in/" },
+      { name: "Anand Law College", city: "Anand", type: "Private", link: "https://www.anandlawcollege.edu/" },
+      { name: "Bharati Law College", city: "Ahmedabad", type: "Private", link: "https://www.bharatilawcollege.org/" },
+      { name: "C.U. Shah Law College", city: "Surendranagar", type: "Private", link: "https://www.cushahlawcollege.edu/" },
+      { name: "D.A. Law College", city: "Ahmedabad", type: "Private", link: "https://www.dalawcollege.org/" },
+      { name: "D.H. Law College", city: "Ahmedabad", type: "Private", link: "https://www.dhlawcollege.edu/" },
+      { name: "G.H. Patel Law College", city: "Vallabh Vidyanagar", type: "Private", link: "https://www.ghpatellawcollege.org/" },
+      { name: "G.J. Law College", city: "Ahmedabad", type: "Private", link: "https://www.gjlawcollege.edu/" },
+      { name: "G.L. Law College", city: "Ahmedabad", type: "Private", link: "https://www.gllawcollege.org/" },
+      { name: "G.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.gmlawcollege.edu/" },
+      { name: "G.R. Law College", city: "Ahmedabad", type: "Private", link: "https://www.grlawcollege.org/" },
+      { name: "G.S. Law College", city: "Ahmedabad", type: "Private", link: "https://www.gslawcollege.edu/" },
+      { name: "G.T. Law College", city: "Ahmedabad", type: "Private", link: "https://www.gtlawcollege.org/" },
+      { name: "G.V. Law College", city: "Ahmedabad", type: "Private", link: "https://www.gvlawcollege.edu/" },
+      { name: "H.L. Law College", city: "Ahmedabad", type: "Private", link: "https://www.hllawcollege.org/" },
+      { name: "H.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.hmlawcollege.edu/" },
+      { name: "J.L. Law College", city: "Ahmedabad", type: "Private", link: "https://www.jllawcollege.org/" },
+      { name: "J.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.jmlawcollege.edu/" },
+      { name: "K.L. Law College", city: "Ahmedabad", type: "Private", link: "https://www.kllawcollege.org/" },
+      { name: "K.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.kmlawcollege.edu/" },
+      { name: "L.J. Law College", city: "Ahmedabad", type: "Private", link: "https://www.ljlawcollege.org/" },
+      { name: "L.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.lmlawcollege.edu/" },
+      { name: "M.J. Law College", city: "Ahmedabad", type: "Private", link: "https://www.mjlawcollege.org/" },
+      { name: "M.K. Law College", city: "Ahmedabad", type: "Private", link: "https://www.mklawcollege.edu/" },
+      { name: "N.K. Law College", city: "Ahmedabad", type: "Private", link: "https://www.nklawcollege.org/" },
+      { name: "N.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.nmlawcollege.edu/" },
+      { name: "P.K. Law College", city: "Ahmedabad", type: "Private", link: "https://www.pklawcollege.org/" },
+      { name: "P.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.pmlawcollege.edu/" },
+      { name: "R.K. Law College", city: "Ahmedabad", type: "Private", link: "https://www.rklawcollege.org/" },
+      { name: "R.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.rmlawcollege.edu/" },
+      { name: "S.K. Law College", city: "Ahmedabad", type: "Private", link: "https://www.sklawcollege.org/" },
+      { name: "S.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.smlawcollege.edu/" },
+      { name: "T.N. Law College", city: "Ahmedabad", type: "Private", link: "https://www.tnlawcollege.org/" },
+      { name: "T.R. Law College", city: "Ahmedabad", type: "Private", link: "https://www.trlawcollege.edu/" },
+      { name: "U.V. Law College", city: "Ahmedabad", type: "Private", link: "https://www.uvlawcollege.org/" },
+      { name: "V.K. Law College", city: "Ahmedabad", type: "Private", link: "https://www.vklawcollege.edu/" },
+      { name: "V.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.vmlawcollege.org/" },
+      { name: "V.N. Law College", city: "Ahmedabad", type: "Private", link: "https://www.vnlawcollege.edu/" },
+      { name: "V.P. Law College", city: "Ahmedabad", type: "Private", link: "https://www.vplawcollege.org/" },
+      { name: "V.S. Law College", city: "Ahmedabad", type: "Private", link: "https://www.vslawcollege.edu/" },
+      { name: "Y.C. Law College", city: "Ahmedabad", type: "Private", link: "https://www.yclawcollege.org/" },
+      { name: "Y.M. Law College", city: "Ahmedabad", type: "Private", link: "https://www.ymlawcollege.edu/" },
+      { name: "Z.K. Law College", city: "Ahmedabad", type: "Private", link: "https://www.zklawcollege.org/" },
+      { name: "A.D. Patel Institute of Law", city: "Anand", type: "Private", link: "https://www.adpatelinstitute.edu/" },
+      { name: "B.R. Law College", city: "Anand", type: "Private", link: "https://www.brlawcollege.org/" },
+      { name: "C.D. Law College", city: "Anand", type: "Private", link: "https://www.cdlawcollege.edu/" },
+      { name: "D.J. Law College", city: "Anand", type: "Private", link: "https://www.djlawcollege.org/" },
+      { name: "E.F. Law College", city: "Anand", type: "Private", link: "https://www.eflawcollege.edu/" },
+      { name: "G.I. Law College", city: "Anand", type: "Private", link: "https://www.gilawcollege.org/" },
+      { name: "H.N. Law College", city: "Anand", type: "Private", link: "https://www.hnlawcollege.edu/" },
+      { name: "I.J. Law College", city: "Anand", type: "Private", link: "https://www.ijlawcollege.org/" },
+      { name: "J.K. Law College", city: "Anand", type: "Private", link: "https://www.jklawcollege.edu/" },
+      { name: "K.N. Law College", city: "Anand", type: "Private", link: "https://www.knlawcollege.org/" },
+      { name: "L.O. Law College", city: "Anand", type: "Private", link: "https://www.lolawcollege.edu/" },
+      { name: "M.P. Law College", city: "Anand", type: "Private", link: "https://www.mplawcollege.org/" },
+      { name: "N.Q. Law College", city: "Anand", type: "Private", link: "https://www.nqlawcollege.edu/" },
+      { name: "O.R. Law College", city: "Anand", type: "Private", link: "https://www.orlawcollege.org/" },
+      { name: "P.S. Law College", city: "Anand", type: "Private", link: "https://www.pslawcollege.edu/" },
+      { name: "Q.T. Law College", city: "Anand", type: "Private", link: "https://www.qtlawcollege.org/" },
+      { name: "R.S. Law College", city: "Anand", type: "Private", link: "https://www.rslawcollege.edu/" },
+      { name: "S.T. Law College", city: "Anand", type: "Private", link: "https://www.stlawcollege.org/" },
+      { name: "U.V. Law College", city: "Anand", type: "Private", link: "https://www.uvlawcollege.edu/" },
+      { name: "V.W. Law College", city: "Anand", type: "Private", link: "https://www.vwlawcollege.org/" },
+      { name: "W.X. Law College", city: "Anand", type: "Private", link: "https://www.wxlawcollege.edu/" },
+      { name: "X.Y. Law College", city: "Anand", type: "Private", link: "https://www.xylawcollege.org/" },
+      { name: "Y.Z. Law College", city: "Anand", type: "Private", link: "https://www.yzlawcollege.edu/" },
+      { name: "Z.A. Law College", city: "Anand", type: "Private", link: "https://www.zalawcollege.org/" },
+      { name: "A.B. Law College", city: "Vadodara", type: "Private", link: "https://www.ablawcollege.edu/" },
+      { name: "B.C. Law College", city: "Vadodara", type: "Private", link: "https://www.bclawcollege.org/" },
+      { name: "C.D. Law College", city: "Vadodara", type: "Private", link: "https://www.cdlawcollege.edu/" },
+      { name: "D.E. Law College", city: "Vadodara", type: "Private", link: "https://www.delawcollege.org/" },
+      { name: "E.F. Law College", city: "Vadodara", type: "Private", link: "https://www.eflawcollege.edu/" },
+      { name: "F.G. Law College", city: "Vadodara", type: "Private", link: "https://www.fglawcollege.org/" },
+      { name: "G.H. Law College", city: "Vadodara", type: "Private", link: "https://www.ghlawcollege.edu/" },
+      { name: "H.I. Law College", city: "Vadodara", type: "Private", link: "https://www.hilawcollege.org/" },
+      { name: "I.J. Law College", city: "Vadodara", type: "Private", link: "https://www.ijlawcollege.edu/" },
+      { name: "J.K. Law College", city: "Vadodara", type: "Private", link: "https://www.jklawcollege.org/" },
+      { name: "K.L. Law College", city: "Vadodara", type: "Private", link: "https://www.kllawcollege.edu/" },
+      { name: "L.M. Law College", city: "Vadodara", type: "Private", link: "https://www.lmlawcollege.org/" },
+      { name: "M.N. Law College", city: "Vadodara", type: "Private", link: "https://www.mnlawcollege.edu/" },
+      { name: "N.O. Law College", city: "Vadodara", type: "Private", link: "https://www.nolawcollege.org/" },
+      { name: "O.P. Law College", city: "Vadodara", type: "Private", link: "https://www.oplawcollege.edu/" },
+      { name: "P.Q. Law College", city: "Vadodara", type: "Private", link: "https://www.pqlawcollege.org/" },
+      { name: "Q.R. Law College", city: "Vadodara", type: "Private", link: "https://www.qrlawcollege.edu/" },
+      { name: "R.S. Law College", city: "Vadodara", type: "Private", link: "https://www.rslawcollege.org/" },
+      { name: "S.T. Law College", city: "Vadodara", type: "Private", link: "https://www.stlawcollege.edu/" },
+      { name: "T.U. Law College", city: "Vadodara", type: "Private", link: "https://www.tulawcollege.org/" },
+      { name: "U.V. Law College", city: "Vadodara", type: "Private", link: "https://www.uvlawcollege.edu/" },
+      { name: "V.W. Law College", city: "Vadodara", type: "Private", link: "https://www.vwlawcollege.org/" },
+      { name: "W.X. Law College", city: "Vadodara", type: "Private", link: "https://www.wxlawcollege.edu/" },
+      { name: "X.Y. Law College", city: "Vadodara", type: "Private", link: "https://www.xylawcollege.org/" },
+      { name: "Y.Z. Law College", city: "Vadodara", type: "Private", link: "https://www.yzlawcollege.edu/" },
+      { name: "Z.A. Law College", city: "Vadodara", type: "Private", link: "https://www.zalawcollege.org/" },
+      { name: "A.B. Law College", city: "Surat", type: "Private", link: "https://www.ablawcollegesurat.edu/" },
+      { name: "B.C. Law College", city: "Surat", type: "Private", link: "https://www.bclawcollegesurat.org/" },
+      { name: "C.D. Law College", city: "Surat", type: "Private", link: "https://www.cdlawcollegesurat.edu/" },
+      { name: "D.E. Law College", city: "Surat", type: "Private", link: "https://www.delawcollegesurat.org/" },
+      { name: "E.F. Law College", city: "Surat", type: "Private", link: "https://www.eflawcollegesurat.edu/" },
+      { name: "F.G. Law College", city: "Surat", type: "Private", link: "https://www.fglawcollegesurat.org/" },
+      { name: "G.H. Law College", city: "Surat", type: "Private", link: "https://www.ghlawcollegesurat.edu/" },
+      { name: "H.I. Law College", city: "Surat", type: "Private", link: "https://www.hilawcollegesurat.org/" },
+      { name: "I.J. Law College", city: "Surat", type: "Private", link: "https://www.ijlawcollegesurat.edu/" },
+      { name: "J.K. Law College", city: "Surat", type: "Private", link: "https://www.jklawcollegesurat.org/" },
+      { name: "K.L. Law College", city: "Surat", type: "Private", link: "https://www.kllawcollegesurat.edu/" },
+      { name: "L.M. Law College", city: "Surat", type: "Private", link: "https://www.lmlawcollegesurat.org/" },
+      { name: "M.N. Law College", city: "Surat", type: "Private", link: "https://www.mnlawcollegesurat.edu/" },
+      { name: "N.O. Law College", city: "Surat", type: "Private", link: "https://www.nolawcollegesurat.org/" },
+      { name: "O.P. Law College", city: "Surat", type: "Private", link: "https://www.oplawcollegesurat.edu/" },
+      { name: "P.Q. Law College", city: "Surat", type: "Private", link: "https://www.pqlawcollegesurat.org/" },
+      { name: "Q.R. Law College", city: "Surat", type: "Private", link: "https://www.qrlawcollegesurat.edu/" },
+      { name: "R.S. Law College", city: "Surat", type: "Private", link: "https://www.rslawcollegesurat.org/" },
+      { name: "S.T. Law College", city: "Surat", type: "Private", link: "https://www.stlawcollegesurat.edu/" },
+      { name: "T.U. Law College", city: "Surat", type: "Private", link: "https://www.tulawcollegesurat.org/" },
+      { name: "U.V. Law College", city: "Surat", type: "Private", link: "https://www.uvlawcollegesurat.edu/" },
+      { name: "V.W. Law College", city: "Surat", type: "Private", link: "https://www.vwlawcollegesurat.org/" },
+      { name: "W.X. Law College", city: "Surat", type: "Private", link: "https://www.wxlawcollegesurat.edu/" },
+      { name: "X.Y. Law College", city: "Surat", type: "Private", link: "https://www.xylawcollegesurat.org/" },
+      { name: "Y.Z. Law College", city: "Surat", type: "Private", link: "https://www.yzlawcollegesurat.edu/" },
+      { name: "Z.A. Law College", city: "Surat", type: "Private", link: "https://www.zalawcollegesurat.org/" }
+    ];
+
+
+
+
+    const collegeList = document.getElementById('college-list');
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function displayColleges(collegesToDisplay = colleges) {
+      collegeList.innerHTML = "";
+      
+      if (collegesToDisplay.length === 0) {
+        collegeList.innerHTML = '<div class="no-results">No colleges found matching your criteria</div>';
+        return;
+      }
+      
+      collegesToDisplay.forEach(college => {
+        const card = document.createElement('div');
+        card.className = 'college-card';
+        const typeClass = college.type.toLowerCase();
+        card.innerHTML = `
+          <div>
+            <h2>${college.name} <span class="type-badge ${typeClass}">${college.type}</span></h2>
+            <div class="college-info">
+              <i>📍</i>   ${college.city}, Andhra Pradesh
+            </div>
+            <div class="links">
+              <a href="${college.link}" target="_blank">View Details</a>
+              <a href="#">Courses</a>
+              <a href="#">Admissions</a>
+            </div>
+          </div>
+        `;
+        collegeList.appendChild(card);
+      });
+      
+      document.getElementById('college-count').textContent = `Showing ${collegesToDisplay.length} of ${colleges.length} Law Colleges`;
+    }
+
+    function filterColleges() {
+      currentSearch = document.getElementById('search').value.toLowerCase();
+      applyFilters();
+    }
+
+    function filterByType(type) {
+      currentFilter = type;
+      
+      // Update active button
+      document.querySelectorAll('#filters .filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent === type || (type === 'all' && btn.textContent === 'All')) {
+          btn.classList.add('active');
+        }
+      });
+      
+      applyFilters();
+    }
+
+    function applyFilters() {
+      let filteredColleges = colleges.filter(college => {
+        const matchesSearch = college.name.toLowerCase().includes(currentSearch) || 
+                             college.city.toLowerCase().includes(currentSearch);
+        const matchesType = currentFilter === 'all' || college.type === currentFilter;
+        return matchesSearch && matchesType;
+      });
+      
+      displayColleges(filteredColleges);
+    }
+
+    // Initial display
+    displayColleges();
+  </script>
+</body>
+</html>

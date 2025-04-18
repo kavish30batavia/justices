@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="images/logo.jpg" type="image/jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - Justice Advisor</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            background: url('images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        .frame {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+        .language-card {
+            width: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 30%;
+        }
+        .language-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .language-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            padding-top: 20%;
+        }
+        .language-card .content {
+            padding: 10px;
+        }
+        .language-card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            color: white;
+            background: #f9a826;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .language-card a:hover {
+            background: #1e3c72;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: -1;
+        }
+        :root {
+            --primary-color: #4a2c02;
+            --secondary-color: #4a2c02;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --purchase-color: #f39c12;
+            --nav-color: #4a2c02;
+            --nav-hover: #f9a826;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        nav {
+            background: var(--nav-color);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        .nav-logo {
+          height: 60px;
+          width: auto;
+          border-radius: 30px;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--nav-hover);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--nav-hover);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 200px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        .intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 900px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(232, 229, 229, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        .intro img {
+            width: 300px;
+            margin-right: 30px;
+            border-radius: 8px;
+        }
+        
+        /* FAQ Specific Styles */
+        .faq-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        .faq-question.active::after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 10px 0;
+            color: #555;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        footer {
+            background-color: var(--nav-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .intro {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .intro img {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .faq-container {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="images/logo.jpg" alt="Logo" class="nav-logo">
+            </a>
+    
+            <div class="menu" id="menu">
+                <a href="index.html"><i class="fas fa-home"></i>  Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i>  About</a>
+                <div class="dropdown">
+                    <a href="services.html"><i class="fas fa-gavel"></i>  Services</a>
+                    <div class="dropdown-content">
+                        <a href="chatbot.html"><i class="fas fa-robot"></i>   Legal Chatbot</a>
+                        <a href="section-chatbot.html"><i class="fas fa-code"></i>   Section Finder</a>
+                        <a href="case-reference.html"><i class="fas fa-gavel"></i>   Case Reference</a>
+                        <a href="consitution_of_india.html"><i class="fas fa-book"></i>   Constitution</a>
+                       
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="resources.html">Resources <i class="fas fa-chevron-down"></i>  </a>
+                    <div class="dropdown-content">
+                        <a href="study material.html"><i class="fas fa-book"></i>   Law Books</a>
+                        <a href="lawcolleges.html"><i class="fas fa-file-alt"></i>   Law Colleges</a>
+                        
+                        <a href="Roadmap.html"><i class="fas fa-file-pdf"></i>   Road Map</a>
+                    </div>
+                </div>
+                <a href="blog.html"><i class="fas fa-pen-fancy"></i>  Blog</a>
+                <a href="help.html"><i class="fas fa-question-circle"></i>Help</a>
+            </div>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i>   Login</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h1>Frequently Asked Questions</h1>
+                <p>Find answers to common questions about our legal advisory services</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What types of legal issues does Justice Advisor handle?</div>
+                <div class="faq-answer">
+                    Justice Advisor provides guidance on various legal matters including family law, property disputes, employment issues, consumer rights, criminal defense, and civil litigation. Our team specializes in Indian law and can advise on most common legal concerns faced by individuals and small businesses.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How is Justice Advisor different from hiring a traditional lawyer?</div>
+                <div class="faq-answer">
+                    Justice Advisor combines legal expertise with technology to provide more affordable and accessible legal guidance. While we don't replace court representation, we offer preliminary advice, document reviews, and legal strategy consultations at a fraction of traditional legal costs. For cases requiring court appearances, we can refer you to qualified attorneys in our network.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What should I prepare for my initial consultation?</div>
+                <div class="faq-answer">
+                    To make the most of your consultation, please prepare: (1) A clear summary of your legal issue, (2) Any relevant documents (contracts, notices, court papers), (3) A list of specific questions you want answered, and (4) Key dates related to your case. Organizing this information beforehandHelps us provide more targeted advice.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How quickly can I get legal advice through your service?</div>
+                <div class="faq-answer">
+                    For urgent matters, we offer emergency consultations within 24 hours. Standard consultations are typically scheduled within 2-3 business days. Our document review service provides turnaround within 3-5 business days depending on complexity. We also offer a Quick Question service for brief inquiries with responses within 48 hours.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is my personal information and case details kept confidential?</div>
+                <div class="faq-answer">
+                    Absolutely. All communications with Justice Advisor are protected by attorney-client privilege to the fullest extent permitted by law. We use enterprise-grade encryption for all data and maintain strict confidentiality protocols. Your information will never be shared without your consent except as required by law.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do you provide services for business legal matters?</div>
+                <div class="faq-answer">
+                    Yes, we advise small businesses and startups on matters including company formation, contracts review, employment policies, intellectual property protection, and compliance issues. For complex corporate transactions or litigation, we can refer you to specialized business attorneys in our network.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What payment methods do you accept?</div>
+                <div class="faq-answer">
+                    We accept all major credit/debit cards, UPI payments, net banking, and select digital wallets. Payment is required at the time of booking your consultation. For ongoing representation matters, we offer flexible payment plans that can be discussed during your initial consultation.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can youHelp me if my case is already in court?</div>
+                <div class="faq-answer">
+                    While Justice Advisor primarily provides legal guidance rather than court representation, we can certainly review your case,Help you understand court procedures, prepare legal documents, and develop effective strategies. For actual court appearances, we maintain a network of qualified litigators we can refer you to based on your specific needs.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do you offer free consultations?</div>
+                <div class="faq-answer">
+                    We offer a free 15-minute introductory call to understand your legal needs and determine if our services are right for you. Full consultations are fee-based as they involve detailed legal analysis and specific advice tailored to your situation. We believe this ensures you receive meaningful, quality guidance rather than superficial answers.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I know if I really need legal advice?</div>
+                <div class="faq-answer">
+                    Consider seeking legal advice if: (1) You've received official legal notices or court documents, (2) You're entering into an important contract or agreement, (3) Your rights are being violated, (4) You're facing significant financial or personal consequences, or (5) You're unsure about legal requirements in a situation. When in doubt, it's better to consult - our advisors canHelp determine if formal legal action is needed.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Justice Advisor</h3>
+                <p>Your comprehensive legal studies resource center providing high-quality materials for students, professionals, and legal enthusiasts.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i>  </a>
+                    <a href="#"><i class="fab fa-twitter"></i>  </a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i>  </a>
+                    <a href="#"><i class="fab fa-instagram"></i>  </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="chatbot.html">Chatbot</a></li>
+                    <li><a href="http://127.0.0.1:5000"> Section Finder</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal Resources</h3>
+                <ul>
+                    <li><a href="consitution_of_india.html">Constitution of India</a></li>
+                    <li><a href="Roadmap.html">Road Map</a></li>
+                    <li><a href="lawcolleges.html">Law colleges</a></li>
+                    <li><a href="study material.html">Law Books</a></li>
+                    
+             
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+             
+               
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Legal Studies Repository. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                question.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

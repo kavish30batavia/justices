@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Law Chatbot Help</title>
+    <link rel="icon" href="img/logo1.jpg" type="image/jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            background: url('img/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: -1;
+        }
+        
+        /* Navigation Bar - Updated from extracted code */
+        nav {
+            background: #502900;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%; /* Reduced width to create spacing on sides */
+            max-width: 1400px; /* Added max-width for large screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0 30px; /* Added horizontal padding */
+        }
+        nav .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+        }
+        .nav-logo {
+            height: 60px;
+            width: auto;
+            border-radius: 30px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .logout {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .logout:hover {
+            color: #f9a826;
+        }
+        nav a:hover {
+            color: #f9a826;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Main Content */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+        .help-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            max-width: 800px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2, h3 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+           
+            font-family: 'Poppins', sans-serif;
+        }
+        ul {
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+        }
+        .symbols {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .symbols i {
+            font-size: 24px;
+            margin: 0 15px;
+            color: #1e3c72;
+            transition: color 0.3s ease;
+        }
+        .symbols i:hover {
+            color: #f9a826;
+        }
+        .faq-section {
+            margin-top: 30px;
+        }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .faq-item:hover {
+            transform: translateY(-5px);
+        }
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+            font-family: 'Poppins', sans-serif;
+            color: #555;
+        }
+        .faq-item p {
+            color: #333;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Footer - Updated from extracted code */
+        footer {
+            background: #502900;
+            color: white;
+            padding: 40px 0 20px;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .footer-column {
+            flex: 1;
+            margin: 0 15px;
+        }
+        .footer-column h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .footer-column ul li a:hover {
+            color: #f9a826;
+        }
+        .social-icons {
+            display: flex;
+            margin-top: 10px;
+        }
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 20px;
+            color: #ffffff;
+        }
+        .footer-column a:hover {
+            color: #f9a826;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Responsive Design for Nav and Footer */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .menu {
+                margin: 10px 0;
+            }
+            
+            .logout {
+                margin-top: 10px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+            
+            .help-box {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Updated Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="img/logo1.jpg" alt="Logo" class="nav-logo">
+            </a>
+    
+            <div class="menu">
+                <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                
+                <!-- Dropdown Menu with Icon -->
+                <div class="dropdown">
+                    <a href="service.html"><i class="fas fa-gavel"></i> Services</a>
+    
+                    <div class="dropdown-content">
+                        <a href="createcaseref.html"><i class="fas fa-file-alt"></i> Create Case Reference</a>
+                        <a href="displaycaseref.html"><i class="fas fa-file-alt"></i>  Case Reference</a>
+                        <a href="consitution_of_india.html"><i class="fas fa-book"></i> Constitution of India</a>
+                        <a href="lawerreg.html"><i class="fas fa-user-tie"></i> Register Lawyer</a>
+                        <a href="createblogpge.html"><i class="fas fa-pen-fancy"></i> Blog Creation</a>
+                    </div>
+                </div>
+                <a href="http://127.0.0.1:5000"><i class="fas fa-robot"></i> Section Chatbot</a>
+                <a href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+                <a href="contact.html"><i class="fas fa-question-circle"></i> Contact</a>
+            </div>
+    
+            <a href="C:/Users/lenovo/Desktop/project/index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+      </nav>
+
+    <!-- Main Content - Kept Original -->
+    <div class="container">
+        <div class="help-box">
+            <h2>Welcome to Law Chatbot Help</h2>
+            <p>Our Law Chatbot assists you with legal queries. Find a guide, FAQs, and resources below.</p>
+            <div class="symbols">
+                <i class="fas fa-balance-scale"></i>
+                <i class="fas fa-gavel"></i>
+                <i class="fas fa-book"></i>
+            </div>
+            <h3>How to Use the Law Chatbot</h3>
+            <ul>
+                <li>Click "Chatbot" in the menu.</li>
+                <li>Type your legal question.</li>
+                <li>Get responses with legal info.</li>
+                <li>For complex cases, seek legal advice.</li>
+            </ul>
+            <div class="faq-section">
+                <h3>Frequently Asked Questions (FAQs)</h3>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <p><strong>What are my rights if arrested?</strong></p>
+                    <div class="faq-answer">You have the right to remain silent and legal representation.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <p><strong>How to file an RTI application?</strong></p>
+                    <div class="faq-answer">Submit a written request online or offline.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <p><strong>Legal procedures for property disputes?</strong></p>
+                    <div class="faq-answer">Disputes can be resolved via negotiation, mediation, or court.</div>
+                </div>
+            </div>
+            <h3>Need More Help?</h3>
+            <p>Contact us at <a href="contact.html" style="color: #1e3c72;">Support</a>.</p>
+        </div>
+    </div>
+
+    <!-- Updated Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Justice Advisor</h3>
+                <p>Your comprehensive legal guide center providing high-quality materials for lawyers.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="http://127.0.0.1:5000"> Section Chatbot </a></li>
+                    <li><a href="chatbot.html">  Chatbot </a></li>
+                    <li><a href="createcaseref.html">  Create Case Reference </a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Other Resources</h3>
+                <ul>
+                    <li><a href="constitution.html">Constitution of India</a></li>
+                    <li><a href="displaycaseref.html">Case Reference</a></li>
+                    <li><a href="createblogpge.html"> Blog Creation</a></li>
+                    <li><a href="lawerreg.html">Lawyer Registration </a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Legal Studies Repository. All rights reserved.</p>
+        </div>
+      </footer>
+    <script>
+        function toggleFAQ(faqItem) {
+            const answer = faqItem.querySelector('.faq-answer');
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

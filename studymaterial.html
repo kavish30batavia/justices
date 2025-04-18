@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Studies Repository</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #4a2c02;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --purchase-color: #f39c12;
+            --nav-color: #4a2c02;
+            --nav-hover: #f9a826;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        nav {
+            background: var(--nav-color);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--nav-hover);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--nav-hover);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 200px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        header {
+            background: linear-gradient(115deg, #694616, #4a2c02);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        #searchInput {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding-right: 50px;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 12px;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+        
+        .filter-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+        
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .material-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            height: 180px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .card-description {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .card-type {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .download-btn {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .purchase-btn {
+            background-color: var(--purchase-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: 8px;
+        }
+        
+        .view-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .download-btn:hover {
+            background-color: #219653;
+        }
+        
+        .purchase-btn:hover {
+            background-color: #e67e22;
+        }
+        
+        .view-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .button-group {
+            display: flex;
+        }
+        
+        .download-count {
+            font-size: 0.8rem;
+            color: #666;
+            margin-left: 5px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+            gap: 0.5rem;
+        }
+        
+        .page-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .page-btn:hover, .page-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .modal-subtitle {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .modal-body {
+            margin-bottom: 2rem;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+        
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .download-progress {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            border-radius: 5px;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .purchase-notice {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .material-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .material-info-item {
+            display: flex;
+            margin-bottom: 0.5rem;
+        }
+        
+        .material-info-label {
+            font-weight: bold;
+            min-width: 120px;
+        }
+        
+        .material-info-value {
+            flex-grow: 1;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .action-btn {
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        .nav-logo {
+          height: 60px;
+          width: auto;
+          border-radius: 30px;
+        }
+        .save-btn {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .save-btn:hover {
+            background-color: #ddd;
+        }
+        
+        .share-btn {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .share-btn:hover {
+            background-color: #ddd;
+        }
+        
+        .rating {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .stars {
+            color: #f39c12;
+            margin-right: 10px;
+        }
+        
+        .rating-count {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        footer {
+            background-color: var(--nav-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        }
+        
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="images/logo.jpg" alt="Logo" class="nav-logo">
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i> 
+            </button>
+            <div class="menu" id="menu">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                <div class="dropdown">
+                    <a href="services.html"><i class="fas fa-gavel"></i> Services</a>
+                    <div class="dropdown-content">
+                        <a href="chatbot.html"><i class="fas fa-robot"></i>  Legal Chatbot</a>
+                        <a href="section-chatbot.html"><i class="fas fa-code"></i>  Section Finder</a>
+                        <a href="case-reference.html"><i class="fas fa-gavel"></i>  Case Reference</a>
+                        <a href="constitution.html"><i class="fas fa-book"></i>  Constitution</a>
+                        <a href="legal-ai.html"><i class="fas fa-brain"></i>  Legal AI Tools</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="resources.html">Resources <i class="fas fa-chevron-down"></i> </a>
+                    <div class="dropdown-content">
+                        <a href="law-books.html"><i class="fas fa-book"></i>  Law Books</a>
+                        <a href="case-studies.html"><i class="fas fa-file-alt"></i>  Case Studies</a>
+                        <a href="legal-forms.html"><i class="fas fa-file-contract"></i>  Legal Forms</a>
+                        <a href="research-papers.html"><i class="fas fa-file-pdf"></i>  Research Papers</a>
+                    </div>
+                </div>
+                <a href="blog.html"><i class="fas fa-pen-fancy"></i> Blog</a>
+                <a href="contact.html"><i class="fas fa-question-circle"></i> Contact</a>
+            </div>
+                <a href="login.html" class="login-btn"><i class="fas fa-user"></i>  Login</a>
+            </div>
+
+    </nav>
+    
+    <header>
+        <div class="header-content">
+            <h1>Legal Studies Repository</h1>
+            <p class="subtitle">Comprehensive study materials for law students and professionals</p>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for laws, cases, or topics...">
+                <i class="fas fa-search search-icon"></i> 
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="filter-section">
+            <h3>Filter by:</h3>
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="constitutional">Constitutional Law</button>
+            <button class="filter-btn" data-filter="criminal">Criminal Law</button>
+            <button class="filter-btn" data-filter="civil">Civil Law</button>
+            <button class="filter-btn" data-filter="corporate">Corporate Law</button>
+            <button class="filter-btn" data-filter="international">International Law</button>
+            <button class="filter-btn" data-filter="property">Property Law</button>
+            <button class="filter-btn" data-filter="books">Books</button>
+            <button class="filter-btn" data-filter="recent">Recently Added</button>
+            <button class="filter-btn" data-filter="popular">Most Popular</button>
+        </div>
+        
+        <div class="materials-grid" id="materialsGrid">
+            <!-- Materials will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="pagination">
+            <button class="page-btn" id="prevPage"><i class="fas fa-chevron-left"></i> </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn" id="nextPage"><i class="fas fa-chevron-right"></i> </button>
+        </div>
+    </div>
+    
+    <!-- Modal for resource details -->
+    <div class="modal" id="resourceModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="resource-icon">
+                <i class="fas fa-book-open" id="modalIcon"></i> 
+            </div>
+            <h2 class="modal-title" id="modalTitle">Resource Title</h2>
+            <p class="modal-subtitle" id="modalSubtitle">Category • Type</p>
+            <div class="modal-body" id="modalBody">
+                <div class="material-info-grid">
+                    <div class="material-info-item">
+                        <span class="material-info-label">Author:</span>
+                        <span class="material-info-value" id="modalAuthor">Author Name</span>
+                    </div>
+                    <div class="material-info-item">
+                        <span class="material-info-label">Year:</span>
+                        <span class="material-info-value" id="modalYear">2023</span>
+                    </div>
+                    <div class="material-info-item">
+                        <span class="material-info-label">Pages:</span>
+                        <span class="material-info-value" id="modalPages">300</span>
+                    </div>
+                    <div class="material-info-item">
+                        <span class="material-info-label">Publisher:</span>
+                        <span class="material-info-value" id="modalPublisher">Publisher Name</span>
+                    </div>
+                </div>
+                
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <div class="stat-value" id="modalDownloads">1,245</div>
+                        <div class="stat-label">Downloads</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="modalRating">4.8</div>
+                        <div class="stat-label">Rating</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="modalFileSize">4.2MB</div>
+                        <div class="stat-label">File Size</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="modalPrice">₹695</div>
+                        <div class="stat-label">Price</div>
+                    </div>
+                </div>
+                
+                <div class="rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i> 
+                        <i class="fas fa-star"></i> 
+                        <i class="fas fa-star"></i> 
+                        <i class="fas fa-star"></i> 
+                        <i class="fas fa-star-half-alt"></i> 
+                    </div>
+                    <div class="rating-count">(42 reviews)</div>
+                </div>
+                
+                <h4>Description</h4>
+                <p id="modalDescription">Detailed description of the resource will appear here.</p>
+                
+                <div class="download-progress" id="downloadProgress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div class="user-actions">
+                    <button class="action-btn save-btn">
+                        <i class="far fa-bookmark"></i>  Save
+                    </button>
+                    <button class="action-btn share-btn">
+                        <i class="fas fa-share-alt"></i>  Share
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="download-btn" id="modalDownload">
+                    <i class="fas fa-download"></i>  Download
+                </button>
+                <button class="purchase-btn" id="modalPurchase" style="display: none;">
+                    <i class="fas fa-shopping-cart"></i>  Purchase
+                </button>
+                <button class="view-btn" id="modalPreview" style="display: none;">
+                    <i class="fas fa-eye"></i>  Preview
+                </button>
+            </div>
+            <p class="purchase-notice" id="purchaseNotice" style="display: none;">
+                This is a commercial book available for purchase on Amazon and other major retailers.
+            </p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>LegalRepo</h3>
+                <p>Your comprehensive legal studies resource center providing high-quality materials for students, professionals, and legal enthusiasts.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i> </a>
+                    <a href="#"><i class="fab fa-twitter"></i> </a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i> </a>
+                    <a href="#"><i class="fab fa-instagram"></i> </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal Resources</h3>
+                <ul>
+                    <li><a href="constitution.html">Constitution of India</a></li>
+                    <li><a href="ipc.html">Indian Penal Code</a></li>
+                    <li><a href="crpc.html">Criminal Procedure Code</a></li>
+                    <li><a href="evidence-act.html">Evidence Act</a></li>
+                    <li><a href="civil-procedure.html">Civil Procedure Code</a></li>
+                    <li><a href="property-law.html">Transfer of Property Act</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Legal Studies Repository. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // Enhanced sample data for law study materials with more details
+        const lawMaterials = [
+            // Free resources
+            {
+                id: 1,
+                title: "Indian Constitution - Complete Analysis",
+                subtitle: "Constitutional Law",
+                description: "Comprehensive guide covering all articles, schedules, and amendments of the Indian Constitution with case law references.",
+                type: "PDF",
+                category: "constitutional",
+                icon: "fa-book",
+                image: "constitution",
+                downloads: 1245,
+                year: 2023,
+                author: "Dr. S. Kumar",
+                detailedDesc: "This 450-page guide provides an in-depth analysis of the Indian Constitution, including historical context, detailed explanations of each article, important Supreme Court judgments, and comparative analysis with other constitutions. Includes practice questions and model answers.",
+                downloadLink: "https://cdnbbsr.s3waas.gov.in/s380537a945c7aaa788ccfcdf1b99b5d8f/uploads/2023/05/2023050195.pdf",
+                fileSize: "4.2MB",
+                isBook: false,
+                rating: 4.8,
+                reviews: 42,
+                lastUpdated: "2023-05-15",
+                isRecent: true,
+                isPopular: true
+            },
+            {
+                id: 2,
+                title: "Criminal Procedure Code, 1973",
+                subtitle: "Criminal Law",
+                description: "Detailed commentary on CrPC with latest amendments and landmark judgments.",
+                type: "E-book",
+                category: "criminal",
+                icon: "fa-gavel",
+                image: "criminal",
+                downloads: 892,
+                year: 2022,
+                author: "Justice R. Mehra",
+                detailedDesc: "Complete text of the Criminal Procedure Code with section-wise commentary, flowcharts of procedures, and analysis of important Supreme Court and High Court judgments. Includes sample charge sheets, bail applications, and other procedural documents.",
+                downloadLink: "https://www.indiacode.nic.in/handle/123456789/1522?locale=en",
+                fileSize: "3.8MB",
+                isBook: false,
+                rating: 4.5,
+                reviews: 31,
+                lastUpdated: "2023-03-10",
+                isRecent: true,
+                isPopular: true
+            },
+            {
+                id: 3,
+                title: "Contract Act - Case Studies",
+                subtitle: "Civil Law",
+                description: "Collection of 100+ important case studies explaining contract law principles.",
+                type: "PDF",
+                category: "civil",
+                icon: "fa-file-contract",
+                image: "contract",
+                downloads: 756,
+                year: 2023,
+                author: "Prof. A. Desai",
+                detailedDesc: "Carefully selected case studies covering all aspects of the Indian Contract Act, 1872. Each case includes facts, issues, arguments, judgment, and analysis. Special focus on recent developments in e-contracts and digital agreements.",
+                downloadLink: "https://www.indiacode.nic.in/handle/123456789/2187?locale=en",
+                fileSize: "5.1MB",
+                isBook: false,
+                rating: 4.7,
+                reviews: 28,
+                lastUpdated: "2023-06-20",
+                isRecent: true,
+                isPopular: false
+            },
+            {
+                id: 4,
+                title: "Companies Act, 2013 - Simplified",
+                subtitle: "Corporate Law",
+                description: "Simplified explanation of the Companies Act with practical examples.",
+                type: "Video Series",
+                category: "corporate",
+                icon: "fa-building",
+                image: "corporate",
+                downloads: 543,
+                year: 2023,
+                author: "CS R. Sharma",
+                detailedDesc: "15-hour video lecture series covering all important provisions of the Companies Act, 2013. Includes practical examples, incorporation procedures, compliance requirements, and case studies of corporate governance issues.",
+                downloadLink: "https://www.mca.gov.in/MinistryV2/companiesact2013.html",
+                fileSize: "1.2GB",
+                isBook: false,
+                rating: 4.9,
+                reviews: 56,
+                lastUpdated: "2023-07-05",
+                isRecent: true,
+                isPopular: true
+            },
+            {
+                id: 5,
+                title: "International Human Rights Law",
+                subtitle: "International Law",
+                description: "Comprehensive guide to international human rights instruments and mechanisms.",
+                type: "PDF",
+                category: "international",
+                icon: "fa-globe",
+                image: "human-rights",
+                downloads: 432,
+                year: 2022,
+                author: "Dr. M. Fernandez",
+                detailedDesc: "Detailed analysis of international human rights law including UN conventions, regional systems, enforcement mechanisms, and case law from international tribunals. Special sections on emerging issues like digital rights and climate justice.",
+                downloadLink: "https://www.ohchr.org/en/publications-resources",
+                fileSize: "2.7MB",
+                isBook: false,
+                rating: 4.6,
+                reviews: 19,
+                lastUpdated: "2022-11-15",
+                isRecent: false,
+                isPopular: false
+            },
+            {
+                id: 6,
+                title: "Transfer of Property Act Guide",
+                subtitle: "Property Law",
+                description: "Section-wise commentary with judicial interpretations and practical examples.",
+                type: "E-book",
+                category: "property",
+                icon: "fa-home",
+                image: "property",
+                downloads: 387,
+                year: 2021,
+                author: "Adv. P. Reddy",
+                detailedDesc: "Complete guide to the Transfer of Property Act, 1882 with section-by-section commentary, important case law, and practical examples of property transactions. Includes sample documents like sale deeds, mortgage agreements, and gift deeds.",
+                downloadLink: "https://www.indiacode.nic.in/handle/123456789/2388?locale=en",
+                fileSize: "6.5MB",
+                isBook: false,
+                rating: 4.4,
+                reviews: 23,
+                lastUpdated: "2021-09-30",
+                isRecent: false,
+                isPopular: false
+            },
+            {
+                id: 7,
+                title: "Constitutional Landmark Judgments",
+                subtitle: "Constitutional Law",
+                description: "Analysis of 50 landmark Supreme Court judgments that shaped Indian Constitution.",
+                type: "PDF",
+                category: "constitutional",
+                icon: "fa-balance-scale",
+                image: "judgments",
+                downloads: 678,
+                year: 2023,
+                author: "Justice N. Kapoor",
+                detailedDesc: "Detailed analysis of landmark constitutional cases from Kesavananda Bharati to recent judgments. Each case includes facts, constitutional issues, arguments, judgment summary, and its impact on Indian jurisprudence.",
+                downloadLink: "https://nja.gov.in/Concluded_Programmes/2019-20/SE-05_2019_PPTs/6.LANDMARK%20JUDGMENTS%20OF%20THE%20SUPREME%20COURT%20PLAIN.pdf",
+                fileSize: "7.3MB",
+                isBook: false,
+                rating: 4.8,
+                reviews: 37,
+                lastUpdated: "2023-04-22",
+                isRecent: true,
+                isPopular: true
+            },
+            {
+                id: 8,
+                title: "IPC - Complete Bare Act",
+                subtitle: "Criminal Law",
+                description: "Indian Penal Code with latest amendments and short notes on each section.",
+                type: "PDF",
+                category: "criminal",
+                icon: "fa-scale-balanced",
+                image: "ipc",
+                downloads: 921,
+                year: 2023,
+                author: "Law Commission",
+                detailedDesc: "Complete text of the Indian Penal Code, 1860 with all amendments up to 2023. Includes brief commentary on each section, punishment provisions, and related case law references. Special focus on recent amendments regarding cyber crimes and sexual offenses.",
+                downloadLink: "https://www.indiacode.nic.in/handle/123456789/2263?locale=en",
+                fileSize: "3.5MB",
+                isBook: false,
+                rating: 4.7,
+                reviews: 45,
+                lastUpdated: "2023-02-18",
+                isRecent: true,
+                isPopular: true
+            },
+            {
+                id: 9,
+                title: "Law of Torts with Consumer Protection",
+                subtitle: "Civil Law",
+                description: "Comprehensive guide to tort law including consumer protection provisions.",
+                type: "PDF",
+                category: "civil",
+                icon: "fa-file-contract",
+                image: "torts",
+                downloads: 512,
+                year: 2023,
+                author: "Prof. L. Nair",
+                detailedDesc: "Detailed analysis of tort law principles with Indian case studies. Includes special sections on consumer protection laws, product liability, and recent developments in tort jurisprudence. Contains model pleadings and compensation calculations.",
+                downloadLink: "https://www.indiacode.nic.in/handle/123456789/2190?locale=en",
+                fileSize: "4.8MB",
+                isBook: false,
+                rating: 4.5,
+                reviews: 27,
+                lastUpdated: "2023-05-30",
+                isRecent: true,
+                isPopular: false
+            },
+            {
+                id: 10,
+                title: "Arbitration and Conciliation Act",
+                subtitle: "Corporate Law",
+                description: "Complete guide to arbitration law with model clauses and procedures.",
+                type: "PDF",
+                category: "corporate",
+                icon: "fa-handshake",
+                image: "arbitration",
+                downloads: 387,
+                year: 2022,
+                author: "Adv. S. Khanna",
+                detailedDesc: "Detailed commentary on the Arbitration and Conciliation Act, 1996 with all amendments. Includes model arbitration clauses, procedure flowcharts, and analysis of important domestic and international arbitration cases.",
+                downloadLink: "https://www.indiacode.nic.in/handle/123456789/1978?locale=en",
+                fileSize: "3.2MB",
+                isBook: false,
+                rating: 4.6,
+                reviews: 18,
+                lastUpdated: "2022-08-12",
+                isRecent: false,
+                isPopular: false
+            },
+            
+            // Commercial books
+            {
+                id: 11,
+                title: "Introduction to the Constitution of India",
+                subtitle: "Constitutional Law Book",
+                description: "Authoritative text on Indian Constitutional Law by Dr. Durga Das Basu",
+                type: "Book",
+                category: "books",
+                icon: "fa-book",
+                image: "constitution-book",
+                downloads: 0,
+                year: 2022,
+                author: "Dr. Durga Das Basu",
+                detailedDesc: "The most authoritative and comprehensive work on Constitutional Law of India since its first publication in 1960. This latest edition incorporates all important amendments up to 2022 and landmark judgments. Essential reading for law students, practitioners, and competitive examinations.",
+                amazonLink: "https://www.amazon.in/Introduction-Constitution-India-Durga-Basu/dp/9351437723",
+                price: "₹695",
+                isBook: true,
+                pages: "500",
+                publisher: "LexisNexis",
+                rating: 4.9,
+                reviews: 128,
+                lastUpdated: "2022-11-10",
+                isRecent: false,
+                isPopular: true
+            },
+            {
+                id: 12,
+                title: "Principles of Criminal Law",
+                subtitle: "Criminal Law Book",
+                description: "Comprehensive guide to Indian criminal law by K.D. Gaur",
+                type: "Book",
+                category: "books",
+                icon: "fa-gavel",
+                image: "criminal-law-book",
+                downloads: 0,
+                year: 2021,
+                author: "K.D. Gaur",
+                detailedDesc: "This book provides a detailed analysis of the principles of criminal law in India, covering IPC, CrPC, and Evidence Act. It includes recent developments and case laws, making it invaluable for students and practitioners.",
+                amazonLink: "https://www.amazon.in/Principles-Criminal-K-D-Gaur/dp/9386515959",
+                price: "₹850",
+                isBook: true,
+                pages: "672",
+                publisher: "Universal Law Publishing",
+                rating: 4.7,
+                reviews: 89,
+                lastUpdated: "2021-09-15",
+                isRecent: false,
+                isPopular: true
+            },
+            {
+                id: 13,
+                title: "Law of Contracts",
+                subtitle: "Contract Law Book",
+                description: "Standard work on Indian Contract Act by Avtar Singh",
+                type: "Book",
+                category: "books",
+                icon: "fa-file-contract",
+                image: "contract-book",
+                downloads: 0,
+                year: 2023,
+                author: "Avtar Singh",
+                detailedDesc: "This book provides a comprehensive commentary on the Indian Contract Act, 1872. It covers all aspects of contract law with numerous case laws and practical examples. The latest edition includes recent judgments and developments.",
+                amazonLink: "https://www.amazon.in/Contract-Specific-Relief-Avtar-Singh/dp/9386515819",
+                price: "₹725",
+                isBook: true,
+                pages: "480",
+                publisher: "Eastern Book Company",
+                rating: 4.8,
+                reviews: 76,
+                lastUpdated: "2023-01-20",
+                isRecent: true,
+                isPopular: true
+            },
+            {
+                id: 14,
+                title: "Company Law",
+                subtitle: "Corporate Law Book",
+                description: "Detailed analysis of Companies Act by Dr. Avtar Singh",
+                type: "Book",
+                category: "books",
+                icon: "fa-building",
+                image: "company-law-book",
+                downloads: 0,
+                year: 2022,
+                author: "Dr. Avtar Singh",
+                detailedDesc: "This book provides a comprehensive analysis of the Companies Act, 2013 with all amendments. It covers corporate governance, compliance requirements, and case laws. Essential for company secretaries, law students, and corporate lawyers.",
+                amazonLink: "https://www.amazon.in/Company-Law-Avtar-Singh/dp/9351437995",
+                price: "₹1,050",
+                isBook: true,
+                pages: "896",
+                publisher: "LexisNexis",
+                rating: 4.7,
+                reviews: 64,
+                lastUpdated: "2022-10-05",
+                isRecent: false,
+                isPopular: true
+            },
+            {
+                id: 15,
+                title: "International Law",
+                subtitle: "International Law Book",
+                description: "Comprehensive guide to international law by Malcolm Shaw",
+                type: "Book",
+                category: "books",
+                icon: "fa-globe",
+                image: "international-law-book",
+                downloads: 0,
+                year: 2021,
+                author: "Malcolm Shaw",
+                detailedDesc: "This authoritative text provides a comprehensive introduction to international law. It covers all major areas including sources of international law, state responsibility, human rights, and international institutions.",
+                amazonLink: "https://www.amazon.in/International-Law-Malcolm-Shaw/dp/1108731305",
+                price: "₹3,495",
+                isBook: true,
+                pages: "1056",
+                publisher: "Cambridge University Press",
+                rating: 4.9,
+                reviews: 112,
+                lastUpdated: "2021-12-15",
+                isRecent: false,
+                isPopular: true
+            },
+            {
+                id: 16,
+                title: "Transfer of Property Act",
+                subtitle: "Property Law Book",
+                description: "Commentary on Transfer of Property Act by Poonam Pradhan Saxena",
+                type: "Book",
+                category: "books",
+                icon: "fa-home",
+                image: "property-law-book",
+                downloads: 0,
+                year: 2020,
+                author: "Poonam Pradhan Saxena",
+                detailedDesc: "This book provides a detailed section-wise commentary on the Transfer of Property Act, 1882. It includes recent case laws, practical examples, and model documents. Useful for students, practitioners, and judicial service aspirants.",
+                amazonLink: "https://www.amazon.in/Transfer-Property-Poonam-Pradhan-Saxena/dp/9386515932",
+                price: "₹675",
+                isBook: true,
+                pages: "432",
+                publisher: "Universal Law Publishing",
+                rating: 4.6,
+                reviews: 43,
+                lastUpdated: "2020-08-22",
+                isRecent: false,
+                isPopular: false
+            },
+            {
+                id: 17,
+                title: "Legal Awareness and Legal Reasoning",
+                subtitle: "Competition Law Book",
+                description: "Essential for CLAT, Judiciary and other law entrance exams",
+                type: "Book",
+                category: "books",
+                icon: "fa-graduation-cap",
+                image: "legal-reasoning-book",
+                downloads: 0,
+                year: 2023,
+                author: "A.P. Bhardwaj",
+                detailedDesc: "This book is designed to help students prepare for legal aptitude sections of various law entrance examinations. It covers legal reasoning, legal awareness, and includes practice questions with explanations.",
+                amazonLink: "https://www.amazon.in/Legal-Awareness-Reasoning-A-P-Bhardwaj/dp/9351437502",
+                price: "₹395",
+                isBook: true,
+                pages: "320",
+                publisher: "LexisNexis",
+                rating: 4.5,
+                reviews: 87,
+                lastUpdated: "2023-02-28",
+                isRecent: true,
+                isPopular: true
+            },
+            {
+                id: 18,
+                title: "The Courtroom Genius",
+                subtitle: "Legal Practice Book",
+                description: "A guide to litigation practice in India by Satish Maneshinde",
+                type: "Book",
+                category: "books",
+                icon: "fa-briefcase",
+                image: "litigation-book",
+                downloads: 0,
+                year: 2022,
+                author: "Satish Maneshinde",
+                detailedDesc: "This practical guide covers all aspects of litigation practice in India. It includes drafting techniques, court procedures, examination of witnesses, and strategies for effective courtroom advocacy.",
+                amazonLink: "https://www.amazon.in/Courtroom-Genius-Satish-Maneshinde/dp/9391019800",
+                price: "₹1,295",
+                isBook: true,
+                pages: "568",
+                publisher: "Thomson Reuters",
+                rating: 4.8,
+                reviews: 39,
+                lastUpdated: "2022-06-10",
+                isRecent: false,
+                isPopular: true
+            },
+            {
+                id: 19,
+                title: "Environmental Law and Policy in India",
+                subtitle: "Environmental Law Book",
+                description: "Comprehensive analysis of environmental laws in India",
+                type: "Book",
+                category: "books",
+                icon: "fa-leaf",
+                image: "environmental-law-book",
+                downloads: 0,
+                year: 2023,
+                author: "Shyam Divan",
+                detailedDesc: "This book provides a thorough analysis of environmental laws and policies in India. It covers constitutional provisions, major environmental statutes, judicial activism, and emerging issues like climate change law.",
+                amazonLink: "https://www.amazon.in/Environmental-Law-Policy-India-Divan/dp/0199469754",
+                price: "₹1,150",
+                isBook: true,
+                pages: "624",
+                publisher: "Oxford University Press",
+                rating: 4.7,
+                reviews: 28,
+                lastUpdated: "2023-03-15",
+                isRecent: true,
+                isPopular: false
+            },
+            {
+                id: 20,
+                title: "Cyber Law in India",
+                subtitle: "Cyber Law Book",
+                description: "Guide to Information Technology Act and cyber laws",
+                type: "Book",
+                category: "books",
+                icon: "fa-laptop-code",
+                image: "cyber-law-book",
+                downloads: 0,
+                year: 2022,
+                author: "Vakul Sharma",
+                detailedDesc: "This book provides a detailed commentary on the Information Technology Act, 2000 and other cyber laws in India. It covers digital signatures, cyber crimes, data protection, and recent developments in cyber jurisprudence.",
+                amazonLink: "https://www.amazon.in/Cyber-Law-India-Vakul-Sharma/dp/9386515916",
+                price: "₹895",
+                isBook: true,
+                pages: "384",
+                publisher: "Universal Law Publishing",
+                rating: 4.6,
+                reviews: 34,
+                lastUpdated: "2022-05-18",
+                isRecent: false,
+                isPopular: true
+            }
+        ];
+
+        // DOM Elements
+        const materialsGrid = document.getElementById('materialsGrid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('searchInput');
+        const resourceModal = document.getElementById('resourceModal');
+        const closeModal = document.querySelector('.close-modal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalSubtitle = document.getElementById('modalSubtitle');
+        const modalBody = document.getElementById('modalBody');
+        const modalIcon = document.getElementById('modalIcon');
+        const modalDownload = document.getElementById('modalDownload');
+        const modalPurchase = document.getElementById('modalPurchase');
+        const modalPreview = document.getElementById('modalPreview');
+        const purchaseNotice = document.getElementById('purchaseNotice');
+        const prevPageBtn = document.getElementById('prevPage');
+        const nextPageBtn = document.getElementById('nextPage');
+        const pageBtns = document.querySelectorAll('.page-btn:not(#prevPage):not(#nextPage)');
+        const downloadProgress = document.getElementById('downloadProgress');
+        const progressBar = document.getElementById('progressBar');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const menu = document.getElementById('menu');
+        
+        // Modal info elements
+        const modalAuthor = document.getElementById('modalAuthor');
+        const modalYear = document.getElementById('modalYear');
+        const modalPages = document.getElementById('modalPages');
+        const modalPublisher = document.getElementById('modalPublisher');
+        const modalDownloads = document.getElementById('modalDownloads');
+        const modalRating = document.getElementById('modalRating');
+        const modalFileSize = document.getElementById('modalFileSize');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalDescription = document.getElementById('modalDescription');
+
+        // Current filter and page state
+        let currentFilter = 'all';
+        let currentPage = 1;
+        const itemsPerPage = 8;
+        let currentDownloadMaterial = null;
+
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    menu.classList.remove('active');
+                }
+            });
+        });
+
+        // Display materials based on filter and page
+        function displayMaterials() {
+            materialsGrid.innerHTML = '';
+            
+            // Filter materials
+            let filteredMaterials = lawMaterials;
+            if (currentFilter !== 'all') {
+                if (currentFilter === 'recent') {
+                    filteredMaterials = lawMaterials.filter(material => material.isRecent);
+                } else if (currentFilter === 'popular') {
+                    filteredMaterials = lawMaterials.filter(material => material.isPopular);
+                } else {
+                    filteredMaterials = lawMaterials.filter(material => 
+                        currentFilter === 'books' ? material.isBook : material.category === currentFilter
+                    );
+                }
+            }
+            
+            // Search functionality
+            const searchTerm = searchInput.value.toLowerCase();
+            if (searchTerm) {
+                filteredMaterials = filteredMaterials.filter(material => 
+                    material.title.toLowerCase().includes(searchTerm) || 
+                    material.description.toLowerCase().includes(searchTerm) ||
+                    material.subtitle.toLowerCase().includes(searchTerm) ||
+                    material.author.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            // Sort by most recent first
+            filteredMaterials.sort((a, b) => new Date(b.lastUpdated) - new Date(a.lastUpdated));
+            
+            // Pagination
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const paginatedMaterials = filteredMaterials.slice(startIndex, endIndex);
+            
+            // Display materials
+            if (paginatedMaterials.length === 0) {
+                materialsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #666;">No materials found matching your criteria. Try a different search or filter.</p>';
+            } else {
+                paginatedMaterials.forEach(material => {
+                    const materialCard = document.createElement('div');
+                    materialCard.className = 'material-card';
+                    materialCard.dataset.id = material.id;
+                    materialCard.dataset.category = material.category;
+                    
+                    // Set background image or color
+                    const bgColor = getCategoryColor(material.category);
+                    const bgStyle = material.image ? 
+                        `background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://source.unsplash.com/random/300x180/?${material.image},law,book') center/cover` :
+                        `background-color: ${bgColor}`;
+                    
+                    // Determine buttons to show
+                    let buttonsHtml = '';
+                    if (material.isBook) {
+                        buttonsHtml = `
+                            <div class="button-group">
+                                <button class="purchase-btn view-btn" data-id="${material.id}">
+                                    <i class="fas fa-shopping-cart"></i>  Purchase
+                                </button>
+                            </div>
+                        `;
+                    } else {
+                        buttonsHtml = `
+                            <div class="button-group">
+                                <button class="view-btn" data-id="${material.id}">
+                                    <i class="fas fa-eye"></i>  View Details
+                                </button>
+                            </div>
+                        `;
+                    }
+                    
+                    // Add badge for recent items
+                    const recentBadge = material.isRecent ? '<span class="card-badge" style="position: absolute; top: 10px; right: 10px; background: var(--accent-color); color: white; padding: 3px 8px; border-radius: 20px; font-size: 0.7rem;">New</span>' : '';
+                    
+                    // Add badge for popular items
+                    const popularBadge = material.isPopular ? '<span class="card-badge" style="position: absolute; top: 10px; right: 10px; background: var(--purchase-color); color: white; padding: 3px 8px; border-radius: 20px; font-size: 0.7rem;">Popular</span>' : '';
+                    
+                    // Show only one badge
+                    const badge = material.isRecent ? recentBadge : (material.isPopular ? popularBadge : '');
+                    
+                    materialCard.innerHTML = `
+                        <div class="card-image" style="${bgStyle}; position: relative;">
+                            ${badge}
+                            <i class="fas ${material.icon}" style="color: white; font-size: 3rem;"></i> 
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">${material.title}</h3>
+                            <p class="card-subtitle">${material.subtitle}</p>
+                            <p class="card-description">${material.description}</p>
+                            <div class="card-footer">
+                                <span class="card-type">${material.type} ${material.fileSize ? '• ' + material.fileSize : ''} ${material.price ? '• ' + material.price : ''}</span>
+                                ${buttonsHtml}
+                            </div>
+                        </div>
+                    `;
+                    
+                    materialsGrid.appendChild(materialCard);
+                });
+            }
+            
+            // Update pagination buttons
+            updatePagination(filteredMaterials.length);
+        }
+
+        // Get category color
+        function getCategoryColor(category) {
+            const colors = {
+                constitutional: '#3498db',
+                criminal: '#e74c3c',
+                civil: '#9b59b6',
+                corporate: '#2ecc71',
+                international: '#f39c12',
+                property: '#1abc9c',
+                books: '#8e44ad'
+            };
+            return colors[category] || '#3498db';
+        }
+
+        // Update pagination buttons
+        function updatePagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            
+            // Clear existing page buttons (except prev/next)
+            document.querySelectorAll('.page-btn:not(#prevPage):not(#nextPage)').forEach(btn => btn.remove());
+            
+            // Create new page buttons
+            const paginationContainer = document.querySelector('.pagination');
+            const prevBtn = document.getElementById('prevPage');
+            const nextBtn = document.getElementById('nextPage');
+            
+            // Always keep prev/next buttons in the right place
+            paginationContainer.insertBefore(prevBtn, nextBtn);
+            paginationContainer.insertBefore(nextBtn, paginationContainer.lastElementChild);
+            
+            // Show up to 5 page buttons around current page
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+            
+            // Adjust if we're at the end
+            if (endPage - startPage < 4 && startPage > 1) {
+                startPage = Math.max(1, endPage - 4);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    displayMaterials();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+                paginationContainer.insertBefore(pageBtn, nextBtn);
+            }
+            
+            // Update prev/next button states
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+            
+            // Hide pagination if only one page
+            paginationContainer.style.display = totalPages <= 1 ? 'none' : 'flex';
+        }
+
+        // Filter button click handler
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                currentPage = 1;
+                displayMaterials();
+            });
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', () => {
+            currentPage = 1;
+            displayMaterials();
+        });
+
+        // View button click handler (using event delegation)
+        materialsGrid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('view-btn') || e.target.closest('.view-btn')) {
+                const btn = e.target.classList.contains('view-btn') ? e.target : e.target.closest('.view-btn');
+                const materialId = parseInt(btn.dataset.id);
+                const material = lawMaterials.find(m => m.id === materialId);
+                
+                if (material) {
+                    currentDownloadMaterial = material;
+                    // Update modal content
+                    modalTitle.textContent = material.title;
+                    modalSubtitle.textContent = `${material.subtitle} • ${material.type} ${material.fileSize ? '• ' + material.fileSize : ''} ${material.price ? '• ' + material.price : ''}`;
+                    modalIcon.className = `fas ${material.icon} resource-icon`;
+                    
+                    // Update detailed info
+                    modalAuthor.textContent = material.author;
+                    modalYear.textContent = material.year;
+                    modalPages.textContent = material.pages || 'N/A';
+                    modalPublisher.textContent = material.publisher || 'N/A';
+                    modalDownloads.textContent = material.downloads.toLocaleString();
+                    modalRating.textContent = material.rating;
+                    modalFileSize.textContent = material.fileSize || 'N/A';
+                    modalPrice.textContent = material.price || 'Free';
+                    modalDescription.textContent = material.detailedDesc;
+                    
+                    // Update stars rating
+                    const starsContainer = document.querySelector('.stars');
+                    starsContainer.innerHTML = '';
+                    
+                    const fullStars = Math.floor(material.rating);
+                    const hasHalfStar = material.rating % 1 >= 0.5;
+                    
+                    for (let i = 0; i < fullStars; i++) {
+                        starsContainer.innerHTML += '<i class="fas fa-star"></i> ';
+                    }
+                    
+                    if (hasHalfStar) {
+                        starsContainer.innerHTML += '<i class="fas fa-star-half-alt"></i> ';
+                    }
+                    
+                    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+                    for (let i = 0; i < emptyStars; i++) {
+                        starsContainer.innerHTML += '<i class="far fa-star"></i> ';
+                    }
+                    
+                    document.querySelector('.rating-count').textContent = `(${material.reviews} reviews)`;
+                    
+                    // Show/hide appropriate buttons
+                    if (material.isBook) {
+                        modalDownload.style.display = 'none';
+                        modalPurchase.style.display = 'inline-flex';
+                        modalPreview.style.display = 'inline-flex';
+                        purchaseNotice.style.display = 'block';
+                        downloadProgress.style.display = 'none';
+                    } else {
+                        modalDownload.style.display = 'inline-flex';
+                        modalPurchase.style.display = 'none';
+                        modalPreview.style.display = 'none';
+                        purchaseNotice.style.display = 'none';
+                        downloadProgress.style.display = 'none';
+                        progressBar.style.width = '0%';
+                    }
+                    
+                    // Show modal
+                    resourceModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        });
+
+        // Download button handler
+        modalDownload.addEventListener('click', () => {
+            if (currentDownloadMaterial && !currentDownloadMaterial.isBook) {
+                // Show download progress
+                downloadProgress.style.display = 'block';
+                
+                // Simulate download progress
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 10;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        
+                        // Update download count
+                        currentDownloadMaterial.downloads++;
+                        
+                        // Open the actual download link in new tab
+                        setTimeout(() => {
+                            window.open(currentDownloadMaterial.downloadLink, '_blank');
+                            
+                            // Close modal after short delay
+                            setTimeout(() => {
+                                resourceModal.style.display = 'none';
+                                document.body.style.overflow = 'auto';
+                                displayMaterials(); // Refresh to show updated download count
+                            }, 500);
+                        }, 300);
+                    }
+                    progressBar.style.width = `${progress}%`;
+                }, 100);
+            }
+        });
+
+        // Purchase button handler
+        modalPurchase.addEventListener('click', () => {
+            if (currentDownloadMaterial && currentDownloadMaterial.isBook) {
+                // Open Amazon link in new tab
+                window.open(currentDownloadMaterial.amazonLink, '_blank');
+            }
+        });
+
+        // Preview button handler
+        modalPreview.addEventListener('click', () => {
+            if (currentDownloadMaterial && currentDownloadMaterial.isBook) {
+                alert('Book preview would open here. In a real implementation, this would show a sample chapter or pages.');
+            }
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            resourceModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === resourceModal) {
+                resourceModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Pagination button handlers
+        prevPageBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayMaterials();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+        nextPageBtn.addEventListener('click', () => {
+            const totalItems = currentFilter === 'all' ? lawMaterials.length : 
+                lawMaterials.filter(m => {
+                    if (currentFilter === 'recent') return m.isRecent;
+                    if (currentFilter === 'popular') return m.isPopular;
+                    return currentFilter === 'books' ? m.isBook : m.category === currentFilter;
+                }).length;
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayMaterials();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+        // Keyboard navigation for search
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                currentPage = 1;
+                displayMaterials();
+            }
+        });
+
+        // Initial display
+        displayMaterials();
+        
+        // Add animation to cards when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.material-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Update cards when materials are displayed
+        const materialsObserver = new MutationObserver(() => {
+            document.querySelectorAll('.material-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                observer.observe(card);
+            });
+        });
+        
+        materialsObserver.observe(materialsGrid, { childList: true });
+    </script>
+</body>
+</html>
+
+in navigation bar make the logo to extreme left and login totally to the right and other things in center

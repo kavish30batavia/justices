@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="images/logo.jpg" type="image/jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Law Colleges in Andhra Pradesh (50 Colleges)</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      
+    }
+    :root {
+            --primary-color: #4a2c02;
+            --secondary-color: #4a2c02;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --purchase-color: #f39c12;
+            --nav-color: #4a2c02;
+            --nav-hover: #f9a826;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        nav {
+  background: var(--nav-color);
+  padding: 15px 0; /* Changed padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Changed to 100% */
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .nav-logo {
+          height: 60px;
+          width: auto;
+          border-radius: 30px;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--nav-hover);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--nav-hover);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 200px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+    h1 {
+      color: #1a365d;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.2rem;
+    }
+    #search-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      flex-wrap: wrap;
+     padding: 25px; 
+    }
+    #search {
+      flex-grow: 1;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      min-width: 300px;
+    }
+    #filters {
+      display: flex;
+      gap: 10px;
+      margin-left: 15px;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid #d1d5db;
+      background-color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background-color: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+    #college-count {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #4b5563;
+      font-size: 1.1rem;
+    }
+    .college-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+    .college-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #2563eb;
+    }
+    .college-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    .college-card h2 {
+      margin: 0 0 8px;
+      color: #1e40af;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+    }
+    .college-info {
+      margin-bottom: 12px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .college-info i {
+      font-size: 1rem;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .links a {
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background-color: #eff6ff;
+      transition: all 0.3s;
+    }
+    .links a:hover {
+      background-color: #dbeafe;
+      text-decoration: underline;
+    }
+    .type-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+    .government {
+      background-color: #10b981;
+      color: white;
+    }
+    .private {
+      background-color: #ef4444;
+      color: white;
+    }
+    .no-results {
+      text-align: center;
+      grid-column: 1/-1;
+      padding: 40px;
+      color: #6b7280;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      #search-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      #filters {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+      }
+      .college-list {
+        grid-template-columns: 1fr;
+      }
+    }
+     
+    @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            
+        }
+        footer {
+            background-color: var(--nav-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            
+        }
+        
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+  </style>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+        <a href="dashboard.html" class="logo">
+            <img src="images/logo.jpg" alt="Logo" class="nav-logo">
+        </a>
+
+        <div class="menu" id="menu">
+            <a href="index.html"><i class="fas fa-home"></i>  Home</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i>  About</a>
+            <div class="dropdown">
+                <a href="services.html"><i class="fas fa-gavel"></i>  Services</a>
+                <div class="dropdown-content">
+                    <a href="chatbot.html"><i class="fas fa-robot"></i>   Legal Chatbot</a>
+                    <a href="section-chatbot.html"><i class="fas fa-code"></i>   Section Finder</a>
+                    <a href="case-reference.html"><i class="fas fa-gavel"></i>   Case Reference</a>
+                    <a href="consitution_of_india.html"><i class="fas fa-book"></i>   Constitution</a>
+                   
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="resources.html">Resources <i class="fas fa-chevron-down"></i>  </a>
+                <div class="dropdown-content">
+                    <a href="study material.html"><i class="fas fa-book"></i>   Law Books</a>
+                    <a href="lawcolleges.html"><i class="fas fa-file-alt"></i>   Law Colleges</a>
+                    
+                    <a href="Roadmap.html"><i class="fas fa-file-pdf"></i>   Road Map</a>
+                </div>
+            </div>
+            <a href="blog.html"><i class="fas fa-pen-fancy"></i>  Blog</a>
+            <a href="help.html"><i class="fas fa-question-circle"></i> Help</a>
+        </div>
+        <a href="login.html" class="login-btn"><i class="fas fa-user"></i>   Login</a>
+    </div>
+</nav>
+  <div class="container">
+    <h1>Law Colleges in Andhra Pradesh</h1>
+    <div id="search-container">
+      <input type="text" placeholder="Search by College Name or City..." id="search" onkeyup="filterColleges()" />
+      <div id="filters">
+        <button class="filter-btn active" onclick="filterByType('all')">All</button>
+        <button class="filter-btn" onclick="filterByType('Government')">Government</button>
+        <button class="filter-btn" onclick="filterByType('Private')">Private</button>
+      </div>
+    </div>
+    <div id="college-count">Showing 50 Law Colleges</div>
+    <div class="college-list" id="college-list"></div>
+  </div>
+  <footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>Justice Advisor</h3>
+            <p>Your comprehensive legal studies resource center providing high-quality materials for students, professionals, and legal enthusiasts.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i>  </a>
+                <a href="#"><i class="fab fa-twitter"></i>  </a>
+                <a href="#"><i class="fab fa-linkedin-in"></i>  </a>
+                <a href="#"><i class="fab fa-instagram"></i>  </a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="http://127.0.0.1:5000"> Section Finder</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Legal Resources</h3>
+            <ul>
+                <li><a href="consitution_of_india.html">Constitution of India</a></li>
+                <li><a href="Roadmap.html">Road Map</a></li>
+                <li><a href="lawcolleges.html">Law colleges</a></li>
+                <li><a href="study material.html">Law Books</a></li>
+                
+         
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+            
+                <li><a href="faq.html">FAQs</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+         
+           
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2025 Legal Studies Repository. All rights reserved.
+    </div>
+</footer>
+
+  <script>
+      const colleges = [
+   { name: "Faculty of Law, University of Delhi", city: "Delhi", type: "Government", link: "https://law.careers360.com/colleges/faculty-of-law-university-of-delhi" },
+      { name: "National Law University, Delhi", city: "Delhi", type: "Government", link: "https://law.careers360.com/colleges/national-law-university-delhi" },
+      { name: "Indian Law Institute", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/indian-law-institute-new-delhi" },
+      { name: "Amity Law School, Delhi", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/amity-law-school-delhi-new-delhi" },
+      { name: "Army Institute of Law", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/army-institute-of-law-new-delhi" },
+      { name: "Bharati Vidyapeeth New Law College", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/bharati-vidyapeeth-new-law-college-new-delhi" },
+      { name: "Campus Law Centre, University of Delhi", city: "Delhi", type: "Government", link: "https://law.careers360.com/colleges/campus-law-centre-university-of-delhi" },
+      { name: "Chanderprabhu Jain College of Higher Studies and School of Law", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/chanderprabhu-jain-college-of-higher-studies-and-school-of-law-new-delhi" },
+      { name: "Delhi Institute of Rural Development", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/delhi-institute-of-rural-development-new-delhi" },
+      { name: "Faculty of Law, Jamia Millia Islamia", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/faculty-of-law-jamia-millia-islamia-new-delhi" },
+      { name: "Gitarattan International Business School", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/gitarattan-international-business-school-new-delhi" },
+      { name: "Guru Gobind Singh Indraprastha University - University School of Law and Legal Studies", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/guru-gobind-singh-indraprastha-university-university-school-of-law-and-legal-studies-new-delhi" },
+      { name: "Indian Institute of Corporate Affairs", city: "Gurgaon", type: "Government", link: "https://law.careers360.com/colleges/indian-institute-of-corporate-affairs-gurgaon" },
+      { name: "Jindal Global Law School", city: "Sonipat", type: "Private", link: "https://law.careers360.com/colleges/jindal-global-law-school-sonipat" },
+      { name: "Law Centre-I, Faculty of Law, University of Delhi", city: "Delhi", type: "Government", link: "https://law.careers360.com/colleges/law-centre-i-faculty-of-law-university-of-delhi" },
+      { name: "Law Centre-II, Faculty of Law, University of Delhi", city: "Delhi", type: "Government", link: "https://law.careers360.com/colleges/law-centre-ii-faculty-of-law-university-of-delhi" },
+      { name: "Lloyd Law College", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/lloyd-law-college-greater-noida" },
+      { name: "Maharaja Agrasen Institute of Management Studies", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/maharaja-agrasen-institute-of-management-studies-new-delhi" },
+      { name: "Maharishi Law School", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/maharishi-law-school-new-delhi" },
+      { name: "Manav Rachna University - Faculty of Law", city: "Faridabad", type: "Private", link: "https://law.careers360.com/colleges/manav-rachna-university-faculty-of-law-faridabad" },
+      { name: "New Delhi Institute of Management", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/new-delhi-institute-of-management-new-delhi" },
+      { name: "Noida International University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/noida-international-university-school-of-law-greater-noida" },
+      { name: "Sharda University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/sharda-university-school-of-law-greater-noida" },
+      { name: "Shivaji College, University of Delhi", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/shivaji-college-university-of-delhi-new-delhi" },
+      { name: "South Asian University - Faculty of Legal Studies", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/south-asian-university-faculty-of-legal-studies-new-delhi" },
+      { name: "Vivekananda Institute of Professional Studies", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/vivekananda-institute-of-professional-studies-new-delhi" },
+      { name: "Amity Law School, Noida", city: "Noida", type: "Private", link: "https://law.careers360.com/colleges/amity-law-school-noida" },
+      { name: "Bennett University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/bennett-university-school-of-law-greater-noida" },
+      { name: "Delhi Metropolitan Education", city: "Noida", type: "Private", link: "https://law.careers360.com/colleges/delhi-metropolitan-education-noida" },
+      { name: "Fairfield Institute of Management and Technology", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/fairfield-institute-of-management-and-technology-new-delhi" },
+      { name: "Galgotias University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/galgotias-university-school-of-law-greater-noida" },
+      { name: "IMS Law College", city: "Noida", type: "Private", link: "https://law.careers360.com/colleges/ims-law-college-noida" },
+      { name: "IMS Unison University - School of Law", city: "Dehradun", type: "Private", link: "https://law.careers360.com/colleges/ims-unison-university-school-of-law-dehradun" },
+      { name: "JIMS Engineering Management Technical Campus", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/jims-engineering-management-technical-campus-greater-noida" },
+      { name: "KIIT School of Law", city: "Bhubaneswar", type: "Private", link: "https://law.careers360.com/colleges/kiit-school-of-law-bhubaneswar" },
+      { name: "KLE Society's Law College", city: "Bengaluru", type: "Private", link: "https://law.careers360.com/colleges/kle-societys-law-college-bengaluru" },
+      { name: "Kristu Jayanti College of Law", city: "Bengaluru", type: "Private", link: "https://law.careers360.com/colleges/kristu-jayanti-college-of-law-bengaluru" },
+      { name: "Krishna Institute of Law", city: "Ghaziabad", type: "Private", link: "https://law.careers360.com/colleges/krishna-institute-of-law-ghaziabad" },
+      { name: "Lloyd Law College", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/lloyd-law-college-greater-noida" },
+      { name: "Lovely Professional University - Department of Law", city: "Phagwara", type: "Private", link: "https://law.careers360.com/colleges/lovely-professional-university-department-of-law-phagwara" },
+      { name: "Manav Rachna University - Faculty of Law", city: "Faridabad", type: "Private", link: "https://law.careers360.com/colleges/manav-rachna-university-faculty-of-law-faridabad" },
+      { name: "Manipal University Jaipur - School of Law", city: "Jaipur", type: "Private", link: "https://law.careers360.com/colleges/manipal-university-jaipur-school-of-law-jaipur" },
+      { name: "Narsee Monjee Institute of Management Studies - School of Law", city: "Mumbai", type: "Private", link: "https://law.careers360.com/colleges/narsee-monjee-institute-of-management-studies-school-of-law-mumbai" },
+      { name: "Nirma University - Institute of Law", city: "Ahmedabad", type: "Private", link: "https://law.careers360.com/colleges/nirma-university-institute-of-law-ahmedabad" },
+      { name: "Noida International University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/noida-international-university-school-of-law-greater-noida" },
+      { name: "O.P. Jindal Global University - Jindal Global Law School", city: "Sonipat", type: "Private", link: "https://law.careers360.com/colleges/o-p-jindal-global-university-jindal-global-law-school-sonipat" },
+      { name: "Parul University - Faculty of Law", city: "Vadodara", type: "Private", link: "https://law.careers360.com/colleges/parul-university-faculty-of-law-vadodara" },
+      { name: "Rajiv Gandhi National University of Law", city: "Patiala", type: "Government", link: "https://law.careers360.com/colleges/rajiv-gandhi-national-university-of-law-patiala" },
+      { name: "Sharda University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/sharda-university-school-of-law-greater-noida" },
+      { name: "Shiv Nadar University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/shiv-nadar-university-school-of-law-greater-noida" },
+      { name: "Symbiosis Law School", city: "Pune", type: "Private", link: "https://law.careers360.com/colleges/symbiosis-law-school-pune" },
+      { name: "The NorthCap University - School of Law", city: "Gurgaon", type: "Private", link: "https://law.careers360.com/colleges/the-northcap-university-school-of-law-gurgaon" },
+      { name: "University of Petroleum and Energy Studies - College of Legal Studies", city: "Dehradun", type: "Private", link: "https://law.careers360.com/colleges/university-of-petroleum-and-energy-studies-college-of-legal-studies-dehradun" },
+      { name: "Vivekananda Institute of Professional Studies", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/vivekananda-institute-of-professional-studies-new-delhi" },
+      { name: "Acharya Narendra Dev College", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/acharya-narendra-dev-college-new-delhi" },
+      { name: "Aditi Mahavidyalaya", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/aditi-mahavidyalaya-new-delhi" },
+      { name: "Ahilya Bai College of Law", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/ahilya-bai-college-of-law-new-delhi" },
+      { name: "Ambedkar University Delhi - School of Law, Governance and Citizenship", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/ambedkar-university-delhi-school-of-law-governance-and-citizenship-new-delhi" },
+      { name: "Amity Law School, Centre-II", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/amity-law-school-centre-ii-new-delhi" },
+      { name: "Ansal University - School of Law", city: "Gurgaon", type: "Private", link: "https://law.careers360.com/colleges/ansal-university-school-of-law-gurgaon" },
+      { name: "Apeejay Stya University - School of Legal Studies", city: "Gurgaon", type: "Private", link: "https://law.careers360.com/colleges/apeejay-stya-university-school-of-legal-studies-gurgaon" },
+      { name: "Asia Pacific Institute of Management", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/asia-pacific-institute-of-management-new-delhi" },
+      { name: "Babu Banarasi Das University - Faculty of Law", city: "Lucknow", type: "Private", link: "https://law.careers360.com/colleges/babu-banarasi-das-university-faculty-of-law-lucknow" },
+      { name: "Banaras Hindu University - Faculty of Law", city: "Varanasi", type: "Government", link: "https://law.careers360.com/colleges/banaras-hindu-university-faculty-of-law-varanasi" },
+      { name: "Bharati Vidyapeeth Deemed University - New Law College", city: "Pune", type: "Private", link: "https://law.careers360.com/colleges/bharati-vidyapeeth-deemed-university-new-law-college-pune" },
+      { name: "Bharati Vidyapeeth University - New Law College", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/bharati-vidyapeeth-university-new-law-college-new-delhi" },
+      { name: "Birla Institute of Technology - Department of Law", city: "Ranchi", type: "Private", link: "https://law.careers360.com/colleges/birla-institute-of-technology-department-of-law-ranchi" },
+      { name: "BML Munjal University - School of Law", city: "Gurgaon", type: "Private", link: "https://law.careers360.com/colleges/bml-munjal-university-school-of-law-gurgaon" },
+      { name: "Central University of South Bihar - Department of Law", city: "Gaya", type: "Government", link: "https://law.careers360.com/colleges/central-university-of-south-bihar-department-of-law-gaya" },
+      { name: "Chanakya National Law University", city: "Patna", type: "Government", link: "https://law.careers360.com/colleges/chanakya-national-law-university-patna" },
+      { name: "Christ University - School of Law", city: "Bengaluru", type: "Private", link: "https://law.careers360.com/colleges/christ-university-school-of-law-bengaluru" },
+      { name: "D.Y. Patil University - School of Law", city: "Navi Mumbai", type: "Private", link: "https://law.careers360.com/colleges/d-y-patil-university-school-of-law-navi-mumbai" },
+      { name: "Damodaram Sanjivayya National Law University", city: "Visakhapatnam", type: "Government", link: "https://law.careers360.com/colleges/damodaram-sanjivayya-national-law-university-visakhapatnam" },
+      { name: "Delhi Institute of Advanced Studies", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/delhi-institute-of-advanced-studies-new-delhi" },
+      { name: "Delhi Metropolitan Education", city: "Noida", type: "Private", link: "https://law.careers360.com/colleges/delhi-metropolitan-education-noida" },
+      { name: "Delhi University - Law Faculty", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/delhi-university-law-faculty-new-delhi" },
+      { name: "Dr. B.R. Ambedkar College of Law", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/dr-b-r-ambedkar-college-of-law-new-delhi" },
+      { name: "Dr. Ram Manohar Lohiya National Law University", city: "Lucknow", type: "Government", link: "https://law.careers360.com/colleges/dr-ram-manohar-lohiya-national-law-university-lucknow" },
+      { name: "Faculty of Law, Aligarh Muslim University", city: "Aligarh", type: "Government", link: "https://law.careers360.com/colleges/faculty-of-law-aligarh-muslim-university-aligarh" },
+      { name: "Faculty of Law, Banaras Hindu University", city: "Varanasi", type: "Government", link: "https://law.careers360.com/colleges/faculty-of-law-banaras-hindu-university-varanasi" },
+      { name: "Faculty of Law, Jamia Millia Islamia", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/faculty-of-law-jamia-millia-islamia-new-delhi" },
+      { name: "Faculty of Law, University of Delhi", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/faculty-of-law-university-of-delhi-new-delhi" },
+      { name: "G.D. Goenka University - School of Law", city: "Gurgaon", type: "Private", link: "https://law.careers360.com/colleges/g-d-goenka-university-school-of-law-gurgaon" },
+      { name: "Galgotias University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/galgotias-university-school-of-law-greater-noida" },
+      { name: "Gitarattan International Business School", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/gitarattan-international-business-school-new-delhi" },
+      { name: "Gujarat National Law University", city: "Gandhinagar", type: "Government", link: "https://law.careers360.com/colleges/gujarat-national-law-university-gandhinagar" },
+      { name: "Guru Gobind Singh Indraprastha University - University School of Law and Legal Studies", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/guru-gobind-singh-indraprastha-university-university-school-of-law-and-legal-studies-new-delhi" },
+      { name: "Hidayatullah National Law University", city: "Raipur", type: "Government", link: "https://law.careers360.com/colleges/hidayatullah-national-law-university-raipur" },
+      { name: "ICFAI Law School", city: "Dehradun", type: "Private", link: "https://law.careers360.com/colleges/icfai-law-school-dehradun" },
+      { name: "Indian Institute of Legal Studies", city: "Siliguri", type: "Private", link: "https://law.careers360.com/colleges/indian-institute-of-legal-studies-siliguri" },
+      { name: "Indian Law Institute", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/indian-law-institute-new-delhi" },
+      { name: "Institute of Law, Nirma University", city: "Ahmedabad", type: "Private", link: "https://law.careers360.com/colleges/institute-of-law-nirma-university-ahmedabad" },
+      { name: "Jagannath University - Faculty of Law", city: "Bahadurgarh", type: "Private", link: "https://law.careers360.com/colleges/jagannath-university-faculty-of-law-bahadurgarh" },
+      { name: "Jamia Hamdard - Faculty of Law", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/jamia-hamdard-faculty-of-law-new-delhi" },
+      { name: "Jindal Global Law School", city: "Sonipat", type: "Private", link: "https://law.careers360.com/colleges/jindal-global-law-school-sonipat" },
+      { name: "Kalinga Institute of Industrial Technology - KIIT School of Law", city: "Bhubaneswar", type: "Private", link: "https://law.careers360.com/colleges/kalinga-institute-of-industrial-technology-kiit-school-of-law-bhubaneswar" },
+      { name: "Karnavati University - Unitedworld School of Law", city: "Gandhinagar", type: "Private", link: "https://law.careers360.com/colleges/karnavati-university-unitedworld-school-of-law-gandhinagar" },
+      { name: "KLE Society's Law College", city: "Bengaluru", type: "Private", link: "https://law.careers360.com/colleges/kle-societys-law-college-bengaluru" },
+      { name: "Krishna Institute of Law", city: "Ghaziabad", type: "Private", link: "https://law.careers360.com/colleges/krishna-institute-of-law-ghaziabad" },
+      { name: "Lingaya's Vidyapeeth - Faculty of Law", city: "Faridabad", type: "Private", link: "https://law.careers360.com/colleges/lingayas-vidyapeeth-faculty-of-law-faridabad" },
+      { name: "Lloyd Law College", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/lloyd-law-college-greater-noida" },
+      { name: "Lovely Professional University - Department of Law", city: "Phagwara", type: "Private", link: "https://law.careers360.com/colleges/lovely-professional-university-department-of-law-phagwara" },
+      { name: "Maharaja Agrasen Institute of Management Studies", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/maharaja-agrasen-institute-of-management-studies-new-delhi" },
+      { name: "Maharishi Law School", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/maharishi-law-school-new-delhi" },
+      { name: "Manav Rachna University - Faculty of Law", city: "Faridabad", type: "Private", link: "https://law.careers360.com/colleges/manav-rachna-university-faculty-of-law-faridabad" },
+      { name: "Manipal University Jaipur - School of Law", city: "Jaipur", type: "Private", link: "https://law.careers360.com/colleges/manipal-university-jaipur-school-of-law-jaipur" },
+      { name: "National Law Institute University", city: "Bhopal", type: "Government", link: "https://law.careers360.com/colleges/national-law-institute-university-bhopal" },
+      { name: "National Law School of India University", city: "Bengaluru", type: "Government", link: "https://law.careers360.com/colleges/national-law-school-of-india-university-bengaluru" },
+      { name: "National Law University", city: "Delhi", type: "Government", link: "https://law.careers360.com/colleges/national-law-university-delhi" },
+      { name: "National Law University Odisha", city: "Cuttack", type: "Government", link: "https://law.careers360.com/colleges/national-law-university-odisha-cuttack" },
+      { name: "National University of Advanced Legal Studies", city: "Kochi", type: "Government", link: "https://law.careers360.com/colleges/national-university-of-advanced-legal-studies-kochi" },
+      { name: "National University of Study and Research in Law", city: "Ranchi", type: "Government", link: "https://law.careers360.com/colleges/national-university-of-study-and-research-in-law-ranchi" },
+      { name: "Nirma University - Institute of Law", city: "Ahmedabad", type: "Private", link: "https://law.careers360.com/colleges/nirma-university-institute-of-law-ahmedabad" },
+      { name: "Noida International University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/noida-international-university-school-of-law-greater-noida" },
+      { name: "O.P. Jindal Global University - Jindal Global Law School", city: "Sonipat", type: "Private", link: "https://law.careers360.com/colleges/o-p-jindal-global-university-jindal-global-law-school-sonipat" },
+      { name: "Parul University - Faculty of Law", city: "Vadodara", type: "Private", link: "https://law.careers360.com/colleges/parul-university-faculty-of-law-vadodara" },
+      { name: "Rajiv Gandhi National University of Law", city: "Patiala", type: "Government", link: "https://law.careers360.com/colleges/rajiv-gandhi-national-university-of-law-patiala" },
+      { name: "Ramaiah College of Law", city: "Bengaluru", type: "Private", link: "https://law.careers360.com/colleges/ramaiah-college-of-law-bengaluru" },
+      { name: "Sharda University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/sharda-university-school-of-law-greater-noida" },
+      { name: "Shiv Nadar University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/shiv-nadar-university-school-of-law-greater-noida" },
+      { name: "South Asian University - Faculty of Legal Studies", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/south-asian-university-faculty-of-legal-studies-new-delhi" },
+      { name: "Srinivas University - School of Law", city: "Mangalore", type: "Private", link: "https://law.careers360.com/colleges/srinivas-university-school-of-law-mangalore" },
+      { name: "Symbiosis Law School", city: "Pune", type: "Private", link: "https://law.careers360.com/colleges/symbiosis-law-school-pune" },
+      { name: "Tamil Nadu National Law University", city: "Tiruchirappalli", type: "Government", link: "https://law.careers360.com/colleges/tamil-nadu-national-law-university-tiruchirappalli" },
+      { name: "The NorthCap University - School of Law", city: "Gurgaon", type: "Private", link: "https://law.careers360.com/colleges/the-northcap-university-school-of-law-gurgaon" },
+      { name: "University of Petroleum and Energy Studies - College of Legal Studies", city: "Dehradun", type: "Private", link: "https://law.careers360.com/colleges/university-of-petroleum-and-energy-studies-college-of-legal-studies-dehradun" },
+      { name: "University School of Law and Legal Studies", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/university-school-of-law-and-legal-studies-new-delhi" },
+      { name: "Vellore Institute of Technology - School of Law", city: "Vellore", type: "Private", link: "https://law.careers360.com/colleges/vellore-institute-of-technology-school-of-law-vellore" },
+      { name: "Vivekananda Institute of Professional Studies", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/vivekananda-institute-of-professional-studies-new-delhi" },
+      { name: "West Bengal National University of Juridical Sciences", city: "Kolkata", type: "Government", link: "https://law.careers360.com/colleges/west-bengal-national-university-of-juridical-sciences-kolkata" },
+      { name: "Xavier Law School", city: "Bhubaneswar", type: "Private", link: "https://law.careers360.com/colleges/xavier-law-school-bhubaneswar" },
+      { name: "Amity Law School, Delhi", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/amity-law-school-delhi-new-delhi" },
+      { name: "Army Institute of Law", city: "Mohali", type: "Government", link: "https://law.careers360.com/colleges/army-institute-of-law-mohali" },
+      { name: "Bharati Vidyapeeth New Law College", city: "Pune", type: "Private", link: "https://law.careers360.com/colleges/bharati-vidyapeeth-new-law-college-pune" },
+      { name: "Campus Law Centre, University of Delhi", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/campus-law-centre-university-of-delhi-new-delhi" },
+      { name: "Chanakya National Law University", city: "Patna", type: "Government", link: "https://law.careers360.com/colleges/chanakya-national-law-university-patna" },
+      { name: "Chanderprabhu Jain College of Higher Studies and School of Law", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/chanderprabhu-jain-college-of-higher-studies-and-school-of-law-new-delhi" },
+      { name: "Damodaram Sanjivayya National Law University", city: "Visakhapatnam", type: "Government", link: "https://law.careers360.com/colleges/damodaram-sanjivayya-national-law-university-visakhapatnam" },
+      { name: "Delhi Institute of Rural Development", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/delhi-institute-of-rural-development-new-delhi" },
+      { name: "Delhi Metropolitan Education", city: "Noida", type: "Private", link: "https://law.careers360.com/colleges/delhi-metropolitan-education-noida" },
+      { name: "Dr. B.R. Ambedkar College of Law", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/dr-b-r-ambedkar-college-of-law-new-delhi" },
+      { name: "Dr. Ram Manohar Lohiya National Law University", city: "Lucknow", type: "Government", link: "https://law.careers360.com/colleges/dr-ram-manohar-lohiya-national-law-university-lucknow" },
+      { name: "Fairfield Institute of Management and Technology", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/fairfield-institute-of-management-and-technology-new-delhi" },
+      { name: "Faculty of Law, Aligarh Muslim University", city: "Aligarh", type: "Government", link: "https://law.careers360.com/colleges/faculty-of-law-aligarh-muslim-university-aligarh" },
+      { name: "Faculty of Law, Jamia Millia Islamia", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/faculty-of-law-jamia-millia-islamia-new-delhi" },
+      { name: "Faculty of Law, University of Delhi", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/faculty-of-law-university-of-delhi-new-delhi" },
+      { name: "Gitarattan International Business School", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/gitarattan-international-business-school-new-delhi" },
+      { name: "Gujarat National Law University", city: "Gandhinagar", type: "Government", link: "https://law.careers360.com/colleges/gujarat-national-law-university-gandhinagar" },
+      { name: "Guru Gobind Singh Indraprastha University - University School of Law and Legal Studies", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/guru-gobind-singh-indraprastha-university-university-school-of-law-and-legal-studies-new-delhi" },
+      { name: "Hidayatullah National Law University", city: "Raipur", type: "Government", link: "https://law.careers360.com/colleges/hidayatullah-national-law-university-raipur" },
+      { name: "Indian Law Institute", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/indian-law-institute-new-delhi" },
+      { name: "Jindal Global Law School", city: "Sonipat", type: "Private", link: "https://law.careers360.com/colleges/jindal-global-law-school-sonipat" },
+      { name: "KLE Society's Law College", city: "Bengaluru", type: "Private", link: "https://law.careers360.com/colleges/kle-societys-law-college-bengaluru" },
+      { name: "Law Centre-I, Faculty of Law, University of Delhi", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/law-centre-i-faculty-of-law-university-of-delhi-new-delhi" },
+      { name: "Law Centre-II, Faculty of Law, University of Delhi", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/law-centre-ii-faculty-of-law-university-of-delhi-new-delhi" },
+      { name: "Lloyd Law College", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/lloyd-law-college-greater-noida" },
+      { name: "Maharaja Agrasen Institute of Management Studies", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/maharaja-agrasen-institute-of-management-studies-new-delhi" },
+      { name: "Maharishi Law School", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/maharishi-law-school-new-delhi" },
+      { name: "Manav Rachna University - Faculty of Law", city: "Faridabad", type: "Private", link: "https://law.careers360.com/colleges/manav-rachna-university-faculty-of-law-faridabad" },
+      { name: "National Law Institute University", city: "Bhopal", type: "Government", link: "https://law.careers360.com/colleges/national-law-institute-university-bhopal" },
+      { name: "National Law School of India University", city: "Bengaluru", type: "Government", link: "https://law.careers360.com/colleges/national-law-school-of-india-university-bengaluru" },
+      { name: "National Law University", city: "Delhi", type: "Government", link: "https://law.careers360.com/colleges/national-law-university-delhi" },
+      { name: "National Law University Odisha", city: "Cuttack", type: "Government", link: "https://law.careers360.com/colleges/national-law-university-odisha-cuttack" },
+      { name: "National University of Advanced Legal Studies", city: "Kochi", type: "Government", link: "https://law.careers360.com/colleges/national-university-of-advanced-legal-studies-kochi" },
+      { name: "National University of Study and Research in Law", city: "Ranchi", type: "Government", link: "https://law.careers360.com/colleges/national-university-of-study-and-research-in-law-ranchi" },
+      { name: "Nirma University - Institute of Law", city: "Ahmedabad", type: "Private", link: "https://law.careers360.com/colleges/nirma-university-institute-of-law-ahmedabad" },
+      { name: "Noida International University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/noida-international-university-school-of-law-greater-noida" },
+      { name: "O.P. Jindal Global University - Jindal Global Law School", city: "Sonipat", type: "Private", link: "https://law.careers360.com/colleges/o-p-jindal-global-university-jindal-global-law-school-sonipat" },
+      { name: "Rajiv Gandhi National University of Law", city: "Patiala", type: "Government", link: "https://law.careers360.com/colleges/rajiv-gandhi-national-university-of-law-patiala" },
+      { name: "Sharda University - School of Law", city: "Greater Noida", type: "Private", link: "https://law.careers360.com/colleges/sharda-university-school-of-law-greater-noida" },
+      { name: "South Asian University - Faculty of Legal Studies", city: "New Delhi", type: "Government", link: "https://law.careers360.com/colleges/south-asian-university-faculty-of-legal-studies-new-delhi" },
+      { name: "Symbiosis Law School", city: "Pune", type: "Private", link: "https://law.careers360.com/colleges/symbiosis-law-school-pune" },
+      { name: "Tamil Nadu National Law University", city: "Tiruchirappalli", type: "Government", link: "https://law.careers360.com/colleges/tamil-nadu-national-law-university-tiruchirappalli" },
+      { name: "University of Petroleum and Energy Studies - College of Legal Studies", city: "Dehradun", type: "Private", link: "https://law.careers360.com/colleges/university-of-petroleum-and-energy-studies-college-of-legal-studies-dehradun" },
+      { name: "Vivekananda Institute of Professional Studies", city: "New Delhi", type: "Private", link: "https://law.careers360.com/colleges/vivekananda-institute-of-professional-studies-new-delhi" },
+      { name: "West Bengal National University of Juridical Sciences", city: "Kolkata", type: "Government", link: "https://law.careers360.com/colleges/west-bengal-national-university-of-juridical-sciences-kolkata" }
+    ];
+
+
+
+
+    const collegeList = document.getElementById('college-list');
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function displayColleges(collegesToDisplay = colleges) {
+      collegeList.innerHTML = "";
+      
+      if (collegesToDisplay.length === 0) {
+        collegeList.innerHTML = '<div class="no-results">No colleges found matching your criteria</div>';
+        return;
+      }
+      
+      collegesToDisplay.forEach(college => {
+        const card = document.createElement('div');
+        card.className = 'college-card';
+        const typeClass = college.type.toLowerCase();
+        card.innerHTML = `
+          <div>
+            <h2>${college.name} <span class="type-badge ${typeClass}">${college.type}</span></h2>
+            <div class="college-info">
+              <i>📍</i>   ${college.city}, Andhra Pradesh
+            </div>
+            <div class="links">
+              <a href="${college.link}" target="_blank">View Details</a>
+              <a href="#">Courses</a>
+              <a href="#">Admissions</a>
+            </div>
+          </div>
+        `;
+        collegeList.appendChild(card);
+      });
+      
+      document.getElementById('college-count').textContent = `Showing ${collegesToDisplay.length} of ${colleges.length} Law Colleges`;
+    }
+
+    function filterColleges() {
+      currentSearch = document.getElementById('search').value.toLowerCase();
+      applyFilters();
+    }
+
+    function filterByType(type) {
+      currentFilter = type;
+      
+      // Update active button
+      document.querySelectorAll('#filters .filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent === type || (type === 'all' && btn.textContent === 'All')) {
+          btn.classList.add('active');
+        }
+      });
+      
+      applyFilters();
+    }
+
+    function applyFilters() {
+      let filteredColleges = colleges.filter(college => {
+        const matchesSearch = college.name.toLowerCase().includes(currentSearch) || 
+                             college.city.toLowerCase().includes(currentSearch);
+        const matchesType = currentFilter === 'all' || college.type === currentFilter;
+        return matchesSearch && matchesType;
+      });
+      
+      displayColleges(filteredColleges);
+    }
+
+    // Initial display
+    displayColleges();
+  </script>
+</body>
+</html>

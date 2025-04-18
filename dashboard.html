@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - My Website</title>
+
+  <link rel="icon" href="img/logo1.jpg" type="image/jpg">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+  <style>
+    /* Navigation Bar - Using Extracted CSS */
+    nav {
+      background: #502900;
+      padding: 15px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%; /* Reduced width to create spacing on sides */
+      max-width: 1400px; /* Added max-width for large screens */ 
+      margin: 0 auto; /* Center the container */
+      padding: 0 30px; /* Added horizontal padding */
+    }
+
+    nav .menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-right: 25px;
+    }
+
+    .nav-logo {
+      height: 60px;
+      width: auto;
+      border-radius: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .logout {
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .logout:hover {
+      color: #f9a826;
+    }
+
+    nav a:hover {
+      color: #f9a826;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #ac8733;
+      min-width: 160px;
+      z-index: 1;
+      border-radius: 5px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+    }
+
+    .dropdown-content a {
+      color: #ffffff;
+      padding: 8px 12px;
+      text-decoration: none;
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Footer - Using Extracted CSS */
+    footer {
+      background: #502900;
+      color: white;
+      padding: 40px 0 20px;
+      width: 100%;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-column {
+      flex: 1;
+      margin: 0 15px;
+    }
+
+    .footer-column h3 {
+      color: white;
+      font-size: 20px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-column ul li a:hover {
+      color: #f9a826;
+    }
+
+    .social-icons {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      margin-right: 15px;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    .footer-column a:hover {
+      color: #f9a826;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+    }
+
+    /* Original Styles From Document 2 */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('img/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+    }
+
+    p {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1500px;
+      text-align: center;
+      margin-bottom: 200px;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 1);
+    }
+
+    .slider-container {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(228, 121, 13, 0.8));
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 1);
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 20px;
+    }
+
+    .slider .post {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.9), rgb(228, 120, 13));
+      border-radius: 10px;
+      margin: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .slider .post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .slider .post img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-right: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .slider .post h2 {
+      font-size: 22px;
+      color: #2C3E50;
+      margin: 0;
+    }
+
+    .slider .post p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .news-item {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    .news-item a {
+      color: #020910;
+      text-decoration: none;
+    }
+
+    .news-item a:hover {
+      color: #f9a826;
+    }
+
+    /* Read More Button */
+    .read-more {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #f9a826;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .read-more:hover {
+      background-color: #e69500;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: transparent;
+      padding: 100px 20px;
+      text-align: center;
+      width: 1500px;
+      border-radius: 15px;
+      margin-bottom: 50px;
+      position: relative;
+      margin: 0;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .hero .cta-button {
+      padding: 12px 24px;
+      background-color: #f9a826;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      transition: background-color 0.3s;
+      position: relative;
+      top: 30px;
+    }
+
+    .hero .cta-button:hover {
+      background-color: #e69500;
+    }
+
+    /* Features */
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .features div {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1.1em;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Services Section */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-card h3 {
+      font-size: 22px;
+      color: #2C3E50;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(228, 121, 13, 1));
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      height: 230px;
+    }
+
+    .testimonial {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(228, 121, 13, 1));
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 10px;
+    }
+
+    .testimonial img {
+      width: 150px;
+      height: 100px;
+      margin-bottom: 15px;
+    }
+
+    .testimonial p {
+      font-size: 20px;
+      color: #555;
+      text-align: top;
+    }
+
+    .testimonial h4 {
+      font-size: 28px;
+      text-align: center;
+      color: #2C3E50;
+    }
+
+    /* Responsive Footer */
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+      }
+      
+      .footer-column {
+        margin-bottom: 30px;
+      }
+      
+      /* Make navbar responsive */
+      nav {
+        flex-direction: column;
+        padding: 10px;
+      }
+      
+      .nav-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 10px;
+        margin-right: 0;
+      }
+      
+      .menu {
+        margin: 10px 0;
+      }
+      
+      .logout {
+        margin-top: 10px;
+      }
+
+      .hero .cta-button {
+        top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar - Replaced with Extracted Code -->
+  <nav>
+    <div class="nav-container">
+        <a href="dashboard.html" class="logo">
+            <img src="img/logo1.jpg" alt="Logo" class="nav-logo">
+        </a>
+
+        <div class="menu">
+            <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            
+            <!-- Dropdown Menu with Icon -->
+            <div class="dropdown">
+                <a href="service.html"><i class="fas fa-gavel"></i> Services</a>
+
+                <div class="dropdown-content">
+                    <a href="createcaseref.html"><i class="fas fa-file-alt"></i> Create Case Reference</a>
+                    <a href="displaycaseref.html"><i class="fas fa-file-alt"></i>  Case Reference</a>
+                    <a href="consitution_of_india.html"><i class="fas fa-book"></i> Constitution of India</a>
+                    <a href="lawerreg.html"><i class="fas fa-user-tie"></i> Register Lawyer</a>
+                    <a href="createblogpge.html"><i class="fas fa-pen-fancy"></i> Blog Creation</a>
+                </div>
+            </div>
+            <a href="http://127.0.0.1:5000"><i class="fas fa-robot"></i> Section Chatbot</a>
+            <a href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+            <a href="contact.html"><i class="fas fa-question-circle"></i> Contact</a>
+        </div>
+
+        <a href="C:/Users/lenovo/Desktop/project/index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to Justice Advisor</h1>
+    <p>Your one-stop destination for legal services and resources.</p>
+    <div class="features">
+      <div>📄 Ask Your Legal Query</div>
+      <div>🎯 Be Specific</div>
+      <div>💯 It's Free!</div>
+    </div>
+    <a href="service.html" class="cta-button">Explore Services</a>
+  </section>
+
+  <div class="container">
+    <!-- Lawyer Quotes Slider -->
+    <div class="slider" id="quotes-slider">
+      <!-- Existing Lawyer Quotes -->
+      <div class="post">
+        <img src="img/1 lawyer.png" alt="Fali Sam Nariman">
+        <div>
+          <h2>Fali Sam Nariman</h2>
+          <p>"The skill of a practising lawyer is not flamboyance or verbosity but hard work."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/2 lawyer.png" alt="Mukul Rohtagi">
+        <div>
+          <h2>Mukul Rohtagi</h2>
+          <p>"A point must be stateable in 5 sentences or it is not worth stating at all."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/3 lawyer.png" alt="Ram Jethmalani">
+        <div>
+          <h2>Ram Jethmalani</h2>
+          <p>"Avoid unnecessary histrionics and be straightforward in your submissions."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/l4 awyer.png" alt="Ashok Desai">
+        <div>
+          <h2>Ashok Desai</h2>
+          <p>"If you over-celebrate the wins, you will have to over-mourn the losses."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/5 lawyer.png" alt="Soli Sorabjee">
+        <div>
+          <h2>Soli Sorabjee</h2>
+          <p>"Freedom of expression is the matrix, the indispensable condition of nearly every other form of freedom."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/lawyer 6.png" alt="Harish Salve">
+        <div>
+          <h2>Harish Salve</h2>
+          <p>"The law is a noble profession, and its practice should be marked by integrity and a commitment to justice."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/7 lawyer.png" alt="Pinky Anand">
+        <div>
+          <h2>Pinky Anand</h2>
+          <p>"Gender equality is not a woman's issue; it is a human right."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/8 lawyer.png" alt="Menaka Guruswamy">
+        <div>
+          <h2>Menaka Guruswamy</h2>
+          <p>"The Constitution is a transformative document; it is meant to transform society."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/9 lawyer.png" alt="Arundhati Katju">
+        <div>
+          <h2>Arundhati Katju</h2>
+          <p>"Justice is not a privilege but a right, and it must be accessible to all."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/10 lawyer.png" alt="Gopal Subramanium">
+        <div>
+          <h2>Gopal Subramanium</h2>
+          <p>"Law is an instrument of social change, and lawyers are its catalysts."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/11 lawyer.png" alt="Indira Jaising">
+        <div>
+          <h2>Indira Jaising</h2>
+          <p>"The law is a powerful tool for social change, and it must be used to empower the marginalized and voiceless."</p>
+        </div>
+      </div>
+      <div class="post">
+        <img src="img/12 lawyer.png" alt="Nani Palkhivala">
+        <div>
+          <h2>Nani Palkhivala</h2>
+          <p>"The greatest drawback of the administration of justice in India today is delay."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+      <div class="service-card">
+        <h3>Chatbot</h3>
+        <p>Get instant legal assistance with our AI-powered chatbot.</p>
+      </div>
+      <div class="service-card">
+        <h3>Case Reference</h3>
+        <p>Access a comprehensive database of legal cases.</p>
+      </div>
+      <div class="service-card">
+        <h3>Constitution of India</h3>
+        <p>Explore the Constitution of India with detailed explanations.</p>
+      </div>
+      <div class="service-card">
+        <h3>Earn</h3>
+        <p>Learn how to earn through legal services and resources.</p>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonial">
+      <h2>What Our Users Say</h2>
+      <div class="slider" id="testimonials-slider">
+        <div class="testimonial">
+          <h4>John Doe</h4>
+          <p>"This website has been a lifesaver for my legal research!"</p>
+          <img src="img/feedback1.jpg" alt="User 1">
+        </div>
+        <div class="testimonial">
+          <img src="img/user2.jpg" alt="User 2">
+          <p>"The chatbot is incredibly helpful and easy to use."</p>
+          <h4>Jane Smith</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Slider -->
+    <div class="slider-container">
+      <div class="slider" id="news-slider">
+        <!-- News items will be dynamically added here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script>
+    // Initialize Lawyer Quotes Slider
+    $(document).ready(function () {
+      $('#quotes-slider').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        arrows: false,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+      });
+
+      // Initialize Testimonials Slider
+      $('#testimonials-slider').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        arrows: false,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+      });
+    });
+
+    // Fetch News and Initialize News Slider
+    const newsContainer = document.getElementById('news-slider');
+    async function fetchNews() {
+      const urls = [
+        "https://www.thehindu.com/news/national/",
+        "https://www.thehindu.com/opinion/",
+        "https://www.thehindu.com/business/",
+        "https://www.thehindu.com/sci-tech/",
+        "https://www.thehindu.com/education/"
+      ];
+
+      const lawKeywords = [
+        "law", "court", "legal", "judgment", "act", "petition", "tribunal",
+        "litigation", "justice", "Bar Council", "lawyer", "High Court", "Supreme Court",
+        "SC", "HC", "verdict", "case", "judge", "hearing", "bail", "sentence", "trial"
+      ];
+
+      let newsList = [];
+
+      for (const url of urls) {
+        try {
+          const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+          const response = await fetch(proxyUrl);
+          if (!response.ok) continue;
+
+          const data = await response.json();
+          const text = data.contents;
+
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(text, 'text/html');
+          const articles = doc.querySelectorAll('h2, h3');
+
+          for (const article of articles) {
+            const titleTag = article.querySelector('a');
+            if (titleTag) {
+              const title = titleTag.textContent.trim();
+              const link = titleTag.href;
+
+              if (newsList.length < 4 && lawKeywords.some(keyword => title.toLowerCase().includes(keyword.toLowerCase()))) {
+                newsList.push({ title, link });
+              } else if (newsList.length >= 4 && newsList.length < 20) {
+                newsList.push({ title, link });
+              }
+
+              if (newsList.length >= 20) break;
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching news:', error);
+        }
+      }
+
+      return newsList;
+    }
+
+    function updateNewsDisplay(news) {
+      newsContainer.innerHTML = '';
+
+      if (news.length === 0) {
+        newsContainer.innerHTML = '<p>No news found!</p>';
+        return;
+      }
+
+      news.forEach((item) => {
+        const newsItem = document.createElement('div');
+        newsItem.className = 'post';
+        newsItem.innerHTML = `
+          <h2>${item.title}</h2>
+          <a href="${item.link}" target="_blank" class="read-more">Read More</a>
+        `;
+        newsContainer.appendChild(newsItem);
+      });
+
+      // Initialize News Slider
+      $('#news-slider').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        arrows: false,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+      });
+    }
+
+    // Initial fetch on page load
+    window.onload = async () => {
+      const news = await fetchNews();
+      updateNewsDisplay(news);
+    };
+  </script>
+
+  <!-- Footer - Replaced with Extracted Code -->
+  <footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>Justice Advisor</h3>
+            <p>Your comprehensive legal guide center providing high-quality materials for lawyers.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="dashboard.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="http://127.0.0.1:5000"> Section Chatbot </a></li>
+                <li><a href="chatbot.html">  Chatbot </a></li>
+                <li><a href="createcaseref.html">  Create Case Reference </a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Other Resources</h3>
+            <ul>
+                <li><a href="constitution.html">Constitution of India</a></li>
+                <li><a href="displaycaseref.html">Case Reference</a></li>
+                <li><a href="createblogpge.html"> Blog Creation</a></li>
+                <li><a href="lawerreg.html">Lawyer Registration </a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="help.html">Help Center</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>&copy; 2025 Legal Studies Repository. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

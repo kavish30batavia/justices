@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
+    <title>Create Case Reference</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #2c3e50;
+            background: url('img/background.jpg') no-repeat center center/cover;
+        }
+        
+        .navbar {
+            background-color: #4a2c02;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #f39c12;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: 90%;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #f39c12;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4a6fa5;
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+        }
+        
+        .case-type {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+        
+        .case-type-option input[type="checkbox"] {
+            display: none;
+        }
+        
+        .case-type-option label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: #f8f9fa;
+            padding: 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .case-type-option input:checked + label {
+            background-color: #e3f2fd;
+            border-color: #4a6fa5;
+            color: #4a6fa5;
+        }
+        
+        .file-upload {
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            margin-top: 0.5rem;
+        }
+        
+        .file-upload:hover {
+            border-color: #4a6fa5;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #4a2c02;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #4a2c02;
+        }
+        
+        @media (max-width: 600px) {
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .case-type {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+        footer {
+    background:#4a2c02;
+    color: white;
+    text-align: center;
+    padding: 40px 20px 10px;
+    font-size: 14px;
+}
+
+/* Footer Container */
+.footer-container {
+    background:#4a2c02 ;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Footer Sections */
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px;
+    text-align: left;
+}
+
+/* Section Titles */
+.footer-section h3 {
+    color: #f9a826;
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #f9a826;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+/* Footer Links */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin: 10px 0;
+}
+
+.footer-links ul li a {
+    color: #f9a826;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Contact Section */
+.footer-contact p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.footer-contact a {
+    color: #f9a826;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-contact a:hover {
+    color: white;
+}
+
+/* Social Media Icons */
+.social-icons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}
+
+.social-icons img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer Bottom */
+
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        min-width: unset;
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+/* Judiciary Links Section */
+.footer-courts {
+    text-align: left;
+}
+
+.footer-courts ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-courts ul li {
+    margin: 10px 0;
+}
+
+.footer-courts ul li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #f9a826;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer-courts ul li a:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Icons for Court Links */
+.footer-courts ul li a::before {
+
+    font-size: 18px;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#"><i class="fas fa-briefcase"></i> Services</a>
+            <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h2>Create Case Reference</h2>
+        
+        <form>
+            <div class="form-group">
+                <label for="title">Case Title</label>
+                <input type="text" id="title" placeholder="Enter case title">
+            </div>
+            
+            <div class="form-group">
+                <label for="subtitle">Case Description  (not more then 10 line)</label>
+                <input type="text" id="subtitle" placeholder="Brief description of the case">
+            </div>
+            
+            <div class="form-group">
+                <label for="advName">Advocate Name</label>
+                <input type="text" id="advName" placeholder="Enter advocate's name">
+            </div>
+            
+            <div class="form-group">
+                <label>Type of Case</label>
+                <div class="case-type">
+                    <div class="case-type-option">
+                        <input type="checkbox" id="murder" name="caseType" value="murder">
+                        <label for="murder"><i class="fas fa-skull"></i> Murder</label>
+                    </div>
+                    <div class="case-type-option">
+                        <input type="checkbox" id="theft" name="caseType" value="theft">
+                        <label for="theft"><i class="fas fa-gem"></i> Theft</label>
+                    </div>
+                    <div class="case-type-option">
+                        <input type="checkbox" id="fraud" name="caseType" value="fraud">
+                        <label for="fraud"><i class="fas fa-money-bill-wave"></i> Fraud</label>
+                    </div>
+                    <div class="case-type-option">
+                        <input type="checkbox" id="rape" name="caseType" value="rape">
+                        <label for="rape"><i class="fas fa-exclamation-triangle"></i> Rape</label>
+                    </div>
+                    <div class="case-type-option">
+                        <input type="checkbox" id="domestic-violence" name="caseType" value="domestic-violence">
+                        <label for="domestic-violence"><i class="fas fa-home"></i> Domestic Violence</label>
+                    </div>
+                    <div class="case-type-option">
+                        <input type="checkbox" id="cyber-crime" name="caseType" value="cyber-crime">
+                        <label for="cyber-crime"><i class="fas fa-laptop-code"></i> Cyber Crime</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Upload Case Documents</label>
+                <div class="file-upload">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Click to upload documents</p>
+                </div>
+                <input type="file" id="fileUpload" accept=".pdf" style="display: none;">
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Submit Case
+            </button>
+        </form>
+    </div>
+    <footer>
+        <nav>
+            <div class="footer-container">
+                <div class="footer-section footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">🏠 Home</a></li>
+                        <li><a href="about.html">ℹ️ About</a></li>
+                        <li><a href="service.html">💼 Services</a></li>
+                        <li><a href="chatbot.html">🤖 Chatbot</a></li>
+                        <li><a href="http://127.0.0.1:5000">📌 Section Chatbot</a></li>
+                        <li><a href="case_reference.html">📜 Case Reference</a></li>
+                        <li><a href="consitution_of_india.html">📖 Constitution of India</a></li>
+                        <li><a href="help.html">❓ Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-courts">
+                    <h3>Judiciary Links</h3>
+                    <ul>
+                        <li><a href="https://www.sci.gov.in/" target="_blank">⚖️ Supreme Court of India</a></li>
+                        <li><a href="https://bombayhighcourt.nic.in/" target="_blank">🏛️ High Courts of India</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contact Us</h3>
+                    <p>📧 Email: <a href="mailto:finalyearprojectlaw@gmail.com">finalyearprojectlaw@gmail.com</a></p>
+                    <p>📞 Phone: +91 98765 43210</p>
+                    <p>📍 Address: Mumbai, India</p>
+                </div>
+        
+                <div class="footer-section footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/" target="_blank">
+                            <img src="img/facebook.png" alt="Facebook">
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank">
+                            <img src="img/instagram.jpeg" alt="Instagram">
+                        </a>
+                        <a href="https://www.linkedin.com/" target="_blank">
+                            <img src="img/linkedin.png" alt="LinkedIn">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="footer-bottom">
+                <p>&copy; 2025 Constitution of India | All Rights Reserved</p>
+            </div>
+    </nav>
+    </footer>
+    <script>
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyCXBidb_LLMcZIFgydtBmIh0roiNZxZQJ8",
+        authDomain: "lawchatbot-83152.firebaseapp.com",
+        projectId: "lawchatbot-83152",
+        storageBucket: "gs://lawchatbot-83152.firebasestorage.app",
+        messagingSenderId: "771007178800",
+        appId: "1:771007178800:web:49d8faf68c838f1b4c25f5",
+        measurementId: "G-W50N0CDVWB"
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+    
+    // File upload click event
+    document.querySelector('.file-upload').addEventListener('click', function () {
+        document.getElementById('fileUpload').click();
+    });
+    
+    // Form submission event
+    document.querySelector('form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+    
+        const title = document.getElementById('title').value.trim();
+        const subtitle = document.getElementById('subtitle').value.trim();
+        const advName = document.getElementById('advName').value.trim();
+        const fileInput = document.getElementById('fileUpload');
+    
+        // Get selected case types
+        const caseTypes = [];
+        document.querySelectorAll('.case-type-option input:checked').forEach(checkbox => {
+            caseTypes.push(checkbox.value);
+        });
+    
+        if (!title || !subtitle || !advName || caseTypes.length === 0) {
+            alert('Please fill in all required fields and select at least one case type.');
+            return;
+        }
+    
+        let fileURL = null;
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+    
+            // Validate file type
+            if (file.type !== "application/pdf") {
+                alert("Only PDF files are allowed.");
+                return;
+            }
+    
+            // Upload file to Firebase Storage
+            const metadata = {
+                contentType: 'application/pdf'
+            };
+            const storageRef = storage.ref(`case-documents/${encodeURIComponent(file.name)}`);
+
+            
+            try {
+                const snapshot = await storageRef.put(file, metadata);
+                fileURL = await snapshot.ref.getDownloadURL();
+                console.log("File uploaded successfully:", fileURL);
+            } catch (error) {
+                console.error("File upload failed:", error);
+                alert("File upload failed. Please check the console for details.");
+                return;
+            }
+        }
+    
+        // Save case details in Firestore
+        const caseData = {
+            title,
+            description: subtitle,
+            advocateName: advName,
+            caseType: caseTypes,
+            documentURL: fileURL,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+    
+        db.collection('cases').add(caseData)
+    .then((docRef) => {
+        console.log("Case successfully created with ID:", docRef.id);
+        alert('Case successfully created!');
+        document.querySelector('form').reset();
+        window.location.href = 'displaycaseref.html';
+    })
+    .catch((error) => {
+        console.error("Error adding document:", error);
+        alert('Error creating case. Please check the console.');
+    });
+
+    });    
+    </script>
+    </script>
+</body>
+</html>

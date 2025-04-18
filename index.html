@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justice Advisor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .right-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            background-color: #333;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #444;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .date {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .date span {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        h1 {
+            font-size: 72px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+
+        .btn {
+            background-color: #222;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 99px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+
+        .btn svg {
+            margin-left: 10px;
+        }
+
+        .description {
+            max-width: 800px;
+            margin: 0 auto 80px;
+            line-height: 1.6;
+        }
+
+        .description p {
+            margin-bottom: 30px;
+        }
+
+        .description a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 40px;
+        }
+
+        .limitations {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .limitations ul {
+            list-style-type: none;
+        }
+
+        .limitations li {
+            margin-bottom: 24px;
+            position: relative;
+            padding-left: 24px;
+            line-height: 1.6;
+        }
+
+        .limitations li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Samples section */
+        .samples {
+            max-width: 900px;
+            margin: 80px auto;
+        }
+
+        .samples-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .sample-item {
+            background-color: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .sample-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .sample-image {
+            height: 200px;
+            background-color: #222;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sample-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sample-content {
+            padding: 20px;
+        }
+
+        .sample-content h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .sample-content p {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Enhanced sun rays */
+        .rays-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .ray {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0.05;
+        }
+
+        .ray1 {
+            top: 30%;
+            right: -50%;
+            transform-origin: center;
+            animation: rotate 180s infinite linear;
+        }
+
+        .ray2 {
+            bottom: -50%;
+            right: 20%;
+            transform-origin: center;
+            animation: rotate 120s infinite linear reverse;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Single huge ray of light */
+        .ray-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .single-ray {
+            position: absolute;
+            background: linear-gradient(to left, rgba(255, 223, 186, 0.5), transparent);
+            height: 100vh;
+            width: 0;
+            top: 0;
+            right: 0;
+            transform-origin: right;
+        }
+
+        #bouncing-login {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 18px 40px;
+            background-color: #fff;
+            color: #000;
+            font-weight: bold;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
+            z-index: 100;
+            animation: none;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-30px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+        }
+
+        .full-screen-light {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0);
+            z-index: 50;
+            pointer-events: none;
+            transition: background-color 1.5s;
+        }
+
+        .spacer {
+            height: 150vh;
+        }
+        
+        .login-text {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+            z-index: 90;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 42px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .samples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="rays-background">
+        <div class="ray ray1"></div>
+        <div class="ray ray2"></div>
+    </div>
+    
+    <div class="ray-container" id="ray-container">
+        <div class="single-ray" id="single-ray"></div>
+    </div>
+    <div class="full-screen-light" id="full-screen-light"></div>
+    <button id="bouncing-login" onclick="window.location.href='login.html'">Log in</button>
+    <div class="login-text" id="login-text">Log in to know it</div>
+
+    <header>
+        <a href="login.html" class="logo">Justice Advisor</a>
+        <div class="right-nav">
+            <div class="search-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 10.5L14 14M12 7C12 9.76142 9.76142 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2C9.76142 2 12 4.23858 12 7Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <a href="login.html" class="login-btn">Log in</a>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="date">
+            April 11, 2025 <span>Product</span>
+        </div>
+
+        <h1>Introducing Justice Advisor</h1>
+
+        <div class="buttons">
+            <a href="login.html" class="btn">
+                Try Justice Advisor
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12L10 8L6 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <a href="signup.html" class="btn">
+                Create Account on Justice Advisor 
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12L10 8L6 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            
+        </div>
+
+        <div class="description">
+            <p>We've trained a model called Justice Advisor which interacts in a conversational way. The dialogue format makes it possible for Justice Advisor to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests.</p>
+
+            <p>Justice Advisor is a sibling model to InstructLegal, which is trained to follow an instruction in a prompt and provide a detailed response.</p>
+
+            <p>We are excited to introduce Justice Advisor to get users' feedback and learn about its strengths and weaknesses. During the research preview, usage of Justice Advisor is free. Try it now at justiceadvisor.com.</p>
+        </div>
+
+        <!-- New Samples Section -->
+        <h2>Samples</h2>
+        <div class="samples">
+            <div class="samples-grid">
+                <div class="sample-item">
+                    <div class="sample-image">
+                        <img src="/api/placeholder/400/320" alt="Legal Document Analysis" />
+                    </div>
+                    <div class="sample-content">
+                        <h3>Legal Document Analysis</h3>
+                        <p>Justice Advisor can review and analyze complex legal documents, providing insights and summaries in plain language.</p>
+                    </div>
+                </div>
+                <div class="sample-item">
+                    <div class="sample-image">
+                        <img src="/api/placeholder/400/320" alt="Case Research" />
+                    </div>
+                    <div class="sample-content">
+                        <h3>Case Research</h3>
+                        <p>Find relevant precedents and legal frameworks for your specific situation through conversational queries.</p>
+                    </div>
+                </div>
+                <div class="sample-item">
+                    <div class="sample-image">
+                        <img src="/api/placeholder/400/320" alt="Contract Review" />
+                    </div>
+                    <div class="sample-content">
+                        <h3>Contract Review</h3>
+                        <p>Get assistance understanding key terms and obligations in various types of contracts and agreements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Limitations</h2>
+
+        <div class="limitations">
+            <ul>
+                <li>Justice Advisor sometimes writes plausible-sounding but incorrect or nonsensical answers. Fixing this issue is challenging, as: (1) during RL training, there's currently no source of truth; (2) training the model to be more cautious causes it to decline questions that it can answer correctly; and (3) supervised training misleads the model because the ideal answer depends on what the model knows, rather than what the human demonstrator knows.</li>
+                <li>Justice Advisor is sensitive to tweaks to the input phrasing or attempting the same prompt multiple times. For example, given one phrasing of a question, the model can claim to not know the answer, but given a slight rephrase, can answer correctly.</li>
+                <li>The model is often excessively verbose and overuses certain phrases, such as restating that it's a language model trained by our company. These issues arise from biases in the training data (trainers prefer longer answers that look more comprehensive) and well-known over-optimization issues.</li>
+            </ul>
+        </div>
+
+        <div class="spacer"></div>
+    </div>
+
+    <script>
+        // Get elements
+        const singleRay = document.getElementById('single-ray');
+        const fullScreenLight = document.getElementById('full-screen-light');
+        const bouncingLogin = document.getElementById('bouncing-login');
+        const loginText = document.getElementById('login-text');
+        
+        // Set initial state for the ray
+        singleRay.style.width = '100px';
+        
+        // Control animations based on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Calculate scroll percentage
+            const scrollPercentage = scrollPosition / (documentHeight - windowHeight);
+            
+            // Expand ray width as user scrolls
+            const rayWidth = 100 + (scrollPercentage * 1500); // Increase width up to 1600px
+            singleRay.style.width = `${rayWidth}px`;
+            
+            // Increase ray opacity as user scrolls
+            const rayOpacity = 0.3 + (scrollPercentage * 0.7);
+            singleRay.style.background = `linear-gradient(to left, rgba(255, 223, 186, ${rayOpacity}), transparent)`;
+            
+            // When reaching bottom part of page
+            if (scrollPercentage > 0.6) {
+                // Calculate fade intensity for the white screen effect
+                const fadeIntensity = (scrollPercentage - 0.6) / 0.4;
+                fullScreenLight.style.backgroundColor = `rgba(255, 255, 255, ${Math.min(fadeIntensity, 1)})`;
+                
+                // Show bouncing login button when near bottom
+                if (scrollPercentage > 0.75) {
+                    // Center the button vertically when at the very bottom
+                    if (scrollPercentage > 0.95) {
+                        bouncingLogin.style.bottom = "50%";
+                        bouncingLogin.style.transform = "translate(-50%, 50%)";
+                        loginText.style.bottom = "40%";
+                    } else {
+                        bouncingLogin.style.bottom = "100px";
+                        bouncingLogin.style.transform = "translateX(-50%)";
+                        loginText.style.bottom = "20px";
+                    }
+                    
+                    bouncingLogin.style.animation = "bounce 2s ease infinite";
+                    loginText.style.opacity = "1";
+                } else {
+                    bouncingLogin.style.bottom = "-100px";
+                    bouncingLogin.style.animation = "none";
+                    loginText.style.opacity = "0";
+                }
+            } else {
+                fullScreenLight.style.backgroundColor = "rgba(255, 255, 255, 0)";
+                bouncingLogin.style.bottom = "-100px";
+                loginText.style.opacity = "0";
+            }
+        });
+    </script>
+</body>
+</html>

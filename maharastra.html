@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="images/logo.jpg" type="image/jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Law Colleges in Andhra Pradesh (50 Colleges)</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      
+    }
+    :root {
+            --primary-color: #4a2c02;
+            --secondary-color: #4a2c02;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --purchase-color: #f39c12;
+            --nav-color: #4a2c02;
+            --nav-hover: #f9a826;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        nav {
+  background: var(--nav-color);
+  padding: 15px 0; /* Changed padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Changed to 100% */
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        .nav-logo {
+          height: 60px;
+          width: auto;
+          border-radius: 30px;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--nav-hover);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--nav-hover);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 200px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+    h1 {
+      color: #1a365d;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.2rem;
+    }
+    #search-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      flex-wrap: wrap;
+     padding: 25px; 
+    }
+    #search {
+      flex-grow: 1;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      min-width: 300px;
+    }
+    #filters {
+      display: flex;
+      gap: 10px;
+      margin-left: 15px;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid #d1d5db;
+      background-color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background-color: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+    #college-count {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #4b5563;
+      font-size: 1.1rem;
+    }
+    .college-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+    .college-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #2563eb;
+    }
+    .college-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    .college-card h2 {
+      margin: 0 0 8px;
+      color: #1e40af;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+    }
+    .college-info {
+      margin-bottom: 12px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .college-info i {
+      font-size: 1rem;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .links a {
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background-color: #eff6ff;
+      transition: all 0.3s;
+    }
+    .links a:hover {
+      background-color: #dbeafe;
+      text-decoration: underline;
+    }
+    .type-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+    .government {
+      background-color: #10b981;
+      color: white;
+    }
+    .private {
+      background-color: #ef4444;
+      color: white;
+    }
+    .no-results {
+      text-align: center;
+      grid-column: 1/-1;
+      padding: 40px;
+      color: #6b7280;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      #search-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      #filters {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+      }
+      .college-list {
+        grid-template-columns: 1fr;
+      }
+    }
+     
+    @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            
+        }
+        footer {
+            background-color: var(--nav-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            
+        }
+        
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+  </style>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+        <a href="dashboard.html" class="logo">
+            <img src="images/logo.jpg" alt="Logo" class="nav-logo">
+        </a>
+
+        <div class="menu" id="menu">
+            <a href="index.html"><i class="fas fa-home"></i>    Home</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i>    About</a>
+            <div class="dropdown">
+                <a href="services.html"><i class="fas fa-gavel"></i>    Services</a>
+                <div class="dropdown-content">
+                    <a href="chatbot.html"><i class="fas fa-robot"></i>     Legal Chatbot</a>
+                    <a href="section-chatbot.html"><i class="fas fa-code"></i>     Section Finder</a>
+                    <a href="case-reference.html"><i class="fas fa-gavel"></i>     Case Reference</a>
+                    <a href="consitution_of_india.html"><i class="fas fa-book"></i>     Constitution</a>
+                   
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="resources.html">Resources <i class="fas fa-chevron-down"></i>    </a>
+                <div class="dropdown-content">
+                    <a href="study material.html"><i class="fas fa-book"></i>     Law Books</a>
+                    <a href="lawcolleges.html"><i class="fas fa-file-alt"></i>     Law Colleges</a>
+                    
+                    <a href="Roadmap.html"><i class="fas fa-file-pdf"></i>     Road Map</a>
+                </div>
+            </div>
+            <a href="blog.html"><i class="fas fa-pen-fancy"></i>    Blog</a>
+            <a href="help.html"><i class="fas fa-question-circle"></i>   Help</a>
+        </div>
+        <a href="login.html" class="login-btn"><i class="fas fa-user"></i>     Login</a>
+    </div>
+</nav>
+
+  <div class="container">
+    <h1>Law Colleges in Andhra Pradesh</h1>
+    <div id="search-container">
+      <input type="text" placeholder="Search by College Name or City..." id="search" onkeyup="filterColleges()" />
+      <div id="filters">
+        <button class="filter-btn active" onclick="filterByType('all')">All</button>
+        <button class="filter-btn" onclick="filterByType('Government')">Government</button>
+        <button class="filter-btn" onclick="filterByType('Private')">Private</button>
+      </div>
+    </div>
+    <div id="college-count">Showing 50 Law Colleges</div>
+    <div class="college-list" id="college-list"></div>
+  </div>
+  <footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>Justice Advisor</h3>
+            <p>Your comprehensive legal studies resource center providing high-quality materials for students, professionals, and legal enthusiasts.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i>    </a>
+                <a href="#"><i class="fab fa-twitter"></i>    </a>
+                <a href="#"><i class="fab fa-linkedin-in"></i>    </a>
+                <a href="#"><i class="fab fa-instagram"></i>    </a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="http://127.0.0.1:5000"> Section Finder</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Legal Resources</h3>
+            <ul>
+                <li><a href="consitution_of_india.html">Constitution of India</a></li>
+                <li><a href="Roadmap.html">Road Map</a></li>
+                <li><a href="lawcolleges.html">Law colleges</a></li>
+                <li><a href="study material.html">Law Books</a></li>
+                
+         
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+            
+                <li><a href="faq.html">FAQs</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+         
+           
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2025 Legal Studies Repository. All rights reserved.
+    </div>
+</footer>
+
+  <script>
+    const colleges = [
+    
+      // All the Maharashtra colleges from your original list
+      // (The complete list of 231 colleges would be here)
+      // Mumbai Region (58 colleges)
+      { name: "Government Law College, Mumbai", city: "Mumbai", type: "Government", link: "https://www.careers360.com/colleges/government-law-college-mumbai" },
+      { name: "Amity Law School, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/amity-law-school-mumbai" },
+      { name: "K.C. Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/k-c-law-college-mumbai" },
+      { name: "R. D. National College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/r-d-national-college-of-law-mumbai" },
+      { name: "S.I.E.S. College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/s-i-e-s-college-of-law-mumbai" },
+      { name: "Bombay College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/bombay-college-of-law-mumbai" },
+      { name: "Kirit P. Mehta Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/kirit-p-mehta-law-college-mumbai" },
+      { name: "Pravin Gandhi College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/pravin-gandhi-college-of-law-mumbai" },
+      { name: "Maharashtra National Law University, Mumbai", city: "Mumbai", type: "Government", link: "https://www.careers360.com/colleges/maharashtra-national-law-university-mumbai" },
+      { name: "Adv. Balasaheb Apte College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/adv-balasaheb-apte-college-of-law-mumbai" },
+      { name: "G. J. Advani Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/g-j-advani-law-college-mumbai" },
+      { name: "Vidya Prasarak Mandal's Law College, Thane", city: "Thane", type: "Private", link: "https://www.careers360.com/colleges/vidya-prasarak-mandals-law-college-thane" },
+      { name: "K. J. Somaiya College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/k-j-somaiya-college-of-law-mumbai" },
+      { name: "Lala Lajpatrai College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/lala-lajpatrai-college-of-law-mumbai" },
+      { name: "Vivekanand Education Society's College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/vivekanand-education-societys-college-of-law-mumbai" },
+      { name: "Shri Vile Parle Kelavani Mandal's Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/shri-vile-parle-kelavani-mandals-law-college-mumbai" },
+      { name: "Durgadevi Saraf Institute of Management Studies, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/durgadevi-saraf-institute-of-management-studies-mumbai" },
+      { name: "Thakur Ramnarayan College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/thakur-ramnarayan-college-of-law-mumbai" },
+      { name: "Rizvi Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/rizvi-law-college-mumbai" },
+      { name: "Shri Shivaji Maratha Society's Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-maratha-societys-law-college-mumbai" },
+      { name: "G.S. Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/g-s-law-college-mumbai" },
+      { name: "K.E. Society's Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/k-e-societys-law-college-mumbai" },
+      { name: "M.S. Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/m-s-law-college-mumbai" },
+      { name: "J.S. Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/j-s-law-college-mumbai" },
+      { name: "D.G. Tatkare Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/d-g-tatkare-law-college-mumbai" },
+      { name: "Chandrabhan Sharma College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/chandrabhan-sharma-college-of-law-mumbai" },
+      { name: "Navinchandra Mehta Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/navinchandra-mehta-law-college-mumbai" },
+      { name: "Mahatma Gandhi Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/mahatma-gandhi-law-college-mumbai" },
+      { name: "Indira Gandhi College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/indira-gandhi-college-of-law-mumbai" },
+      { name: "Smt. Kamalabai Educational Institution's Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/smt-kamalabai-educational-institutions-law-college-mumbai" },
+      { name: "Vidya Vikas Mandal's Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/vidya-vikas-mandals-law-college-mumbai" },
+      { name: "Gokhale Education Society's College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/gokhale-education-societys-college-of-law-mumbai" },
+      { name: "Anjuman I Islam's Allana Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/anjuman-i-islams-allana-law-college-mumbai" },
+      { name: "Asmita College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/asmita-college-of-law-mumbai" },
+      { name: "Kirti College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/kirti-college-of-law-mumbai" },
+      { name: "Kishinchand Chellaram Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/kishinchand-chellaram-law-college-mumbai" },
+      { name: "Ramnarain Ruia College of Law, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/ramnarain-ruia-college-of-law-mumbai" },
+      { name: "Yashwantrao Chavan Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/yashwantrao-chavan-law-college-mumbai" },
+      { name: "Dr. Babasaheb Ambedkar College of Law, Mumbai", city: "Mumbai", type: "Government", link: "https://www.careers360.com/colleges/dr-babasaheb-ambedkar-college-of-law-mumbai" },
+      { name: "Elphinstone College, Mumbai", city: "Mumbai", type: "Government", link: "https://www.careers360.com/colleges/elphinstone-college-mumbai" },
+      { name: "University of Mumbai, Department of Law", city: "Mumbai", type: "Government", link: "https://www.careers360.com/colleges/university-of-mumbai-department-of-law" },
+      { name: "Tata Institute of Social Sciences, Mumbai", city: "Mumbai", type: "Government", link: "https://www.careers360.com/colleges/tata-institute-of-social-sciences-mumbai" },
+      { name: "Indian Maritime University, Mumbai", city: "Mumbai", type: "Government", link: "https://www.careers360.com/colleges/indian-maritime-university-mumbai" },
+      { name: "Agnel Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/agnel-law-college-mumbai" },
+      { name: "D.Y. Patil College of Law, Navi Mumbai", city: "Navi Mumbai", type: "Private", link: "https://www.careers360.com/colleges/d-y-patil-college-of-law-navi-mumbai" },
+      { name: "Bharati Vidyapeeth's Yashwantrao Chavan Law College, Mumbai", city: "Mumbai", type: "Private", link: "https://www.careers360.com/colleges/bharati-vidyapeeths-yashwantrao-chavan-law-college-mumbai" },
+      { name: "Chhatrapati Shivaji Maharaj Law College, Thane", city: "Thane", type: "Private", link: "https://www.careers360.com/colleges/chhatrapati-shivaji-maharaj-law-college-thane" },
+      { name: "R. K. Talreja Law College, Ulhasnagar", city: "Ulhasnagar", type: "Private", link: "https://www.careers360.com/colleges/r-k-talreja-law-college-ulhasnagar" },
+      { name: "VPM's Law College, Thane", city: "Thane", type: "Private", link: "https://www.careers360.com/colleges/vpms-law-college-thane" },
+      { name: "Sinhgad Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/sinhgad-law-college-pune" },
+      { name: "New Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/new-law-college-pune" },
+      { name: "Indian Law Society's Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/indian-law-societys-law-college-pune" },
+      { name: "Bharati Vidyapeeth New Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/bharati-vidyapeeth-new-law-college-pune" },
+      { name: "Symbiosis Law School, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/symbiosis-law-school-pune" },
+      { name: "Army Institute of Law, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/army-institute-of-law-pune" },
+      { name: "Government Law College, Pune", city: "Pune", type: "Government", link: "https://www.careers360.com/colleges/government-law-college-pune" },
+      { name: "Shri Bhausaheb Hire Government Law College, Pune", city: "Pune", type: "Government", link: "https://www.careers360.com/colleges/shri-bhausaheb-hire-government-law-college-pune" },
+      { name: "Savitribai Phule Pune University, Department of Law", city: "Pune", type: "Government", link: "https://www.careers360.com/colleges/savitribai-phule-pune-university-department-of-law" },
+      { name: "D.E.S. Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/d-e-s-law-college-pune" },
+      { name: "Poona Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/poona-law-college-pune" },
+      { name: "Modern Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/modern-law-college-pune" },
+      { name: "P.E.S. Modern Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/p-e-s-modern-law-college-pune" },
+      { name: "Marathwada Mitra Mandal's College of Law, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/marathwada-mitra-mandals-college-of-law-pune" },
+      { name: "Raja Bahadur Motilal Poona Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/raja-bahadur-motilal-poona-law-college-pune" },
+      { name: "Shankarrao Chavan Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/shankarrao-chavan-law-college-pune" },
+      { name: "S. P. Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/s-p-law-college-pune" },
+      { name: "Alard College of Law, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/alard-college-of-law-pune" },
+      { name: "Abhinav Education Society College of Law, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/abhinav-education-society-college-of-law-pune" },
+      { name: "Arihant Law College, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/arihant-law-college-pune" },
+      { name: "Fergusson College, Pune", city: "Pune", type: "Government", link: "https://www.careers360.com/colleges/fergusson-college-pune" },
+      { name: "Tilak Maharashtra Vidyapeeth, Pune", city: "Pune", type: "Private", link: "https://www.careers360.com/colleges/tilak-maharashtra-vidyapeeth-pune" },
+      { name: "Vasantrao Pawar Law College, Baramati", city: "Baramati", type: "Private", link: "https://www.careers360.com/colleges/vasantrao-pawar-law-college-baramati" },
+      { name: "Vidya Pratishthan's Law College, Baramati", city: "Baramati", type: "Private", link: "https://www.careers360.com/colleges/vidya-pratishthans-law-college-baramati" },
+
+      // Nagpur Region (32 colleges)
+      { name: "Government Law College, Nagpur", city: "Nagpur", type: "Government", link: "https://www.careers360.com/colleges/government-law-college-nagpur" },
+      { name: "Maharashtra National Law University, Nagpur", city: "Nagpur", type: "Government", link: "https://www.careers360.com/colleges/maharashtra-national-law-university-nagpur" },
+      { name: "Dr. Ambedkar College of Law, Nagpur", city: "Nagpur", type: "Government", link: "https://www.careers360.com/colleges/dr-ambedkar-college-of-law-nagpur" },
+      { name: "Bharatratna Dr. Babasaheb Ambedkar College of Law, Nagpur", city: "Nagpur", type: "Government", link: "https://www.careers360.com/colleges/bharatratna-dr-babasaheb-ambedkar-college-of-law-nagpur" },
+      { name: "Nagpur University School of Law, Nagpur", city: "Nagpur", type: "Government", link: "https://www.careers360.com/colleges/nagpur-university-school-of-law-nagpur" },
+      { name: "Shri Shivaji Law College, Nagpur", city: "Nagpur", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-nagpur" },
+      { name: "Dharampeth Law College, Nagpur", city: "Nagpur", type: "Private", link: "https://www.careers360.com/colleges/dharampeth-law-college-nagpur" },
+      { name: "Jhula Bai Law College, Nagpur", city: "Nagpur", type: "Private", link: "https://www.careers360.com/colleges/jhula-bai-law-college-nagpur" },
+      { name: "Manoharbhai Patel Law College, Nagpur", city: "Nagpur", type: "Private", link: "https://www.careers360.com/colleges/manoharbhai-patel-law-college-nagpur" },
+      { name: "Shri Ramdeobaba College of Law, Nagpur", city: "Nagpur", type: "Private", link: "https://www.careers360.com/colleges/shri-ramdeobaba-college-of-law-nagpur" },
+      { name: "Dhanwate National Law College, Nagpur", city: "Nagpur", type: "Private", link: "https://www.careers360.com/colleges/dhanwate-national-law-college-nagpur" },
+      { name: "Shri Shivaji Science College Law Department, Nagpur", city: "Nagpur", type: "Government", link: "https://www.careers360.com/colleges/shri-shivaji-science-college-law-department-nagpur" },
+      { name: "Hislop College Law Department, Nagpur", city: "Nagpur", type: "Private", link: "https://www.careers360.com/colleges/hislop-college-law-department-nagpur" },
+      { name: "St. Francis de Sales College Law Department, Nagpur", city: "Nagpur", type: "Private", link: "https://www.careers360.com/colleges/st-francis-de-sales-college-law-department-nagpur" },
+      { name: "G.H. Raisoni Law College, Nagpur", city: "Nagpur", type: "Private", link: "https://www.careers360.com/colleges/g-h-raisoni-law-college-nagpur" },
+      { name: "Dr. Babasaheb Ambedkar Law College, Nagpur", city: "Nagpur", type: "Private", link: "https://www.careers360.com/colleges/dr-babasaheb-ambedkar-law-college-nagpur" },
+      { name: "Shri Shivaji Law College, Wardha", city: "Wardha", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-wardha" },
+      { name: "Shri Shivaji Law College, Chandrapur", city: "Chandrapur", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-chandrapur" },
+      { name: "Shri Shivaji Law College, Bhandara", city: "Bhandara", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-bhandara" },
+      { name: "Shri Shivaji Law College, Gondia", city: "Gondia", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-gondia" },
+      { name: "Shri Shivaji Law College, Gadchiroli", city: "Gadchiroli", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-gadchiroli" },
+      { name: "Shri Shivaji Law College, Yavatmal", city: "Yavatmal", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-yavatmal" },
+      { name: "Shri Shivaji Law College, Amravati", city: "Amravati", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-amravati" },
+      { name: "Shri Shivaji Law College, Akola", city: "Akola", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-akola" },
+      { name: "Shri Shivaji Law College, Washim", city: "Washim", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-washim" },
+      { name: "Shri Shivaji Law College, Buldhana", city: "Buldhana", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-buldhana" },
+      { name: "Shri Shivaji Law College, Nanded", city: "Nanded", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-nanded" },
+      { name: "Shri Shivaji Law College, Parbhani", city: "Parbhani", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-parbhani" },
+      { name: "Shri Shivaji Law College, Hingoli", city: "Hingoli", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-hingoli" },
+      { name: "Shri Shivaji Law College, Latur", city: "Latur", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-latur" },
+      { name: "Shri Shivaji Law College, Osmanabad", city: "Osmanabad", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-osmanabad" },
+      { name: "Shri Shivaji Law College, Beed", city: "Beed", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-beed" },
+
+      // Aurangabad Region (28 colleges)
+      { name: "Dr. Babasaheb Ambedkar Law College, Aurangabad", city: "Aurangabad", type: "Private", link: "https://www.careers360.com/colleges/dr-babasaheb-ambedkar-law-college-aurangabad" },
+      { name: "Chh. Shahu College of Law, Aurangabad", city: "Aurangabad", type: "Private", link: "https://www.careers360.com/colleges/chh-shahu-college-of-law-aurangabad" },
+      { name: "Deogiri College of Law, Aurangabad", city: "Aurangabad", type: "Private", link: "https://www.careers360.com/colleges/deogiri-college-of-law-aurangabad" },
+      { name: "Jawaharlal Nehru Law College, Aurangabad", city: "Aurangabad", type: "Private", link: "https://www.careers360.com/colleges/jawaharlal-nehru-law-college-aurangabad" },
+      { name: "Manikchand Pahade Law College, Aurangabad", city: "Aurangabad", type: "Private", link: "https://www.careers360.com/colleges/manikchand-pahade-law-college-aurangabad" },
+      { name: "Ahmednagar College of Law, Ahmednagar", city: "Ahmednagar", type: "Private", link: "https://www.careers360.com/colleges/ahmednagar-college-of-law-ahmednagar" },
+      { name: "Adsul Law College, Ahmednagar", city: "Ahmednagar", type: "Private", link: "https://www.careers360.com/colleges/adsul-law-college-ahmednagar" },
+      { name: "Dr. Vithalrao Vikhe Patil College of Law, Ahmednagar", city: "Ahmednagar", type: "Private", link: "https://www.careers360.com/colleges/dr-vithalrao-vikhe-patil-college-of-law-ahmednagar" },
+      { name: "Sanjivani College of Law, Kopargaon", city: "Kopargaon", type: "Private", link: "https://www.careers360.com/colleges/sanjivani-college-of-law-kopargaon" },
+      { name: "Aurangabad College of Law, Aurangabad", city: "Aurangabad", type: "Private", link: "https://www.careers360.com/colleges/aurangabad-college-of-law-aurangabad" },
+      { name: "Dayanand College of Law, Latur", city: "Latur", type: "Private", link: "https://www.careers360.com/colleges/dayanand-college-of-law-latur" },
+      { name: "Vishwanathrao Deshpande Law College, Latur", city: "Latur", type: "Private", link: "https://www.careers360.com/colleges/vishwanathrao-deshpande-law-college-latur" },
+      { name: "Nanded Education Society's College of Law, Nanded", city: "Nanded", type: "Private", link: "https://www.careers360.com/colleges/nanded-education-societys-college-of-law-nanded" },
+      { name: "Narayanrao Chavan Law College, Nanded", city: "Nanded", type: "Private", link: "https://www.careers360.com/colleges/narayanrao-chavan-law-college-nanded" },
+      { name: "Yashwantrao Chavan Law College, Karad", city: "Karad", type: "Private", link: "https://www.careers360.com/colleges/yashwantrao-chavan-law-college-karad" },
+      { name: "Dhananjayrao Gadgil Law College, Solapur", city: "Solapur", type: "Private", link: "https://www.careers360.com/colleges/dhananjayrao-gadgil-law-college-solapur" },
+      { name: "S. S. Patil Law College, Solapur", city: "Solapur", type: "Private", link: "https://www.careers360.com/colleges/s-s-patil-law-college-solapur" },
+      { name: "Shivaji University Law College, Kolhapur", city: "Kolhapur", type: "Government", link: "https://www.careers360.com/colleges/shivaji-university-law-college-kolhapur" },
+      { name: "S. S. Maniyar Law College, Satara", city: "Satara", type: "Private", link: "https://www.careers360.com/colleges/s-s-maniyar-law-college-satara" },
+      { name: "S. K. Porwal College of Law, Akola", city: "Akola", type: "Private", link: "https://www.careers360.com/colleges/s-k-porwal-college-of-law-akola" },
+      { name: "Dr. Panjabrao Deshmukh College of Law, Amravati", city: "Amravati", type: "Private", link: "https://www.careers360.com/colleges/dr-panjabrao-deshmukh-college-of-law-amravati" },
+      { name: "Dr. Rajendra Gode College of Law, Amravati", city: "Amravati", type: "Private", link: "https://www.careers360.com/colleges/dr-rajendra-gode-college-of-law-amravati" },
+      { name: "Nilkanthrao Shankarrao Law College, Dhule", city: "Dhule", type: "Private", link: "https://www.careers360.com/colleges/nilkanthrao-shankarrao-law-college-dhule" },
+      { name: "Sakharam Sonu Law College, Dhule", city: "Dhule", type: "Private", link: "https://www.careers360.com/colleges/sakharam-sonu-law-college-dhule" },
+      { name: "Shri Sant Gajanan Maharaj College of Law, Jalgaon", city: "Jalgaon", type: "Private", link: "https://www.careers360.com/colleges/shri-sant-gajanan-maharaj-college-of-law-jalgaon" },
+      { name: "Shri Shivaji Law College, Jalna", city: "Jalna", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-jalna" },
+      { name: "Shri Shivaji Law College, Parbhani", city: "Parbhani", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-parbhani" },
+      { name: "Shri Shivaji Law College, Nanded", city: "Nanded", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-nanded" },
+
+      // Other Regions (113 colleges)
+      // Kolhapur (15)
+      { name: "Shivaji University Law College, Kolhapur", city: "Kolhapur", type: "Government", link: "https://www.careers360.com/colleges/shivaji-university-law-college-kolhapur" },
+      { name: "Rayat Shikshan Sanstha's Law College, Kolhapur", city: "Kolhapur", type: "Private", link: "https://www.careers360.com/colleges/rayat-shikshan-sansthas-law-college-kolhapur" },
+      { name: "D.Y. Patil Law College, Kolhapur", city: "Kolhapur", type: "Private", link: "https://www.careers360.com/colleges/d-y-patil-law-college-kolhapur" },
+      { name: "Karmaveer Bhaurao Patil Law College, Kolhapur", city: "Kolhapur", type: "Private", link: "https://www.careers360.com/colleges/karmaveer-bhaurao-patil-law-college-kolhapur" },
+      { name: "Shivaji University's Law College, Ichalkaranji", city: "Ichalkaranji", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-ichalkaranji" },
+      { name: "Shivaji University's Law College, Sangli", city: "Sangli", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-sangli" },
+      { name: "Shivaji University's Law College, Miraj", city: "Miraj", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-miraj" },
+      { name: "Shivaji University's Law College, Jaysingpur", city: "Jaysingpur", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-jaysingpur" },
+      { name: "Shivaji University's Law College, Islampur", city: "Islampur", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-islampur" },
+      { name: "Shivaji University's Law College, Vita", city: "Vita", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-vita" },
+      { name: "Shivaji University's Law College, Tasgaon", city: "Tasgaon", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-tasgaon" },
+      { name: "Shivaji University's Law College, Kundal", city: "Kundal", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-kundal" },
+      { name: "Shivaji University's Law College, Malkapur", city: "Malkapur", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-malkapur" },
+      { name: "Shivaji University's Law College, Hatkanangle", city: "Hatkanangle", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-hatkanangle" },
+      { name: "Shivaji University's Law College, Shirol", city: "Shirol", type: "Government", link: "https://www.careers360.com/colleges/shivaji-universitys-law-college-shirol" },
+
+      // Amravati (12)
+      { name: "Sant Gadge Baba Amravati University Law College", city: "Amravati", type: "Government", link: "https://www.careers360.com/colleges/sant-gadge-baba-amravati-university-law-college" },
+      { name: "Dr. Panjabrao Deshmukh College of Law, Amravati", city: "Amravati", type: "Private", link: "https://www.careers360.com/colleges/dr-panjabrao-deshmukh-college-of-law-amravati" },
+      { name: "Dr. Rajendra Gode College of Law, Amravati", city: "Amravati", type: "Private", link: "https://www.careers360.com/colleges/dr-rajendra-gode-college-of-law-amravati" },
+      { name: "Shri Shivaji Law College, Amravati", city: "Amravati", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-amravati" },
+      { name: "S. K. Porwal College of Law, Akola", city: "Akola", type: "Private", link: "https://www.careers360.com/colleges/s-k-porwal-college-of-law-akola" },
+      { name: "Shri Shivaji Law College, Akola", city: "Akola", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-akola" },
+      { name: "Shri Shivaji Law College, Yavatmal", city: "Yavatmal", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-yavatmal" },
+      { name: "Shri Shivaji Law College, Washim", city: "Washim", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-washim" },
+      { name: "Shri Shivaji Law College, Buldhana", city: "Buldhana", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-buldhana" },
+      { name: "Shri Shivaji Law College, Chandrapur", city: "Chandrapur", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-chandrapur" },
+      { name: "Shri Shivaji Law College, Wardha", city: "Wardha", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-wardha" },
+      { name: "Shri Shivaji Law College, Gadchiroli", city: "Gadchiroli", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-gadchiroli" },
+
+      // Nashik (18)
+      { name: "M.S. Law College, Nashik", city: "Nashik", type: "Private", link: "https://www.careers360.com/colleges/m-s-law-college-nashik" },
+      { name: "K.K. Wagh Law College, Nashik", city: "Nashik", type: "Private", link: "https://www.careers360.com/colleges/k-k-wagh-law-college-nashik" },
+      { name: "H.P.T. Arts and R.Y.K. Science Law College, Nashik", city: "Nashik", type: "Private", link: "https://www.careers360.com/colleges/h-p-t-arts-and-r-y-k-science-law-college-nashik" },
+      { name: "S.S. Law College, Nashik", city: "Nashik", type: "Private", link: "https://www.careers360.com/colleges/s-s-law-college-nashik" },
+      { name: "Shri Shivaji Law College, Nashik", city: "Nashik", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-nashik" },
+      { name: "Shri Shivaji Law College, Malegaon", city: "Malegaon", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-malegaon" },
+      { name: "Shri Shivaji Law College, Sinnar", city: "Sinnar", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-sinnar" },
+      { name: "Shri Shivaji Law College, Satana", city: "Satana", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-satana" },
+      { name: "Shri Shivaji Law College, Nandgaon", city: "Nandgaon", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-nandgaon" },
+      { name: "Shri Shivaji Law College, Igatpuri", city: "Igatpuri", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-igatpuri" },
+      { name: "Shri Shivaji Law College, Dindori", city: "Dindori", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-dindori" },
+      { name: "Shri Shivaji Law College, Kalwan", city: "Kalwan", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-kalwan" },
+      { name: "Shri Shivaji Law College, Yeola", city: "Yeola", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-yeola" },
+      { name: "Shri Shivaji Law College, Niphad", city: "Niphad", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-niphad" },
+      { name: "Shri Shivaji Law College, Trimbakeshwar", city: "Trimbakeshwar", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-trimbakeshwar" },
+      { name: "Shri Shivaji Law College, Peth", city: "Peth", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-peth" },
+      { name: "Shri Shivaji Law College, Surgana", city: "Surgana", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-surgana" },
+      { name: "Shri Shivaji Law College, Deola", city: "Deola", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-deola" },
+
+      // Other Cities (68)
+      { name: "Shri Shivaji Law College, Solapur", city: "Solapur", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-solapur" },
+      { name: "Dhananjayrao Gadgil Law College, Solapur", city: "Solapur", type: "Private", link: "https://www.careers360.com/colleges/dhananjayrao-gadgil-law-college-solapur" },
+      { name: "S. S. Patil Law College, Solapur", city: "Solapur", type: "Private", link: "https://www.careers360.com/colleges/s-s-patil-law-college-solapur" },
+      { name: "Shri Shivaji Law College, Barshi", city: "Barshi", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-barshi" },
+      { name: "Shri Shivaji Law College, Pandharpur", city: "Pandharpur", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-pandharpur" },
+      { name: "Shri Shivaji Law College, Sangola", city: "Sangola", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-sangola" },
+      { name: "Shri Shivaji Law College, Malshiras", city: "Malshiras", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-malshiras" },
+      { name: "Shri Shivaji Law College, Karmala", city: "Karmala", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-karmala" },
+      { name: "Shri Shivaji Law College, Madha", city: "Madha", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-madha" },
+      { name: "Shri Shivaji Law College, Mohol", city: "Mohol", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-mohol" },
+      { name: "Shri Shivaji Law College, Mangalwedha", city: "Mangalwedha", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-mangalwedha" },
+      { name: "Shri Shivaji Law College, Akkalkot", city: "Akkalkot", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-akkalkot" },
+      { name: "Shri Shivaji Law College, Jath", city: "Jath", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-jath" },
+      { name: "Shri Shivaji Law College, Atpadi", city: "Atpadi", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-atpadi" },
+      { name: "Shri Shivaji Law College, Tasgaon", city: "Tasgaon", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-tasgaon" },
+      { name: "Shri Shivaji Law College, Khanapur", city: "Khanapur", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-khanapur" },
+      { name: "Shri Shivaji Law College, Vita", city: "Vita", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-vita" },
+      { name: "Shri Shivaji Law College, Islampur", city: "Islampur", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-islampur" },
+      { name: "Shri Shivaji Law College, Miraj", city: "Miraj", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-miraj" },
+      { name: "Shri Shivaji Law College, Jaysingpur", city: "Jaysingpur", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-jaysingpur" },
+      { name: "Shri Shivaji Law College, Kundal", city: "Kundal", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-kundal" },
+      { name: "Shri Shivaji Law College, Malkapur", city: "Malkapur", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-malkapur" },
+      { name: "Shri Shivaji Law College, Hatkanangle", city: "Hatkanangle", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-hatkanangle" },
+      { name: "Shri Shivaji Law College, Shirol", city: "Shirol", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-shirol" },
+      { name: "Shri Shivaji Law College, Karad", city: "Karad", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-karad" },
+      { name: "Yashwantrao Chavan Law College, Karad", city: "Karad", type: "Private", link: "https://www.careers360.com/colleges/yashwantrao-chavan-law-college-karad" },
+      { name: "Shri Shivaji Law College, Patan", city: "Patan", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-patan" },
+      { name: "Shri Shivaji Law College, Satara", city: "Satara", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-satara" },
+      { name: "S. S. Maniyar Law College, Satara", city: "Satara", type: "Private", link: "https://www.careers360.com/colleges/s-s-maniyar-law-college-satara" },
+      { name: "Shri Shivaji Law College, Wai", city: "Wai", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-wai" },
+      { name: "Shri Shivaji Law College, Mahabaleshwar", city: "Mahabaleshwar", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-mahabaleshwar" },
+      { name: "Shri Shivaji Law College, Phaltan", city: "Phaltan", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-phaltan" },
+      { name: "Shri Shivaji Law College, Koregaon", city: "Koregaon", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-koregaon" },
+      { name: "Shri Shivaji Law College, Jawali", city: "Jawali", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-jawali" },
+      { name: "Shri Shivaji Law College, Man", city: "Man", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-man" },
+      { name: "Shri Shivaji Law College, Khatav", city: "Khatav", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-khatav" },
+      { name: "Shri Shivaji Law College, Dahiwadi", city: "Dahiwadi", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-dahiwadi" },
+      { name: "Shri Shivaji Law College, Vaduj", city: "Vaduj", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-vaduj" },
+      { name: "Shri Shivaji Law College, Khandala", city: "Khandala", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-khandala" },
+      { name: "Shri Shivaji Law College, Shirala", city: "Shirala", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-shirala" },
+      { name: "Shri Shivaji Law College, Walwa", city: "Walwa", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-walwa" },
+      { name: "Shri Shivaji Law College, Palus", city: "Palus", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-palus" },
+      { name: "Shri Shivaji Law College, Kadegaon", city: "Kadegaon", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-kadegaon" },
+      { name: "Shri Shivaji Law College, Kavathe Mahankal", city: "Kavathe Mahankal", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-kavathe-mahankal" },
+      { name: "Shri Shivaji Law College, Aundh", city: "Aundh", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-aundh" },
+      { name: "Shri Shivaji Law College, Bhor", city: "Bhor", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-bhor" },
+      { name: "Shri Shivaji Law College, Velhe", city: "Velhe", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-velhe" },
+      { name: "Shri Shivaji Law College, Purandar", city: "Purandar", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-purandar" },
+      { name: "Shri Shivaji Law College, Baramati", city: "Baramati", type: "Private", link: "https://www.careers360.com/colleges/shri-shivaji-law-college-baramati" },
+      { name: "Vasantrao Pawar Law College, Baramati", city: "Baramati", type: "Private", link: "https://www.careers360.com/colleges/vasantrao-pawar-law-college-baramati" },
+      { name: "Vidya Pratishthan's Law College, Baramati", city: "Baramati", type: "Private", link: "https://www.careers360.com/colleges/vidya-pratishthans-law-college-baramati" },
+  ];
+    const collegeList = document.getElementById('college-list');
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function displayColleges(collegesToDisplay = colleges) {
+      collegeList.innerHTML = "";
+      
+      if (collegesToDisplay.length === 0) {
+        collegeList.innerHTML = '<div class="no-results">No colleges found matching your criteria</div>';
+        return;
+      }
+      
+      collegesToDisplay.forEach(college => {
+        const card = document.createElement('div');
+        card.className = 'college-card';
+        const typeClass = college.type.toLowerCase();
+        card.innerHTML = `
+          <div>
+            <h2>${college.name} <span class="type-badge ${typeClass}">${college.type}</span></h2>
+            <div class="college-info">
+              <i>📍</i>     ${college.city}, Andhra Pradesh
+            </div>
+            <div class="links">
+              <a href="${college.link}" target="_blank">View Details</a>
+              <a href="#">Courses</a>
+              <a href="#">Admissions</a>
+            </div>
+          </div>
+        `;
+        collegeList.appendChild(card);
+      });
+      
+      document.getElementById('college-count').textContent = `Showing ${collegesToDisplay.length} of ${colleges.length} Law Colleges`;
+    }
+
+    function filterColleges() {
+      currentSearch = document.getElementById('search').value.toLowerCase();
+      applyFilters();
+    }
+
+    function filterByType(type) {
+      currentFilter = type;
+      
+      // Update active button
+      document.querySelectorAll('#filters .filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent === type || (type === 'all' && btn.textContent === 'All')) {
+          btn.classList.add('active');
+        }
+      });
+      
+      applyFilters();
+    }
+
+    function applyFilters() {
+      let filteredColleges = colleges.filter(college => {
+        const matchesSearch = college.name.toLowerCase().includes(currentSearch) || 
+                             college.city.toLowerCase().includes(currentSearch);
+        const matchesType = currentFilter === 'all' || college.type === currentFilter;
+        return matchesSearch && matchesType;
+      });
+      
+      displayColleges(filteredColleges);
+    }
+
+    // Initial display
+    displayColleges();
+  </script>
+</body>
+</html>

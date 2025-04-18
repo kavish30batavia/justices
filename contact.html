@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Our Team</title>
+
+    <link rel="icon" href="img/logo1.jpg" type="image/jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('img/background.jpg') no-repeat center center/cover;
+        }
+        
+        /* Navigation Bar Styles */
+        nav {
+            background: #502900;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%; /* Reduced width to create spacing on sides */
+            max-width: 1400px; /* Added max-width for large screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0 30px; /* Added horizontal padding */
+        }
+        nav .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+        }
+        .nav-logo {
+            height: 60px;
+            width: auto;
+            border-radius: 30px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .logout {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .logout:hover {
+            color: #f9a826;
+        }
+        nav a:hover {
+            color: #f9a826;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .menu {
+                margin: 10px 0;
+            }
+            
+            .logout {
+                margin-top: 10px;
+            }
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        .contact-box {
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 40px;
+            background: rgba(244, 244, 249, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-container {
+            width: 55%;
+        }
+        
+        .contact-info {
+            width: 40%;
+            padding-left: 20px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        button {
+            background: #6e4c04;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: #333;
+        }
+        
+        .math-question {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .contact-info a {
+            text-decoration: none;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: #502900;
+            color: white;
+            padding: 40px 0 20px;
+            width: 100%;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .footer-column {
+            flex: 1;
+            margin: 0 15px;
+        }
+        .footer-column h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-column ul li a:hover {
+            color: #f9a826;
+        }
+        .social-icons {
+            display: flex;
+            margin-top: 10px;
+        }
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 20px;
+            color: #ffffff;
+        }
+        .footer-column a:hover {
+            color: #f9a826;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("nav-menu");
+            if (menu.style.display === "flex") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "flex";
+                menu.style.flexDirection = "column";
+            }
+        }
+        function generateMathQuestion() {
+            let num1 = Math.floor(Math.random() * 20) + 1;
+            let num2 = Math.floor(Math.random() * 20) + 1;
+            let operator = ["+", "-"][Math.floor(Math.random() * 2)];
+            let question = `${num1} ${operator} ${num2}`;
+            document.getElementById("mathQuestion").innerText = `Solve: ${question}`;
+            return eval(question);
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            let correctAnswer = generateMathQuestion();
+            document.getElementById("contactForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                let userAnswer = parseInt(document.getElementById("mathAnswer").value);
+                if (userAnswer === correctAnswer) {
+                    alert("Form submitted successfully!");
+                } else {
+                    alert("Wrong answer! Please try again.");
+                    correctAnswer = generateMathQuestion();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Updated Navigation Bar (Using Extracted Code) -->
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="img/logo1.jpg" alt="Logo" class="nav-logo">
+            </a>
+    
+            <div class="menu">
+                <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                
+                <!-- Dropdown Menu with Icon -->
+                <div class="dropdown">
+                    <a href="service.html"><i class="fas fa-gavel"></i> Services</a>
+    
+                    <div class="dropdown-content">
+                        <a href="createcaseref.html"><i class="fas fa-file-alt"></i> Create Case Reference</a>
+                        <a href="displaycaseref.html"><i class="fas fa-file-alt"></i>  Case Reference</a>
+                        <a href="consitution_of_india.html"><i class="fas fa-book"></i> Constitution of India</a>
+                        <a href="lawerreg.html"><i class="fas fa-user-tie"></i> Register Lawyer</a>
+                        <a href="createblogpge.html"><i class="fas fa-pen-fancy"></i> Blog Creation</a>
+                    </div>
+                </div>
+                <a href="http://127.0.0.1:5000"><i class="fas fa-robot"></i> Section Chatbot</a>
+                <a href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+                <a href="contact.html"><i class="fas fa-question-circle"></i> Contact</a>
+            </div>
+    
+            <a href="C:/Users/lenovo/Desktop/project/index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+      </nav>
+    
+    <div class="container">
+        <div class="contact-box">
+            <div class="form-container">
+                <h2>Contact Our Team</h2>
+                <form id="contactForm">
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                    <input type="email" id="email" placeholder="Your Email" required>
+                    <input type="tel" id="phone" placeholder="Your Phone Number" required>
+                    <textarea id="message" placeholder="Leave us a message..." rows="4" required></textarea>
+                    <p id="mathQuestion" class="math-question"></p>
+                    <input type="number" id="mathAnswer" placeholder="Your Answer" required>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Chat with us</h3>
+                <p>Speak to our friendly team via email</p>
+                <a href="mailto:finalyearprojectlaw@gmail.com">finalyearprojectlaw@gmail.com</a>
+                <h3>Call us</h3>
+                <p>Call our team Mon-Fri from 8am to 5pm.</p>
+                <a href="tel:8291864367">8291864367</a>
+                <h3>Visit us</h3>
+                <p>Chat to us on WhatsApp.</p>
+                <a href="https://web.whatsapp.com">WhatsApp: 8291864321</a>
+                <div class="quotes">
+                    <p>" Never hate your enemies. It affects your judgment"</p>
+                    <p>" Compromise is the best and cheapest lawyer." </p>
+                    <p>"Make crime pay. Become a lawyer. "</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Updated Footer (Using Extracted Code) -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Justice Advisor</h3>
+                <p>Your comprehensive legal guide center providing high-quality materials for lawyers.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="http://127.0.0.1:5000"> Section Chatbot </a></li>
+                    <li><a href="chatbot.html">  Chatbot </a></li>
+                    <li><a href="createcaseref.html">  Create Case Reference </a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Other Resources</h3>
+                <ul>
+                    <li><a href="constitution.html">Constitution of India</a></li>
+                    <li><a href="displaycaseref.html">Case Reference</a></li>
+                    <li><a href="createblogpge.html"> Blog Creation</a></li>
+                    <li><a href="lawerreg.html">Lawyer Registration </a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Legal Studies Repository. All rights reserved.</p>
+        </div>
+      </footer>
+</body>
+</html>

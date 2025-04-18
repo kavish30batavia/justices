@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="images/logo.jpg" type="image/jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Law Colleges in Andhra Pradesh (50 Colleges)</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      
+    }
+    :root {
+            --primary-color: #4a2c02;
+            --secondary-color: #4a2c02;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --purchase-color: #f39c12;
+            --nav-color: #4a2c02;
+            --nav-hover: #f9a826;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        nav {
+  background: var(--nav-color);
+  padding: 15px 0; /* Changed padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Changed to 100% */
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        .nav-logo {
+          height: 60px;
+          width: auto;
+          border-radius: 30px;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--nav-hover);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--nav-hover);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 200px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+    h1 {
+      color: #1a365d;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.2rem;
+    }
+    #search-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      flex-wrap: wrap;
+     padding: 25px; 
+    }
+    #search {
+      flex-grow: 1;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      min-width: 300px;
+    }
+    #filters {
+      display: flex;
+      gap: 10px;
+      margin-left: 15px;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid #d1d5db;
+      background-color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background-color: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+    #college-count {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #4b5563;
+      font-size: 1.1rem;
+    }
+    .college-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+    .college-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #2563eb;
+    }
+    .college-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    .college-card h2 {
+      margin: 0 0 8px;
+      color: #1e40af;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+    }
+    .college-info {
+      margin-bottom: 12px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .college-info i {
+      font-size: 1rem;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .links a {
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background-color: #eff6ff;
+      transition: all 0.3s;
+    }
+    .links a:hover {
+      background-color: #dbeafe;
+      text-decoration: underline;
+    }
+    .type-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+    .government {
+      background-color: #10b981;
+      color: white;
+    }
+    .private {
+      background-color: #ef4444;
+      color: white;
+    }
+    .no-results {
+      text-align: center;
+      grid-column: 1/-1;
+      padding: 40px;
+      color: #6b7280;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      #search-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      #filters {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+      }
+      .college-list {
+        grid-template-columns: 1fr;
+      }
+    }
+     
+    @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            
+        }
+        footer {
+            background-color: var(--nav-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--nav-hover);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .purchase-btn {
+                margin-left: 0;
+            }
+            
+            .material-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer button {
+                width: 100%;
+            }
+            
+        }
+        
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+  </style>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+        <a href="dashboard.html" class="logo">
+            <img src="images/logo.jpg" alt="Logo" class="nav-logo">
+        </a>
+
+        <div class="menu" id="menu">
+            <a href="index.html"><i class="fas fa-home"></i>  Home</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i>  About</a>
+            <div class="dropdown">
+                <a href="services.html"><i class="fas fa-gavel"></i>  Services</a>
+                <div class="dropdown-content">
+                    <a href="chatbot.html"><i class="fas fa-robot"></i>   Legal Chatbot</a>
+                    <a href="section-chatbot.html"><i class="fas fa-code"></i>   Section Finder</a>
+                    <a href="case-reference.html"><i class="fas fa-gavel"></i>   Case Reference</a>
+                    <a href="consitution_of_india.html"><i class="fas fa-book"></i>   Constitution</a>
+                   
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="resources.html">Resources <i class="fas fa-chevron-down"></i>  </a>
+                <div class="dropdown-content">
+                    <a href="study material.html"><i class="fas fa-book"></i>   Law Books</a>
+                    <a href="lawcolleges.html"><i class="fas fa-file-alt"></i>   Law Colleges</a>
+                    
+                    <a href="Roadmap.html"><i class="fas fa-file-pdf"></i>   Road Map</a>
+                </div>
+            </div>
+            <a href="blog.html"><i class="fas fa-pen-fancy"></i>  Blog</a>
+            <a href="help.html"><i class="fas fa-question-circle"></i> Help</a>
+        </div>
+        <a href="login.html" class="login-btn"><i class="fas fa-user"></i>   Login</a>
+    </div>
+</nav>
+  <div class="container">
+    <h1>Law Colleges in Andhra Pradesh</h1>
+    <div id="search-container">
+      <input type="text" placeholder="Search by College Name or City..." id="search" onkeyup="filterColleges()" />
+      <div id="filters">
+        <button class="filter-btn active" onclick="filterByType('all')">All</button>
+        <button class="filter-btn" onclick="filterByType('Government')">Government</button>
+        <button class="filter-btn" onclick="filterByType('Private')">Private</button>
+      </div>
+    </div>
+    <div id="college-count">Showing 50 Law Colleges</div>
+    <div class="college-list" id="college-list"></div>
+  </div>
+  <footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>Justice Advisor</h3>
+            <p>Your comprehensive legal studies resource center providing high-quality materials for students, professionals, and legal enthusiasts.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i>  </a>
+                <a href="#"><i class="fab fa-twitter"></i>  </a>
+                <a href="#"><i class="fab fa-linkedin-in"></i>  </a>
+                <a href="#"><i class="fab fa-instagram"></i>  </a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="http://127.0.0.1:5000"> Section Finder</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Legal Resources</h3>
+            <ul>
+                <li><a href="consitution_of_india.html">Constitution of India</a></li>
+                <li><a href="Roadmap.html">Road Map</a></li>
+                <li><a href="lawcolleges.html">Law colleges</a></li>
+                <li><a href="study material.html">Law Books</a></li>
+                
+         
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+            
+                <li><a href="faq.html">FAQs</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+         
+           
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2025 Legal Studies Repository. All rights reserved.
+    </div>
+</footer>
+
+  <script>
+const colleges = [
+  // Government Colleges (1)
+  { name: "Tripura University - Department of Law", city: "Agartala", type: "Government", link: "https://tripurauniv.in/" },
+  
+  // Private Colleges (3)
+  { name: "Tripura Institute of Technology - Law Department", city: "Agartala", type: "Private", link: "https://tripurainstituteoftechnology.in/" },
+  { name: "Techno India Law School", city: "Agartala", type: "Private", link: "https://www.technoindiaeducation.com/" },
+  { name: "ICFAI University Tripura - Faculty of Law", city: "Agartala", type: "Private", link: "https://www.iutripura.edu.in/" }
+];
+    const collegeList = document.getElementById('college-list');
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function displayColleges(collegesToDisplay = colleges) {
+      collegeList.innerHTML = "";
+      
+      if (collegesToDisplay.length === 0) {
+        collegeList.innerHTML = '<div class="no-results">No colleges found matching your criteria</div>';
+        return;
+      }
+      
+      collegesToDisplay.forEach(college => {
+        const card = document.createElement('div');
+        card.className = 'college-card';
+        const typeClass = college.type.toLowerCase();
+        card.innerHTML = `
+          <div>
+            <h2>${college.name} <span class="type-badge ${typeClass}">${college.type}</span></h2>
+            <div class="college-info">
+              <i>📍</i>   ${college.city}, Andhra Pradesh
+            </div>
+            <div class="links">
+              <a href="${college.link}" target="_blank">View Details</a>
+              <a href="#">Courses</a>
+              <a href="#">Admissions</a>
+            </div>
+          </div>
+        `;
+        collegeList.appendChild(card);
+      });
+      
+      document.getElementById('college-count').textContent = `Showing ${collegesToDisplay.length} of ${colleges.length} Law Colleges`;
+    }
+
+    function filterColleges() {
+      currentSearch = document.getElementById('search').value.toLowerCase();
+      applyFilters();
+    }
+
+    function filterByType(type) {
+      currentFilter = type;
+      
+      // Update active button
+      document.querySelectorAll('#filters .filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent === type || (type === 'all' && btn.textContent === 'All')) {
+          btn.classList.add('active');
+        }
+      });
+      
+      applyFilters();
+    }
+
+    function applyFilters() {
+      let filteredColleges = colleges.filter(college => {
+        const matchesSearch = college.name.toLowerCase().includes(currentSearch) || 
+                             college.city.toLowerCase().includes(currentSearch);
+        const matchesType = currentFilter === 'all' || college.type === currentFilter;
+        return matchesSearch && matchesType;
+      });
+      
+      displayColleges(filteredColleges);
+    }
+
+    // Initial display
+    displayColleges();
+  </script>
+</body>
+</html>

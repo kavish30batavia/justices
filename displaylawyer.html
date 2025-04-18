@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
+    <title>Find Lawyer </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/logo1.jpg" type="image/jpg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #2c3e50;
+            background: url('img/background.jpg') no-repeat center center/cover;
+        }
+        
+        nav {
+            background: #502900;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%; /* Reduced width to create spacing on sides */
+            max-width: 1400px; /* Added max-width for large screens */
+            margin: 0 auto; /* Center the container */
+            padding: 0 30px; /* Added horizontal padding */
+        }
+
+        nav .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+        }
+
+        .nav-logo {
+            height: 60px;
+            width: auto;
+            border-radius: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logout {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .logout:hover {
+            color: #f9a826;
+        }
+
+        nav a:hover {
+            color: #f9a826;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ac8733;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .menu {
+                margin: 10px 0;
+            }
+            
+            .logout {
+                margin-top: 10px;
+            }
+        }
+       
+        
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #f39c12;
+        }
+        
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #4a6fa5;
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+        }
+        
+        .filter-btn {
+            background-color: #4a2c02;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.8rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+            align-self: flex-end;
+        }
+        
+        .filter-btn:hover {
+            background-color: #3a2202;
+        }
+        
+        .lawyers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .lawyer-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #4a2c02;
+            cursor: pointer;
+        }
+        
+        .lawyer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .lawyer-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4a2c02;
+            margin: 0 auto 1rem;
+            display: block;
+        }
+        
+        .lawyer-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .lawyer-specialty {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .lawyer-detail {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .lawyer-detail strong {
+            color: #4a2c02;
+        }
+        
+        .view-more {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #4a2c02;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .view-more:hover {
+            text-decoration: underline;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #7f8c8d;
+        }
+        
+        .close-modal:hover {
+            color: #2c3e50;
+        }
+        
+        .modal-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .modal-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #4a2c02;
+        }
+        
+        .modal-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .modal-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .modal-title {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-contact {
+            margin-bottom: 1rem;
+        }
+        
+        .modal-contact-btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        
+        .modal-email-btn {
+            background-color: #4a2c02;
+            color: white;
+            border: none;
+        }
+        
+        .modal-email-btn:hover {
+            background-color: #3a2202;
+        }
+        
+        .modal-call-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+        }
+        
+        .modal-call-btn:hover {
+            background-color: #219653;
+        }
+        
+        .modal-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .modal-detail-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #4a2c02;
+        }
+        
+        .modal-detail-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #4a2c02;
+        }
+        
+        .modal-detail-item {
+            margin-bottom: 0.8rem;
+        }
+        
+        .modal-detail-item strong {
+            color: #4a2c02;
+            display: inline-block;
+            min-width: 120px;
+        }
+        
+        .modal-specializations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .modal-specialization-tag {
+            background-color: #e3f2fd;
+            color: #4a6fa5;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .modal-stat-item {
+            text-align: center;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .modal-stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4a2c02;
+        }
+        
+        .modal-stat-label {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+        
+        .modal-bio {
+            line-height: 1.6;
+        }
+        
+        footer {
+            background: #502900;
+            color: white;
+            padding: 40px 0 20px;
+            width: 100%;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin: 0 15px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #f9a826;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        .footer-column a:hover {
+            color: #f9a826;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .filter-section {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .filter-group {
+                width: 100%;
+            }
+            
+            .lawyers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .modal-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-detail-item strong {
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <img src="img/logo1.jpg" alt="Logo" class="nav-logo">
+            </a>
+    
+            <div class="menu">
+                <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                
+                <!-- Dropdown Menu with Icon -->
+                <div class="dropdown">
+                    <a href="service.html"><i class="fas fa-gavel"></i> Services</a>
+    
+                    <div class="dropdown-content">
+                        
+                        <a href="consitutionofindia.html"><i class="fas fa-book"></i> Constitution of India</a>
+    
+                        <a href="displayblog.html"><i class="fas fa-pen-fancy"></i> Blog </a>
+    
+                        <a href="schccc.html"><i class="fas fa-file-alt"></i> Courts Information</a>
+                    </div>
+                </div>
+                <a href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+                <a href="displaylawyer.html"><i class="fas fa-user-tie"></i>Find lawyer</a>
+                <a href="contact.html"><i class="fas fa-question-circle"></i> Contact</a>
+            </div>
+    
+            <a href="C:/Users/lenovo/Desktop/project/index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+      </nav>
+    
+    <div class="container">
+        <h2>Find Your Lawyer</h2>
+       
+        <div class="filter-section">
+            <div class="filter-group">
+                <label for="specializationFilter">Specialization</label>
+                <select id="specializationFilter">
+                    <option value="all">All Specializations</option>
+                    <option value="Criminal Law">Criminal Law</option>
+                    <option value="Civil Law">Civil Law</option>
+                    <option value="Corporate Law">Corporate Law</option>
+                    <option value="Family Law">Family Law</option>
+                    <option value="Property Law">Property Law</option>
+                    <option value="Tax Law">Tax Law</option>
+                    <option value="Constitutional Law">Constitutional Law</option>
+                    <option value="Intellectual Property">Intellectual Property</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="locationFilter">Location</label>
+                <input type="text" id="locationFilter" placeholder="City or State">
+            </div>
+            
+            <div class="filter-group">
+                <label for="experienceFilter">Min. Experience</label>
+                <select id="experienceFilter">
+                    <option value="0">Any Experience</option>
+                    <option value="5">5+ years</option>
+                    <option value="10">10+ years</option>
+                    <option value="15">15+ years</option>
+                    <option value="20">20+ years</option>
+                </select>
+            </div>
+            
+            <button class="filter-btn" id="applyFilters">
+                <i class="fas fa-filter"></i> Apply Filters
+            </button>
+        </div>
+        
+        <div class="lawyers-grid" id="lawyersContainer">
+            <!-- Lawyer cards will be inserted here by JavaScript -->
+            <p><i class="fas fa-spinner fa-spin"></i> Loading lawyers...</p>
+        </div>
+    </div>
+    
+    <!-- Modal for detailed lawyer view -->
+    <div id="lawyerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <img id="modalLawyerPhoto" src="img/default-lawyer.jpg" alt="Lawyer Photo" class="modal-photo">
+                <div class="modal-info">
+                    <h1 id="modalLawyerName" class="modal-name">Loading...</h1>
+                    <p id="modalLawyerTitle" class="modal-title">Bar Council Number: <span id="modalBarNumber">Loading...</span></p>
+                    <div id="modalLawyerContact" class="modal-contact">
+                        <strong><i class="fas fa-phone"></i> Phone:</strong> <span id="modalPhoneNumber">Loading...</span><br>
+                        <strong><i class="fas fa-envelope"></i> Email:</strong> <span id="modalEmailAddress">Loading...</span>
+                    </div>
+                    <div>
+                        <a href="#" id="modalEmailBtn" class="modal-contact-btn modal-email-btn">
+                            <i class="fas fa-envelope"></i> Email Lawyer
+                        </a>
+                        <a href="#" id="modalCallBtn" class="modal-contact-btn modal-call-btn">
+                            <i class="fas fa-phone"></i> Call Lawyer
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-details">
+                <div class="modal-detail-card">
+                    <h3 class="modal-detail-title"><i class="fas fa-gavel"></i> Professional Information</h3>
+                    <div class="modal-detail-item">
+                        <strong>Experience:</strong> <span id="modalYearsExperience">Loading...</span> years
+                    </div>
+                    <div class="modal-detail-item">
+                        <strong>Practice Location:</strong> <span id="modalPracticeLocation">Loading...</span>
+                    </div>
+                    <div class="modal-detail-item">
+                        <strong>Qualifications:</strong> <span id="modalQualifications">Loading...</span>
+                    </div>
+                </div>
+                
+                <div class="modal-detail-card">
+                    <h3 class="modal-detail-title"><i class="fas fa-star"></i> Specializations</h3>
+                    <div id="modalSpecializations" class="modal-specializations">
+                        <div class="modal-specialization-tag"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+                    </div>
+                </div>
+                
+                <div class="modal-detail-card">
+                    <h3 class="modal-detail-title"><i class="fas fa-chart-line"></i> Performance Stats</h3>
+                    <div class="modal-stats">
+                        <div class="modal-stat-item">
+                            <div class="modal-stat-value" id="modalCasesWon">0</div>
+                            <div class="modal-stat-label">Cases Won</div>
+                        </div>
+                        <div class="modal-stat-item">
+                            <div class="modal-stat-value" id="modalCasesLost">0</div>
+                            <div class="modal-stat-label">Cases Lost</div>
+                        </div>
+                        <div class="modal-stat-item">
+                            <div class="modal-stat-value" id="modalWinPercentage">0%</div>
+                            <div class="modal-stat-label">Win Rate</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-detail-card">
+                    <h3 class="modal-detail-title"><i class="fas fa-user-tie"></i> About</h3>
+                    <p id="modalLawyerBio" class="modal-bio">Loading professional biography...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Justice Advisor</h3>
+                <p>Your comprehensive legal guide center providing high-quality materials for lawyers.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="chatbot.html"> Chatbot </a></li>
+                    <li><a href="displaylawyer.html"></a>Find Lawyer</li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Other Resources</h3>
+                <ul>
+                    <li><a href="constitutionofindia.html">Constitution of India</a></li>
+                    
+                    <li><a href="displayblog.html"> Blog </a></li>
+                    <li><a href="schccc.html">Court Information </a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Legal Studies Repository. All rights reserved.</p>
+        </div>
+      </footer>
+    
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXBidb_LLMcZIFgydtBmIh0roiNZxZQJ8",
+            authDomain: "lawchatbot-83152.firebaseapp.com",
+            projectId: "lawchatbot-83152",
+            storageBucket: "lawchatbot-83152.appspot.com",
+            messagingSenderId: "771007178800",
+            appId: "1:771007178800:web:49d8faf68c838f1b4c25f5",
+            measurementId: "G-W50N0CDVWB"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+        
+        // Modal elements
+        const modal = document.getElementById("lawyerModal");
+        const closeModal = document.querySelector(".close-modal");
+        const modalPhoto = document.getElementById("modalLawyerPhoto");
+        
+        // Close modal when clicking the X button
+        closeModal.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+        
+        // Close modal when clicking outside the modal content
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+        
+        // Function to fetch and display lawyers
+        function fetchLawyers() {
+            const lawyersContainer = document.getElementById("lawyersContainer");
+            lawyersContainer.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Loading lawyers...</p>';
+            
+            db.collection("lawyers")
+                .get()
+                .then((snapshot) => {
+                    if (snapshot.empty) {
+                        lawyersContainer.innerHTML = '<p>No lawyer records found.</p>';
+                        return;
+                    }
+                    
+                    lawyersContainer.innerHTML = ""; // Clear loading message
+                    
+                    snapshot.forEach(doc => {
+                        const lawyer = doc.data();
+                        const lawyerId = doc.id;
+                        
+                        // Create lawyer card
+                        const card = document.createElement("div");
+                        card.className = "lawyer-card";
+                        card.dataset.id = lawyerId;
+                        
+                        // Set default photo URL if none exists
+                        const photoUrl = lawyer.photoURL || "img/default-lawyer.jpg";
+                        
+                        card.innerHTML = `
+                            <img src="${photoUrl}" alt="${lawyer.firstName} ${lawyer.lastName}" class="lawyer-photo" onerror="this.src='img/default-lawyer.jpg'">
+                            <h3 class="lawyer-name">${lawyer.firstName} ${lawyer.lastName}</h3>
+                            <p class="lawyer-specialty">${lawyer.specializations ? lawyer.specializations.join(", ") : "No specializations listed"}</p>
+                            <div class="lawyer-detail">
+                                <strong><i class="fas fa-map-marker-alt"></i> Location:</strong> ${lawyer.practiceLocation || "Not specified"}
+                            </div>
+                            <div class="lawyer-detail">
+                                <strong><i class="fas fa-briefcase"></i> Experience:</strong> ${lawyer.yearsExperience || "0"} years
+                            </div>
+                            <div class="lawyer-detail">
+                                <strong><i class="fas fa-percentage"></i> Win Rate:</strong> ${lawyer.winPercentage ? lawyer.winPercentage.toFixed(1) + "%" : "N/A"}
+                            </div>
+                            <a href="#" class="view-more view-lawyer-btn" data-id="${lawyerId}">View Profile <i class="fas fa-chevron-right"></i></a>
+                        `;
+                        
+                        lawyersContainer.appendChild(card);
+                    });
+                    
+                    // Add event listeners to view buttons
+                    document.querySelectorAll(".view-lawyer-btn").forEach(button => {
+                        button.addEventListener("click", function(e) {
+                            e.preventDefault();
+                            const lawyerId = this.dataset.id;
+                            showLawyerDetails(lawyerId);
+                        });
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching lawyers: ", error);
+                    lawyersContainer.innerHTML = '<p>Error loading lawyer data. Please try again.</p>';
+                });
+        }
+        
+        // Function to show detailed lawyer information in modal
+        function showLawyerDetails(lawyerId) {
+            db.collection("lawyers").doc(lawyerId).get()
+                .then(doc => {
+                    if (!doc.exists) {
+                        alert("Lawyer not found!");
+                        return;
+                    }
+                    
+                    const lawyer = doc.data();
+                    
+                    // Set modal content
+                    document.getElementById("modalLawyerName").textContent = `${lawyer.firstName} ${lawyer.lastName}`;
+                    document.getElementById("modalBarNumber").textContent = lawyer.barNumber || "N/A";
+                    document.getElementById("modalPhoneNumber").textContent = lawyer.phone || "N/A";
+                    document.getElementById("modalEmailAddress").textContent = lawyer.email || "N/A";
+                    document.getElementById("modalYearsExperience").textContent = lawyer.yearsExperience || "0";
+                    document.getElementById("modalPracticeLocation").textContent = lawyer.practiceLocation || "Not specified";
+                    document.getElementById("modalQualifications").textContent = lawyer.qualifications || "Not specified";
+                    document.getElementById("modalCasesWon").textContent = lawyer.casesWon || "0";
+                    document.getElementById("modalCasesLost").textContent = lawyer.casesLost || "0";
+                    document.getElementById("modalWinPercentage").textContent = lawyer.winPercentage ? lawyer.winPercentage.toFixed(1) + "%" : "0%";
+                    document.getElementById("modalLawyerBio").textContent = lawyer.bio || "No biography available.";
+                    
+                    // Set photo (with fallback to default if none exists)
+                    modalPhoto.src = lawyer.photoURL || "img/default-lawyer.jpg";
+                    modalPhoto.onerror = function() {
+                        this.src = "img/default-lawyer.jpg";
+                    };
+                    
+                    // Set email and call buttons
+                    document.getElementById("modalEmailBtn").href = `mailto:${lawyer.email}`;
+                    document.getElementById("modalCallBtn").href = `tel:${lawyer.phone}`;
+                    
+                    // Update specializations
+                    const specializationsContainer = document.getElementById("modalSpecializations");
+                    specializationsContainer.innerHTML = "";
+                    
+                    if (lawyer.specializations && lawyer.specializations.length > 0) {
+                        lawyer.specializations.forEach(spec => {
+                            const tag = document.createElement("div");
+                            tag.className = "modal-specialization-tag";
+                            tag.innerHTML = `<i class="fas fa-check"></i> ${spec}`;
+                            specializationsContainer.appendChild(tag);
+                        });
+                    } else {
+                        specializationsContainer.innerHTML = '<div class="modal-specialization-tag">No specializations listed</div>';
+                    }
+                    
+                    // Show the modal
+                    modal.style.display = "block";
+                })
+                .catch(error => {
+                    console.error("Error fetching lawyer details: ", error);
+                    alert("Error loading lawyer details. Please try again.");
+                });
+        }
+        
+        // Initialize filters
+        document.getElementById("applyFilters").addEventListener("click", applyFilters);
+        
+        function applyFilters() {
+            const specialization = document.getElementById("specializationFilter").value;
+            const location = document.getElementById("locationFilter").value.toLowerCase();
+            const experience = parseInt(document.getElementById("experienceFilter").value);
+            
+            let query = db.collection("lawyers");
+            
+            // Apply specialization filter if not "all"
+            if (specialization !== "all") {
+                query = query.where("specializations", "array-contains", specialization);
+            }
+            
+            // Apply experience filter if > 0
+            if (experience > 0) {
+                query = query.where("yearsExperience", ">=", experience);
+            }
+            
+            // Get all lawyers that match the filters
+            query.get()
+                .then(snapshot => {
+                    const lawyersContainer = document.getElementById("lawyersContainer");
+                    lawyersContainer.innerHTML = "";
+                    
+                    if (snapshot.empty) {
+                        lawyersContainer.innerHTML = '<p>No lawyers match your filters.</p>';
+                        return;
+                    }
+                    
+                    snapshot.forEach(doc => {
+                        const lawyer = doc.data();
+                        const lawyerId = doc.id;
+                        
+                        // Apply location filter (client-side as it's a partial match)
+                        if (location && lawyer.practiceLocation && 
+                            !lawyer.practiceLocation.toLowerCase().includes(location)) {
+                            return; // Skip this lawyer
+                        }
+                        
+                        // Create lawyer card
+                        const card = document.createElement("div");
+                        card.className = "lawyer-card";
+                        card.dataset.id = lawyerId;
+                        
+                        // Set default photo URL if none exists
+                        const photoUrl = lawyer.photoURL || "img/default-lawyer.jpg";
+                        
+                        card.innerHTML = `
+                            <img src="${photoUrl}" alt="${lawyer.firstName} ${lawyer.lastName}" class="lawyer-photo" onerror="this.src='img/default-lawyer.jpg'">
+                            <h3 class="lawyer-name">${lawyer.firstName} ${lawyer.lastName}</h3>
+                            <p class="lawyer-specialty">${lawyer.specializations ? lawyer.specializations.join(", ") : "No specializations listed"}</p>
+                            <div class="lawyer-detail">
+                                <strong><i class="fas fa-map-marker-alt"></i> Location:</strong> ${lawyer.practiceLocation || "Not specified"}
+                            </div>
+                            <div class="lawyer-detail">
+                                <strong><i class="fas fa-briefcase"></i> Experience:</strong> ${lawyer.yearsExperience || "0"} years
+                            </div>
+                            <div class="lawyer-detail">
+                                <strong><i class="fas fa-percentage"></i> Win Rate:</strong> ${lawyer.winPercentage ? lawyer.winPercentage.toFixed(1) + "%" : "N/A"}
+                            </div>
+                            <a href="#" class="view-more view-lawyer-btn" data-id="${lawyerId}">View Profile <i class="fas fa-chevron-right"></i></a>
+                        `;
+                        
+                        lawyersContainer.appendChild(card);
+                    });
+                    
+                    // Add event listeners to view buttons
+                    document.querySelectorAll(".view-lawyer-btn").forEach(button => {
+                        button.addEventListener("click", function(e) {
+                            e.preventDefault();
+                            const lawyerId = this.dataset.id;
+                            showLawyerDetails(lawyerId);
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error("Error filtering lawyers: ", error);
+                    document.getElementById("lawyersContainer").innerHTML = '<p>Error applying filters. Please try again.</p>';
+                });
+        }
+        
+        // Load lawyers when page is ready
+        document.addEventListener("DOMContentLoaded", fetchLawyers);
+    </script>
+</body>
+</html>

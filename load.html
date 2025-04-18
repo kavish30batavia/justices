@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Law Chatbot - Loading</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .loading-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px 60px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Animated Background */
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            z-index: 1;
+            animation: moveBackground 10s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-50%); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Loading Icon */
+        .loading-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Typewriter Effect */
+        .loading-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typewriter 3s steps(40) forwards;
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0;
+            background-color: #ffffff;
+            border-radius: 5px;
+            animation: progress 3s linear forwards;
+        }
+
+        @keyframes progress {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        /* Dynamic Legal Quotes */
+        .legal-quote {
+            font-size: 16px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation"></div>
+
+    <!-- Loading Container -->
+    <div class="loading-container">
+        <!-- Icon or Logo -->
+        <div class="loading-icon">⚖️</div> <!-- Scales of justice emoji -->
+
+        <!-- Loading Text with Typewriter Effect -->
+        <div class="loading-text">Preparing Your Legal Assistant</div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+        </div>
+
+        <!-- Dynamic Legal Quotes -->
+        <div class="legal-quote" id="legal-quote">"Justice is the constant and perpetual will to allot to every man his due."</div>
+    </div>
+
+    <script>
+        // Array of Legal Quotes
+        const legalQuotes = [
+            "The law is reason, free from passion.",
+            "Justice delayed is justice denied.",
+            "Injustice anywhere is a threat to justice everywhere.",
+            "The first duty of society is justice.",
+            "Where law ends, tyranny begins."
+        ];
+
+        // Function to Display Random Legal Quotes
+        function displayRandomQuote() {
+            const quoteElement = document.getElementById('legal-quote');
+            const randomQuote = legalQuotes[Math.floor(Math.random() * legalQuotes.length)];
+            quoteElement.textContent = `"${randomQuote}"`;
+        }
+
+        // Update Quote Every 3 Seconds
+        setInterval(displayRandomQuote, 3000);
+
+        // Simulate a delay before redirecting to the chatbot interface
+        setTimeout(function() {
+            window.location.href = "home.html"; // Replace with your actual chatbot page
+        }, 3000); // 3 seconds delay
+    </script>
+</body>
+</html>
